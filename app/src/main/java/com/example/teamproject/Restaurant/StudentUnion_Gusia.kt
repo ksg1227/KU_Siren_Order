@@ -113,22 +113,4 @@ fun StudentUnion_GusiaScreen() {
     }
 }
 
-//@Composable
-//fun TabPagerScreen(
-//    mainNavController: NavHostController,
-//    viewModel: TabPagerViewModel
-//) {
-//    val tabs = listOf("홈", "설정", "프로필")
-//    val pagerState = rememberPagerState {
-//        tabs.size
-//    }
-//
-//    Column {
-//        CustomTabPager(
-//            pagerState = pagerState,
-//            tabs = tabs
-//        )
-//    }
-//}
-
 

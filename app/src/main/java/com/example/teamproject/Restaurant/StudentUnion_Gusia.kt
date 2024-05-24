@@ -22,12 +22,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.example.teamproject.MenuScreen.StudentUnionBabScreen
-import com.example.teamproject.MenuScreen.StudentUnionBoonsikScreen
-import com.example.teamproject.MenuScreen.StudentUnionDonggasScreen
-import com.example.teamproject.MenuScreen.StudentUnionGookbabScreen
-import com.example.teamproject.MenuScreen.StudentUnionMaraScreen
-import com.example.teamproject.MenuScreen.StudentUnionPopoScreen
+import androidx.navigation.NavController
+import com.example.teamproject.Screen.StudentUnionBabScreen
+import com.example.teamproject.Screen.StudentUnionBoonsikScreen
+import com.example.teamproject.Screen.StudentUnionDonggasScreen
+import com.example.teamproject.Screen.StudentUnionGookbabScreen
+import com.example.teamproject.Screen.StudentUnionMaraScreen
+import com.example.teamproject.Screen.StudentUnionPopoScreen
 import kotlinx.coroutines.launch
 
 @Composable
@@ -99,7 +100,7 @@ fun CustomTabPager(pagerState: PagerState, tabs: List<String>) {
 }
 
 @Composable
-fun StudentUnion_GusiaScreen() {
+fun StudentUnion_GusiaScreen(navController: NavController) {
     val tabs = listOf("바비든든", "포포420", "경성 돈카츠", "51장국밥", "폭풍분식", "따거마라")
     val pagerState = rememberPagerState {
         tabs.size

@@ -1,4 +1,4 @@
-package com.example.teamproject.MenuScreen
+package com.example.teamproject.Screen
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable

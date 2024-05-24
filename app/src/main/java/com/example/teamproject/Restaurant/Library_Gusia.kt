@@ -22,9 +22,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.example.teamproject.BabScreen
-import com.example.teamproject.DonggasScreen
-import com.example.teamproject.PopoScreen
+import com.example.teamproject.MenuScreen.LibraryBabScreen
+import com.example.teamproject.MenuScreen.LibraryDonggasScreen
+import com.example.teamproject.MenuScreen.LibraryPopoScreen
 import kotlinx.coroutines.launch
 
 @Composable
@@ -82,9 +82,9 @@ fun CustomTabPager2(pagerState: PagerState, tabs: List<String>) {
             ) {
                 // 페이지별 컨텐츠
                 when (page) {
-                    0 -> BabScreen()
-                    1 -> PopoScreen()
-                    2 -> DonggasScreen()
+                    0 -> LibraryBabScreen()
+                    1 -> LibraryPopoScreen()
+                    2 -> LibraryDonggasScreen()
                 }
             }
         }

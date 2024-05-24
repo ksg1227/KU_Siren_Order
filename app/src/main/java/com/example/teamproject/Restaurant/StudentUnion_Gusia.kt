@@ -22,12 +22,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.example.teamproject.BabScreen
-import com.example.teamproject.BoonsikScreen
-import com.example.teamproject.DonggasScreen
-import com.example.teamproject.GookbabScreen
-import com.example.teamproject.MaraScreen
-import com.example.teamproject.PopoScreen
+import com.example.teamproject.MenuScreen.StudentUnionBabScreen
+import com.example.teamproject.MenuScreen.StudentUnionBoonsikScreen
+import com.example.teamproject.MenuScreen.StudentUnionDonggasScreen
+import com.example.teamproject.MenuScreen.StudentUnionGookbabScreen
+import com.example.teamproject.MenuScreen.StudentUnionMaraScreen
+import com.example.teamproject.MenuScreen.StudentUnionPopoScreen
 import kotlinx.coroutines.launch
 
 @Composable
@@ -86,12 +86,12 @@ fun CustomTabPager(pagerState: PagerState, tabs: List<String>) {
             ) {
                 // 페이지별 컨텐츠
                 when (page) {
-                    0 -> BabScreen()
-                    1 -> PopoScreen()
-                    2 -> DonggasScreen()
-                    3 -> GookbabScreen()
-                    4 -> BoonsikScreen()
-                    5 -> MaraScreen()
+                    0 -> StudentUnionBabScreen()
+                    1 -> StudentUnionPopoScreen()
+                    2 -> StudentUnionDonggasScreen()
+                    3 -> StudentUnionGookbabScreen()
+                    4 -> StudentUnionBoonsikScreen()
+                    5 -> StudentUnionMaraScreen()
                 }
             }
         }

@@ -24,26 +24,10 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    StudentUnion_GusiaScreen()
-//                    Library_GusiaScreen()
+//                    StudentUnion_GusiaScreen()
+                    Library_GusiaScreen()
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    TeamProjectTheme {
-        Greeting("Android")
     }
 }

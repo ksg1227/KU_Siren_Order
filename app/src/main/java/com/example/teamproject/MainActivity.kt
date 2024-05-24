@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.teamproject.Restaurant.Library_GusiaScreen
+import com.example.teamproject.Restaurant.StudentUnion_GusiaScreen
 import com.example.teamproject.ui.theme.TeamProjectTheme
 
 class MainActivity : ComponentActivity() {
@@ -23,8 +24,8 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-//                    StudentUnion_GusiaScreen()
-                    Library_GusiaScreen()
+                    StudentUnion_GusiaScreen()
+//                    Library_GusiaScreen()
                 }
             }
         }

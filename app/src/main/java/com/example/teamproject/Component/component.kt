@@ -31,7 +31,6 @@ import com.example.teamproject.MenuItem
 
 @Composable
 fun MenuGrid(menuItems: List<MenuItem>) {
-    // Remember the menu items to avoid unnecessary recompositions
     val items = remember { menuItems }
 
     LazyVerticalGrid(
@@ -48,11 +47,13 @@ fun MenuGrid(menuItems: List<MenuItem>) {
             KioskMenuItem(
                 imageRes = item.imageRes,
                 menuName = item.name,
+                menuPrice = item.price,
                 onClick = { /* TODO: Handle click action */ }
             )
         }
     }
 }
+
 
 //@Composable
 //fun MenuGrid(menuItems: List<MenuItem>) {
@@ -80,13 +81,14 @@ fun MenuGrid(menuItems: List<MenuItem>) {
 fun KioskMenuItem(
     imageRes: Int,
     menuName: String,
+    menuPrice: String,
     onClick: () -> Unit
 ) {
     Card(
         shape = RoundedCornerShape(16.dp),
         elevation = CardDefaults.cardElevation(9.dp),
         modifier = Modifier
-            .clickable(onClick = onClick)
+            .clickable(onClick = onClick),
     ) {
         Column(
             modifier = Modifier
@@ -109,9 +111,19 @@ fun KioskMenuItem(
                     fontWeight = FontWeight.Bold,
                     fontSize = 15.sp
                 ),
-                modifier = Modifier.padding(8.dp)
+                modifier = Modifier.padding(horizontal = 8.dp)
             )
+            Spacer(modifier = Modifier.height(4.dp))
+            Text(
+                text = menuPrice,
+                style = MaterialTheme.typography.titleSmall.copy(
+                    fontSize = 13.sp
+                ),
+                modifier = Modifier.padding(horizontal = 8.dp)
+            )
+            Spacer(modifier = Modifier.height(8.dp))
         }
     }
 }
+
 

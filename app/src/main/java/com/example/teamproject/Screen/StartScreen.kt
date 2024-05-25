@@ -1,6 +1,7 @@
 package com.example.teamproject.Screen
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -48,8 +49,8 @@ fun StartScreen(navController: NavHostController) {
             shape = RoundedCornerShape(16.dp),
             modifier = Modifier
                 .padding(bottom = 20.dp)
-                .width(300.dp)
-                .shadow(2.dp, RoundedCornerShape(20.dp))
+                .border(1.dp, Color.Black, shape = RoundedCornerShape(16.dp))
+                .width(330.dp)
         ) {
             Text(text = "로그인")
         }
@@ -63,8 +64,8 @@ fun StartScreen(navController: NavHostController) {
             shape = RoundedCornerShape(16.dp),
             modifier = Modifier
                 .padding(bottom = 20.dp)
-                .width(300.dp)
-                .shadow(2.dp, RoundedCornerShape(20.dp))
+                .border(1.dp, Color.Black, shape = RoundedCornerShape(16.dp))
+                .width(330.dp)
         ) {
             Text(text = "회원가입")
         }

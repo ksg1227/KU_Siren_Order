@@ -14,6 +14,10 @@ material3 = "1.3.0-beta01"
 lifecycleViewmodel = "2.8.0"
 lifecycleViewmodelCompose = "2.8.0"
 navigationCompose = "2.8.0-alpha08"
+naverMapCompose = "1.7.0"
+playServicesLocation = "21.2.0"
+naverMapLocation = "21.0.2"
+mapSdkVersion = "3.18.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }

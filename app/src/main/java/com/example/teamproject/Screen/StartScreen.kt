@@ -68,5 +68,19 @@ fun StartScreen(navController: NavHostController) {
         ) {
             Text(text = "회원가입")
         }
+        Button(
+            onClick = { navController.navigate(Routes.Map.route) },
+            colors = ButtonDefaults.buttonColors(
+                containerColor = Color.White, // 배경색
+                contentColor = Color.Black // 텍스트 색상
+            ),
+            shape = RoundedCornerShape(16.dp),
+            modifier = Modifier
+                .padding(bottom = 20.dp)
+                .width(300.dp)
+                .shadow(2.dp, RoundedCornerShape(20.dp))
+        ) {
+            Text(text = "맵 보기!")
+        }
     }
 }

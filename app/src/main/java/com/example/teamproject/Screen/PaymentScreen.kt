@@ -17,6 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
@@ -118,14 +119,14 @@ fun GoPaymentBtn(
             .height(40.dp)
             .clip(RoundedCornerShape(10.dp))
             .clickable(onClick = onClick)
-            .border(1.dp, colorResource(id = R.color.gray_b3b3b3), RoundedCornerShape(10.dp))
-            .background(colorResource(id = R.color.gray_e6e6e6)),
+            .background(colorResource(id = R.color.green_65a25b)),
         contentAlignment = Alignment.Center
     ) {
         Text(
             text = "결제하기",
+            color = Color.White,
             fontSize = 16.sp,
-            fontFamily = FontFamily(Font(R.font.pretendard_medium))
+            fontFamily = FontFamily(Font(R.font.pretendard_semibold))
         )
     }
 }

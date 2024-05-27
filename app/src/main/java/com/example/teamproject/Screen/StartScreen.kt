@@ -56,7 +56,7 @@ fun StartScreen(navController: NavHostController) {
         }
 
         Button(
-            onClick = { navController.navigate(Routes.LibraryGusia.route) },
+            onClick = { navController.navigate(Routes.SignUp.route) },
             colors = ButtonDefaults.buttonColors(
                 containerColor = Color.White, // 배경색
                 contentColor = Color.Black // 텍스트 색상

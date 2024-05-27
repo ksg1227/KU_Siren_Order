@@ -10,11 +10,13 @@ import androidx.navigation.compose.rememberNavController
 import com.example.teamproject.Restaurant.Library_GusiaScreen
 import com.example.teamproject.Restaurant.StudentUnion_GusiaScreen
 import com.example.teamproject.Screen.LoginScreen
+import com.example.teamproject.Screen.SignUpScreen
 import com.example.teamproject.Screen.StartScreen
 
 open class Routes(val route: String) {
     object Start : Routes("start_screen")
     object Login : Routes("login_screen")
+    object SignUp : Routes("SignUp_screen")
     object StudentUnionGusia : Routes("studentUnion_gusiaScreen")
     object LibraryGusia : Routes("library_gusiaScreen")
 }
@@ -30,6 +32,10 @@ fun NavGraph(navController: NavHostController) {
 
         composable(Routes.Login.route) {
             LoginScreen(navController)
+        }
+
+        composable(Routes.SignUp.route) {
+            SignUpScreen(navController)
         }
 
         composable(Routes.StudentUnionGusia.route) {

@@ -23,6 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import com.example.teamproject.Screen.StudentUnionBabScreen
 import com.example.teamproject.Screen.StudentUnionBoonsikScreen
 import com.example.teamproject.Screen.StudentUnionDonggasScreen
@@ -32,7 +33,7 @@ import com.example.teamproject.Screen.StudentUnionPopoScreen
 import kotlinx.coroutines.launch
 
 @Composable
-fun CustomTabPager(pagerState: PagerState, tabs: List<String>) {
+fun CustomTabPager(pagerState: PagerState, tabs: List<String>, navController : NavHostController) {
 
     val coroutineScope = rememberCoroutineScope() // 코루틴 스코프 생성
 
@@ -87,12 +88,12 @@ fun CustomTabPager(pagerState: PagerState, tabs: List<String>) {
             ) {
                 // 페이지별 컨텐츠
                 when (page) {
-                    0 -> StudentUnionBabScreen()
-                    1 -> StudentUnionPopoScreen()
-                    2 -> StudentUnionDonggasScreen()
-                    3 -> StudentUnionGookbabScreen()
-                    4 -> StudentUnionBoonsikScreen()
-                    5 -> StudentUnionMaraScreen()
+                    0 -> StudentUnionBabScreen(navController = navController)
+                    1 -> StudentUnionPopoScreen(navController = navController)
+                    2 -> StudentUnionDonggasScreen(navController = navController)
+                    3 -> StudentUnionGookbabScreen(navController = navController)
+                    4 -> StudentUnionBoonsikScreen(navController = navController)
+                    5 -> StudentUnionMaraScreen(navController = navController)
                 }
             }
         }
@@ -100,7 +101,7 @@ fun CustomTabPager(pagerState: PagerState, tabs: List<String>) {
 }
 
 @Composable
-fun StudentUnion_GusiaScreen(navController: NavController) {
+fun StudentUnion_GusiaScreen(navController: NavHostController) {
     val tabs = listOf("바비든든", "포포420", "경성 돈카츠", "51장국밥", "폭풍분식", "따거마라")
     val pagerState = rememberPagerState {
         tabs.size
@@ -109,7 +110,8 @@ fun StudentUnion_GusiaScreen(navController: NavController) {
     Column {
         CustomTabPager(
             pagerState = pagerState,
-            tabs = tabs
+            tabs = tabs,
+            navController = navController
         )
     }
 }

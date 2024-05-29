@@ -16,12 +16,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
@@ -82,7 +80,7 @@ fun StartScreen(navController: NavHostController) {
         }
 
         Button(
-            onClick = { navController.navigate(Routes.Map.route) },
+            onClick = { navController.navigate(Routes.RestioStart.route) },
             colors = ButtonDefaults.buttonColors(
                 containerColor = Color.White, // 배경색
                 contentColor = Color.Black // 텍스트 색상
@@ -93,7 +91,7 @@ fun StartScreen(navController: NavHostController) {
                 .border(1.dp, Color.Black, shape = RoundedCornerShape(16.dp))
                 .width(330.dp)
         ) {
-            Text(text = "맵 보기",
+            Text(text = "레스티오",
                 fontSize = 16.sp,
                 fontFamily = FontFamily(Font(R.font.pretendard_medium)))
         }

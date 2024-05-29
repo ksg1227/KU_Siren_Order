@@ -23,13 +23,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import com.example.teamproject.Screen.LibraryBabScreen
 import com.example.teamproject.Screen.LibraryDonggasScreen
 import com.example.teamproject.Screen.LibraryPopoScreen
 import kotlinx.coroutines.launch
 
 @Composable
-fun CustomTabPager2(pagerState: PagerState, tabs: List<String>) {
+fun CustomTabPager2(pagerState: PagerState, tabs: List<String>, navController:NavHostController) {
 
     val coroutineScope = rememberCoroutineScope() // 코루틴 스코프 생성
 
@@ -83,9 +84,9 @@ fun CustomTabPager2(pagerState: PagerState, tabs: List<String>) {
             ) {
                 // 페이지별 컨텐츠
                 when (page) {
-                    0 -> LibraryBabScreen()
-                    1 -> LibraryPopoScreen()
-                    2 -> LibraryDonggasScreen()
+                    0 -> LibraryBabScreen(navController = navController)
+                    1 -> LibraryPopoScreen(navController = navController)
+                    2 -> LibraryDonggasScreen(navController = navController)
                 }
             }
         }
@@ -93,7 +94,7 @@ fun CustomTabPager2(pagerState: PagerState, tabs: List<String>) {
 }
 
 @Composable
-fun Library_GusiaScreen(navController: NavController) {
+fun Library_GusiaScreen(navController: NavHostController) {
     val tabs = listOf("바비든든", "포포420", "경성 돈카츠")
     val pagerState = rememberPagerState {
         tabs.size
@@ -102,7 +103,8 @@ fun Library_GusiaScreen(navController: NavController) {
     Column {
         CustomTabPager2(
             pagerState = pagerState,
-            tabs = tabs
+            tabs = tabs,
+            navController = navController
         )
     }
 }

@@ -26,11 +26,12 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.example.teamproject.R
+import com.example.teamproject.navigation.Routes
 
-@Preview
 @Composable
-fun PaymentScreen(modifier: Modifier = Modifier) {
+fun PaymentScreen(navController: NavHostController, modifier: Modifier = Modifier) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
@@ -55,7 +56,6 @@ fun PaymentScreen(modifier: Modifier = Modifier) {
         }
         Spacer(Modifier.weight(1f))
         GoPaymentBtn {
-
         }
         Spacer(modifier = Modifier.height(30.dp))
     }

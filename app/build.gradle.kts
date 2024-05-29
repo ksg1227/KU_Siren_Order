@@ -73,6 +73,8 @@ dependencies {
     implementation(libs.material3)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.navigation.compose)
+
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -84,8 +86,8 @@ dependencies {
     // naver map SDK
     implementation(libs.map.sdk.v3120)
     implementation(libs.naver.map.compose)
-    implementation(libs.play.services.location)
     implementation(libs.naver.map.location)
+    implementation(libs.play.services.location)
 
     implementation("com.google.android.gms:play-services-maps:18.2.0")
     implementation("com.google.android.gms:play-services-location:21.0.1")

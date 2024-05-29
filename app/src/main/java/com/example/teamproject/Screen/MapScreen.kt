@@ -52,7 +52,6 @@ fun MapScreen(navController: NavHostController) {
 
             ) {
             markerState.value?.let { DrawMarker(currLocation = it) }
-
         }
     }
 }

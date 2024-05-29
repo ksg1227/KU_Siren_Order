@@ -9,6 +9,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.teamproject.R
 import com.naver.maps.geometry.LatLng
@@ -60,7 +61,8 @@ fun MapScreen(navController: NavHostController) {
 fun SetMarker(latitude: Double, longitude: Double) {
     Marker(
         state = MarkerState(position = LatLng(latitude, longitude)),
-        icon = OverlayImage.fromResource(R.drawable.konkuk)
+        icon = OverlayImage.fromResource(R.drawable.konkuk), width = 30.dp,
+        height = 30.dp
     )
 }
 
@@ -107,10 +109,10 @@ fun DrawMarker(currLocation: LatLng) {
     )
     // 사용자 반경 내 쿠만 표시
     markerLocations.forEach { location ->
-        val distance = calculateDistance(location, userLocation)
-        if (distance <= MAX_DISTANCE_THRESHOLD) {
-            SetMarker(location.latitude, location.longitude)
-        }
+//        val distance = calculateDistance(location, userLocation)
+//        if (distance <= MAX_DISTANCE_THRESHOLD) {
+        SetMarker(location.latitude, location.longitude)
+//        }
     }
 
 }
@@ -127,4 +129,4 @@ fun calculateDistance(location1: LatLng, location2: LatLng): Float {
 }
 
 
-private const val MAX_DISTANCE_THRESHOLD = 150f // 사용자 반경
+//private const val MAX_DISTANCE_THRESHOLD = 150f // 사용자 반경

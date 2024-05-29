@@ -70,6 +70,7 @@ fun DrawMarker(currLocation: LatLng) {
     // 사용자의 현재 위치
     val userLocation = currLocation
 
+
     val markerLocations = listOf(
 //        LatLng(37.5431505, 127.0751552), // 행정관
         LatLng(37.5442615, 127.0760717), // 경영관 ->레스티오

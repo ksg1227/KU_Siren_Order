@@ -8,10 +8,10 @@ import androidx.navigation.compose.composable
 import com.example.teamproject.Restaurant.Library_GusiaScreen
 import com.example.teamproject.Restaurant.StudentUnion_GusiaScreen
 import com.example.teamproject.Screen.LoginScreen
+import com.example.teamproject.Screen.MapScreen
 import com.example.teamproject.Screen.StartScreen
 import com.example.teamproject.ViewModel.LocalNavGraphViewModelStoreOwner
 import com.example.teamproject.ViewModel.rememberViewModelStoreOwner
-import com.example.teamproject.Screen.MapScreen
 
 open class Routes(val route: String) {
     object Start : Routes("start_screen")

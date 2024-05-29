@@ -106,7 +106,7 @@ fun DrawMarker(currLocation: LatLng) {
     CircleOverlay(
         center = LatLng(userLocation.latitude, userLocation.longitude),
         Color.Red.copy(alpha = 0.3F),
-        150.0
+        10.0
     )
     // 사용자 반경 내 쿠만 표시
     markerLocations.forEach { location ->

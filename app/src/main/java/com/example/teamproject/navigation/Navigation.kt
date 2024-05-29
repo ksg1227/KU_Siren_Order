@@ -22,6 +22,7 @@ import com.example.teamproject.ViewModel.LibraryMenuViewModel
 import com.example.teamproject.ViewModel.LocalNavGraphViewModelStoreOwner
 import com.example.teamproject.ViewModel.StudentUnionMenuViewModel
 import com.example.teamproject.ViewModel.rememberViewModelStoreOwner
+import com.example.teamproject.Screen.MapScreen
 
 open class Routes(val route: String) {
     object Start : Routes("start_screen")
@@ -29,20 +30,25 @@ open class Routes(val route: String) {
     object SignUp : Routes("SignUp_screen")
     object StudentUnionGusia : Routes("studentUnion_gusiaScreen")
     object LibraryGusia : Routes("library_gusiaScreen")
+
     object Payment : Routes("Payment_Screen")
+    object Map : Routes("map_screen")
 }
 
 
 @Composable
-fun NavGraph(navController: NavHostController,
-             libraryViewModel: LibraryMenuViewModel = viewModel(),
-             studentUnionViewModel: StudentUnionMenuViewModel = viewModel()) {
+fun NavGraph(
+    navController: NavHostController,
+    libraryViewModel: LibraryMenuViewModel = viewModel(),
+    studentUnionViewModel: StudentUnionMenuViewModel = viewModel()
+) {
 
     val navStoreOwner = rememberViewModelStoreOwner()
     CompositionLocalProvider(
         LocalNavGraphViewModelStoreOwner provides navStoreOwner
     ) {
         NavHost(navController = navController, startDestination = Routes.Start.route) {
+
 
             composable(Routes.Start.route) {
                 StartScreen(navController)
@@ -51,7 +57,6 @@ fun NavGraph(navController: NavHostController,
             composable(Routes.Login.route) {
                 LoginScreen(navController)
             }
-
             composable(Routes.SignUp.route) {
                 SignUpScreen(navController)
             }
@@ -64,7 +69,7 @@ fun NavGraph(navController: NavHostController,
                 Library_GusiaScreen(navController)
             }
 
-            composable(Routes.Payment.route){
+            composable(Routes.Payment.route) {
                 PaymentScreen(navController)
             }
 
@@ -84,8 +89,8 @@ fun NavGraph(navController: NavHostController,
                     index = index,
                     libraryViewModel = libraryViewModel,
                     onAddToCart = {
-                                  navController.navigate(Routes.LibraryGusia.route)
-                                  },
+                        navController.navigate(Routes.LibraryGusia.route)
+                    },
                     onCheckout = {
                         // 결제 로직
                         libraryViewModel.decreaseQuantity(category, index, quantity)
@@ -111,8 +116,8 @@ fun NavGraph(navController: NavHostController,
                     index = index,
                     studentUnionViewModel = studentUnionViewModel,
                     onAddToCart = {
-                                  navController.navigate(Routes.LibraryGusia.route)
-                                  },
+                        navController.navigate(Routes.LibraryGusia.route)
+                    },
                     onCheckout = {
                         // 결제 로직
                         studentUnionViewModel.decreaseQuantity(category, index, quantity)
@@ -120,6 +125,10 @@ fun NavGraph(navController: NavHostController,
                         navController.navigate(Routes.Payment.route)
                     }
                 )
+            }
+
+            composable(Routes.Map.route) {
+                MapScreen(navController)
             }
         }
     }

@@ -80,5 +80,23 @@ fun StartScreen(navController: NavHostController) {
                 fontSize = 16.sp,
                 fontFamily = FontFamily(Font(R.font.pretendard_medium)))
         }
+
+        Button(
+            onClick = { navController.navigate(Routes.Map.route) },
+            colors = ButtonDefaults.buttonColors(
+                containerColor = Color.White, // 배경색
+                contentColor = Color.Black // 텍스트 색상
+            ),
+            shape = RoundedCornerShape(16.dp),
+            modifier = Modifier
+                .padding(bottom = 20.dp)
+                .border(1.dp, Color.Black, shape = RoundedCornerShape(16.dp))
+                .width(330.dp)
+        ) {
+            Text(text = "맵 보기",
+                fontSize = 16.sp,
+                fontFamily = FontFamily(Font(R.font.pretendard_medium)))
+        }
+
     }
 }

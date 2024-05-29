@@ -23,9 +23,6 @@ class MainActivity : ComponentActivity() {
                 ) {
                     val navController = rememberNavController()
                     NavGraph(navController)
-//                    StudentUnion_GusiaScreen()
-//                    Library_GusiaScreen()
-//                    LoginScreen()
                 }
             }
         }

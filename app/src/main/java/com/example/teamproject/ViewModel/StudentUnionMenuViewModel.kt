@@ -64,50 +64,39 @@ class StudentUnionMenuViewModel : ViewModel() {
     )
 
 
-    fun decreaseBabQuantity(index: Int) {
+    fun decreaseQuantity(category: String, index: Int, quantity: Int) {
         viewModelScope.launch {
-            if (BabItems[index].quantity > 0) {
-                BabItems[index].quantity -= 1
-            }
-        }
-    }
-
-    fun decreasePopoQuantity(index: Int) {
-        viewModelScope.launch {
-            if (PopoItems[index].quantity > 0) {
-                PopoItems[index].quantity -= 1
-            }
-        }
-    }
-
-    fun decreaseDonggasQuantity(index: Int) {
-        viewModelScope.launch {
-            if (DonggasItems[index].quantity > 0) {
-                DonggasItems[index].quantity -= 1
-            }
-        }
-    }
-
-    fun decreaseGookbabQuantity(index: Int) {
-        viewModelScope.launch {
-            if (GookbabItems[index].quantity > 0) {
-                GookbabItems[index].quantity -= 1
-            }
-        }
-    }
-
-    fun decreaseBoonsikQuantity(index: Int) {
-        viewModelScope.launch {
-            if (BoonsikItems[index].quantity > 0) {
-                BoonsikItems[index].quantity -= 1
-            }
-        }
-    }
-
-    fun decreaseMaraQuantity(index: Int) {
-        viewModelScope.launch {
-            if (MaraItems[index].quantity > 0) {
-                MaraItems[index].quantity -= 1
+            when (category) {
+                "Bab" -> {
+                    if (BabItems[index].quantity >= quantity) {
+                        BabItems[index].quantity -= quantity
+                    }
+                }
+                "Popo" -> {
+                    if (PopoItems[index].quantity >= quantity) {
+                        PopoItems[index].quantity -= quantity
+                    }
+                }
+                "Donggas" -> {
+                    if (DonggasItems[index].quantity >= quantity) {
+                        DonggasItems[index].quantity -= quantity
+                    }
+                }
+                "Gookbab" -> {
+                    if (GookbabItems[index].quantity >= quantity) {
+                        GookbabItems[index].quantity -= quantity
+                    }
+                }
+                "Boonsik" -> {
+                    if (BoonsikItems[index].quantity >= quantity) {
+                        BoonsikItems[index].quantity -= quantity
+                    }
+                }
+                "Mara" -> {
+                    if (MaraItems[index].quantity >= quantity) {
+                        MaraItems[index].quantity -= quantity
+                    }
+                }
             }
         }
     }

@@ -12,6 +12,7 @@ import com.example.teamproject.Restaurant.StudentUnion_GusiaScreen
 import com.example.teamproject.Screen.LibraryOrderScreen
 import com.example.teamproject.Screen.LoginScreen
 import com.example.teamproject.Screen.PaymentScreen
+import com.example.teamproject.Screen.RestaurantLocationScreen
 import com.example.teamproject.Screen.RestioLocationScreen
 import com.example.teamproject.Screen.SignUpScreen
 import com.example.teamproject.Screen.StartScreen
@@ -30,6 +31,7 @@ open class Routes(val route: String) {
 
     object Payment : Routes("Payment_Screen")
     object RestioStart : Routes("restio_start")
+    object RestaurantStart : Routes("restaurant_start")
 }
 
 
@@ -72,6 +74,10 @@ fun NavGraph(
 
             composable (Routes.RestioStart.route){
                 RestioLocationScreen(navController = navController)
+            }
+
+            composable (Routes.RestaurantStart.route){
+                RestaurantLocationScreen(navController = navController)
             }
 
             composable("library_order_screen/{category}/{index}/{imageRes}/{menuName}/{menuPrice}/{quantity}") { backStackEntry ->

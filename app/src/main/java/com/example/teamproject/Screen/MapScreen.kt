@@ -10,6 +10,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import com.example.teamproject.Item.LocationItem
 import com.example.teamproject.R
@@ -52,48 +53,54 @@ fun MapScreen(navController: NavHostController, location: List<LocationItem>) {
             },
 
             ) {
-            markerState.value?.let { DrawMarker(currLocation = it, location = location) }
+            markerState.value?.let {
+                DrawMarker(
+                    currLocation = it,
+                    location = location,
+                    navController = navController
+                )
+            }
         }
     }
 }
 
 @OptIn(ExperimentalNaverMapApi::class)
 @Composable
-fun SetMarker(latitude: Double, longitude: Double) {
+fun SetMarker(latitude: Double, longitude: Double, navController: NavController, route: String) {
     Marker(
         state = MarkerState(position = LatLng(latitude, longitude)),
-        icon = OverlayImage.fromResource(R.drawable.konkuk), width = 30.dp,
-        height = 30.dp
+        icon = OverlayImage.fromResource(R.drawable.red_marker), width = 30.dp,
+        height = 30.dp,
+        onClick = {
+            navController.navigate(route)
+            true
+        }
+
     )
 }
 
 @Composable
-fun DrawMarker(currLocation: LatLng, location: List<LocationItem>) {
+fun DrawMarker(currLocation: LatLng, location: List<LocationItem>, navController: NavController) {
     // 사용자의 현재 위치
     val userLocation = currLocation
 
-    val markerLocation = mutableListOf<LatLng>()
+    val markerLocation = mutableListOf<Marking>()
     location.forEach {
-        markerLocation.add(LatLng(it.latitiude, it.longtitude))
+        markerLocation.add(Marking(it.latitiude, it.longtitude,it.route))
     }
-    /*LatLng(37.5442615, 127.0760717), // 경영관 ->레스티오
-    LatLng(37.5419226, 127.0737408), // 상허기념도서관 -> 레스티오 , 구시아푸드
-    LatLng(37.5403664, 127.0743614), // 동물생명과학관 -> 레스티오
-    LatLng(37.5396663, 127.0732309), // 산학협동관-> 레스티오
-    LatLng(37.5418772, 127.0782087), // 학생회관 - >구시아 푸드 , 1층 학생식당
-    LatLng(37.541635, 127.0787904),  // 공학관 -> 레스티오*/
 
     CircleOverlay(
         center = LatLng(userLocation.latitude, userLocation.longitude),
         Color.Red.copy(alpha = 0.3F),
         10.0
     )
-    // 사용자 반경 내 쿠만 표시
+
     markerLocation.forEach { it ->
-        SetMarker(it.latitude, it.longitude)
+        SetMarker(it.latitude, it.longitude, navController,it.route)
     }
 
 }
+
 
 // 두 위치 간의 거리를 계산
 fun calculateDistance(location1: LatLng, location2: LatLng): Float {
@@ -106,5 +113,13 @@ fun calculateDistance(location1: LatLng, location2: LatLng): Float {
     return results[0]
 }
 
+data class Marking ( val latitude: Double,val longitude: Double , val route : String)
 
 //private const val MAX_DISTANCE_THRESHOLD = 150f // 사용자 반경
+
+/*LatLng(37.5442615, 127.0760717), // 경영관 ->레스티오
+    LatLng(37.5419226, 127.0737408), // 상허기념도서관 -> 레스티오 , 구시아푸드
+    LatLng(37.5403664, 127.0743614), // 동물생명과학관 -> 레스티오
+    LatLng(37.5396663, 127.0732309), // 산학협동관-> 레스티오
+    LatLng(37.5418772, 127.0782087), // 학생회관 - >구시아 푸드 , 1층 학생식당
+    LatLng(37.541635, 127.0787904),  // 공학관 -> 레스티오*/

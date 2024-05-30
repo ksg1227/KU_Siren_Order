@@ -36,6 +36,13 @@ fun PaymentScreen(navController: NavHostController, modifier: Modifier = Modifie
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
+        TopAppBar(
+            onBackIconClick = { },
+            title = "결제 수단 선택",
+            titleColor = Color.Black,
+            onRightIconClick = { },
+            rightIconImgId = null
+        )
         Spacer(Modifier.weight(1f))
         Text(
             text = "결제수단을 선택해주세요",

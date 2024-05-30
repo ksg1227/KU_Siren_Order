@@ -30,7 +30,6 @@ open class Routes(val route: String) {
     object SignUp : Routes("SignUp_screen")
     object StudentUnionGusia : Routes("studentUnion_gusiaScreen")
     object LibraryGusia : Routes("library_gusiaScreen")
-
     object Payment : Routes("Payment_Screen")
     object Map : Routes("map_screen")
 }
@@ -71,6 +70,10 @@ fun NavGraph(
 
             composable(Routes.Payment.route) {
                 PaymentScreen(navController)
+            }
+
+            composable(Routes.Map.route) {
+                MapScreen(navController)
             }
 
             composable("library_order_screen/{category}/{index}/{imageRes}/{menuName}/{menuPrice}/{quantity}") { backStackEntry ->
@@ -125,10 +128,6 @@ fun NavGraph(
                         navController.navigate(Routes.Payment.route)
                     }
                 )
-            }
-
-            composable(Routes.Map.route) {
-                MapScreen(navController)
             }
         }
     }

@@ -34,9 +34,12 @@ fun LoginScreen(navController: NavHostController) {
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = "로그인",
-            fontSize = 16.sp,
-            fontFamily = FontFamily(Font(R.font.pretendard_semibold))
+        TopAppBar(
+            onBackIconClick = { navController.navigate(Routes.Start.route) },
+            title = "로그인",
+            titleColor = Color.Black,
+            onRightIconClick = { /*TODO*/ },
+            rightIconImgId = null
         )
         
         Spacer(modifier = Modifier.padding(bottom = 150.dp))
@@ -143,7 +146,7 @@ fun LoginScreen(navController: NavHostController) {
                 } else {
                     errorMessage = ""
                     // 로그인 로직을 추가하세요
-                    navController.navigate(Routes.StudentUnionGusia.route)
+                    navController.navigate(Routes.LibraryGusia.route)
                 }
             },
             colors = ButtonDefaults.buttonColors(

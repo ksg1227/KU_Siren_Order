@@ -61,14 +61,15 @@ fun SignUpScreen(navController: NavHostController) {
             .verticalScroll(scrollState)
             .padding(16.dp),
     ) {
-        Text(
-            text = "회원가입",
-            modifier = Modifier.fillMaxWidth()
-                .padding(bottom = 40.dp),
-            textAlign = TextAlign.Center,
-            fontSize = 16.sp,
-            fontFamily = FontFamily(Font(R.font.pretendard_semibold))
+        TopAppBar(
+            onBackIconClick = { navController.navigate(Routes.Start.route) },
+            title = "회원가입",
+            titleColor = Color.Black,
+            onRightIconClick = { /*TODO*/ },
+            rightIconImgId = null
         )
+
+        Spacer(modifier = Modifier.padding(bottom = 40.dp))
 
         Text(
             text = "아이디 *",

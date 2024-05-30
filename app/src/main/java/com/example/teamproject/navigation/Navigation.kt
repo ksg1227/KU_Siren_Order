@@ -2,19 +2,18 @@ package com.example.teamproject.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.ui.graphics.BlendMode.Companion.Screen
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
-import com.example.teamproject.MenuItem
+import com.example.teamproject.Item.MenuItem
 import com.example.teamproject.Restaurant.Library_GusiaScreen
 import com.example.teamproject.Restaurant.StudentUnion_GusiaScreen
 import com.example.teamproject.Screen.LibraryOrderScreen
 import com.example.teamproject.Screen.LoginScreen
 import com.example.teamproject.Screen.PaymentScreen
+import com.example.teamproject.Screen.RestaurantLocationScreen
+import com.example.teamproject.Screen.RestioLocationScreen
 import com.example.teamproject.Screen.SignUpScreen
 import com.example.teamproject.Screen.StartScreen
 import com.example.teamproject.Screen.StudentUnionOrderScreen
@@ -22,7 +21,6 @@ import com.example.teamproject.ViewModel.LibraryMenuViewModel
 import com.example.teamproject.ViewModel.LocalNavGraphViewModelStoreOwner
 import com.example.teamproject.ViewModel.StudentUnionMenuViewModel
 import com.example.teamproject.ViewModel.rememberViewModelStoreOwner
-import com.example.teamproject.Screen.MapScreen
 
 open class Routes(val route: String) {
     object Start : Routes("start_screen")
@@ -32,7 +30,8 @@ open class Routes(val route: String) {
     object LibraryGusia : Routes("library_gusiaScreen")
 
     object Payment : Routes("Payment_Screen")
-    object Map : Routes("map_screen")
+    object RestioStart : Routes("restio_start")
+    object RestaurantStart : Routes("restaurant_start")
 }
 
 
@@ -71,6 +70,14 @@ fun NavGraph(
 
             composable(Routes.Payment.route) {
                 PaymentScreen(navController)
+            }
+
+            composable (Routes.RestioStart.route){
+                RestioLocationScreen(navController = navController)
+            }
+
+            composable (Routes.RestaurantStart.route){
+                RestaurantLocationScreen(navController = navController)
             }
 
             composable("library_order_screen/{category}/{index}/{imageRes}/{menuName}/{menuPrice}/{quantity}") { backStackEntry ->
@@ -125,10 +132,6 @@ fun NavGraph(
                         navController.navigate(Routes.Payment.route)
                     }
                 )
-            }
-
-            composable(Routes.Map.route) {
-                MapScreen(navController)
             }
         }
     }

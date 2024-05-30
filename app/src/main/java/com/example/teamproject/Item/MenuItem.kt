@@ -1,4 +1,4 @@
-package com.example.teamproject
+package com.example.teamproject.Item
 
 data class MenuItem(
     val imageRes: Int,

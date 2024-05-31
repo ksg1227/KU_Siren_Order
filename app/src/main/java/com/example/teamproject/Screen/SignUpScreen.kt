@@ -62,7 +62,7 @@ fun SignUpScreen(navController: NavHostController) {
             .padding(16.dp),
     ) {
         TopAppBar(
-            onBackIconClick = { navController.navigate(Routes.Start.route) },
+            onBackIconClick = { navController.popBackStack() },
             title = "회원가입",
             titleColor = Color.Black,
             onRightIconClick = { /*TODO*/ },

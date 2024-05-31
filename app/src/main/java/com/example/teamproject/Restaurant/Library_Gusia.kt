@@ -40,10 +40,10 @@ fun CustomTabPager2(pagerState: PagerState, tabs: List<String>, navController:Na
     Column {
         // 탭 구현
         TopAppBar(
-            onBackIconClick = { navController.navigate(Routes.Start.route) },
+            onBackIconClick = { navController.popBackStack() },
             title = "도서관 지하 학식",
             titleColor = Color.Black,
-            onRightIconClick = { /*TODO*/ },
+            onRightIconClick = { navController.navigate(Routes.Cart.route) },
             rightIconImgId = R.drawable.konkuk
         )
 

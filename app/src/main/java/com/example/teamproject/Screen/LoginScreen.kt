@@ -35,7 +35,7 @@ fun LoginScreen(navController: NavHostController) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         TopAppBar(
-            onBackIconClick = { navController.navigate(Routes.Start.route) },
+            onBackIconClick = { navController.popBackStack() },
             title = "로그인",
             titleColor = Color.Black,
             onRightIconClick = { /*TODO*/ },
@@ -154,7 +154,7 @@ fun LoginScreen(navController: NavHostController) {
                 } else {
                     errorMessage = ""
                     // 로그인 로직을 추가하세요
-                    navController.navigate(Routes.StudentUnionGusia.route)
+                    navController.navigate(Routes.StudentUnionFirstfloor.route)
                 }
             },
             colors = ButtonDefaults.buttonColors(

@@ -38,10 +38,10 @@ fun CustomTabPager3(pagerState: PagerState, tabs: List<String>, navController : 
 //        Text(text = "202011260 김상균")
         // 탭 구현
         TopAppBar(
-            onBackIconClick = { navController.navigate(Routes.Start.route) },
+            onBackIconClick = { navController.popBackStack() },
             title = "학생회관 1층 학식",
             titleColor = Color.Black,
-            onRightIconClick = { /*TODO*/ },
+            onRightIconClick = { navController.navigate(Routes.Cart.route) },
             rightIconImgId = R.drawable.konkuk
         )
 

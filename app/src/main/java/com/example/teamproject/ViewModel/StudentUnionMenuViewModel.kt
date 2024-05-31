@@ -3,7 +3,7 @@ package com.example.teamproject.ViewModel
 import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.teamproject.MenuItem
+import com.example.teamproject.Item.MenuItem
 import com.example.teamproject.R
 import kotlinx.coroutines.launch
 
@@ -63,6 +63,14 @@ class StudentUnionMenuViewModel : ViewModel() {
         MenuItem(R.drawable.curry, "마라 짜장", "5900", 1)
     )
 
+    val FirstfloorItems = mutableStateListOf(
+        MenuItem(R.drawable.curry, "고추장제육볶음", "5900", 20),
+        MenuItem(R.drawable.curry, "커리돈까스", "5500", 16),
+        MenuItem(R.drawable.curry, "KU백반", "5300", 15),
+        MenuItem(R.drawable.curry, "순두부라면", "3900", 11),
+        MenuItem(R.drawable.curry, "새우튀김우동", "4800", 13)
+    )
+
 
     fun decreaseQuantity(category: String, index: Int, quantity: Int) {
         viewModelScope.launch {
@@ -95,6 +103,11 @@ class StudentUnionMenuViewModel : ViewModel() {
                 "Mara" -> {
                     if (MaraItems[index].quantity >= quantity) {
                         MaraItems[index].quantity -= quantity
+                    }
+                }
+                "Firstfloor" -> {
+                    if (FirstfloorItems[index].quantity >= quantity){
+                        FirstfloorItems[index].quantity -= quantity
                     }
                 }
             }

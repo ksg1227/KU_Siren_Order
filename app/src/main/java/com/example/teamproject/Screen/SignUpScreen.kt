@@ -333,7 +333,7 @@ fun SignUpScreen(navController: NavHostController) {
                 text = "빈 칸 없이 입력해주세요.",
                 fontWeight = FontWeight.Bold,
                 color = MaterialTheme.colorScheme.error,
-                style = MaterialTheme.typography.bodyLarge,
+                fontFamily = FontFamily(Font(R.font.pretendard_semibold)),
                 modifier = Modifier.padding(start = 16.dp, top = 8.dp)
                     .fillMaxWidth(),
                 textAlign = TextAlign.Center

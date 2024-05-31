@@ -3,7 +3,7 @@ package com.example.teamproject.ViewModel
 import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.teamproject.MenuItem
+import com.example.teamproject.Item.MenuItem
 import com.example.teamproject.R
 import kotlinx.coroutines.launch
 

@@ -137,7 +137,15 @@ fun LoginScreen(navController: NavHostController) {
             )
         }
 
-        Spacer(modifier = Modifier.height(130.dp))
+        Spacer(modifier = Modifier.height(30.dp))
+
+        if (errorMessage.isNotEmpty()) {
+            Spacer(modifier = Modifier.height(20.dp))
+            Text(text = errorMessage, color = MaterialTheme.colorScheme.error,
+                fontFamily = FontFamily(Font(R.font.pretendard_semibold)) )
+        }
+
+        Spacer(modifier = Modifier.height(50.dp))
 
         Button(
             onClick = {
@@ -146,7 +154,7 @@ fun LoginScreen(navController: NavHostController) {
                 } else {
                     errorMessage = ""
                     // 로그인 로직을 추가하세요
-                    navController.navigate(Routes.LibraryGusia.route)
+                    navController.navigate(Routes.StudentUnionGusia.route)
                 }
             },
             colors = ButtonDefaults.buttonColors(
@@ -160,11 +168,6 @@ fun LoginScreen(navController: NavHostController) {
                 fontSize = 16.sp,
                 fontFamily = FontFamily(Font(R.font.pretendard_semibold))
             )
-        }
-
-        if (errorMessage.isNotEmpty()) {
-            Spacer(modifier = Modifier.height(16.dp))
-            Text(text = errorMessage, color = MaterialTheme.colorScheme.error)
         }
     }
 }

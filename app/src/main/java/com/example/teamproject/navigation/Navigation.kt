@@ -114,6 +114,7 @@ fun NavGraph(
                             navController.navigate(Routes.LibraryGusia.route)
                             //여기서 담기 버튼 누르면 어떻게 할지 고민
                         },
+
                         onCheckout = {
                             // 결제 로직
                             libraryViewModel.decreaseQuantity(category, index, quantity)

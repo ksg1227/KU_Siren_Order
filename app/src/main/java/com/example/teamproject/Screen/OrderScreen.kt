@@ -65,8 +65,6 @@ fun Library_GusiaOrderScreen(      //사이드 있는 경우
     var selectedSize by remember { mutableStateOf("기본") }
     var selectedSide by remember { mutableStateOf("추가X") }
 
-    // 선택된 사이드들의 추가 금액 합산
-
     val sizesAdditionalPrice = when (selectedSize) {
         "레귤러 (+1,200)" -> 1200
         "점보 (+2,200)" -> 2200

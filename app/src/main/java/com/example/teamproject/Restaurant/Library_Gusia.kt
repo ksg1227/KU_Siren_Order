@@ -44,7 +44,7 @@ fun CustomTabPager2(pagerState: PagerState, tabs: List<String>, navController:Na
             title = "도서관 지하 학식",
             titleColor = Color.Black,
             onRightIconClick = { navController.navigate(Routes.Cart.route) },
-            rightIconImgId = R.drawable.konkuk
+            rightIconImgId = R.drawable.cart
         )
 
         ScrollableTabRow(

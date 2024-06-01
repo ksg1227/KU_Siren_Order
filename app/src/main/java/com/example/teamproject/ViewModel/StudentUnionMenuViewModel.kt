@@ -11,7 +11,8 @@ class StudentUnionMenuViewModel : ViewModel() {
     val BabItems = mutableStateListOf(
         MenuItem(R.drawable.saltbab, "소금 삼겹 덮밥", "3500", 1,"Bab", 0),
         MenuItem(R.drawable.redbab, "삼겹 양념 덮밥", "3500", 1,"Bab", 1),
-        MenuItem(R.drawable.tunabab, "참치 마요 덮밥", "3500", 1,"Bab", 2)
+        MenuItem(R.drawable.firebab, "직화 구이 덮밥", "3500", 1, "Bab", 2),
+        MenuItem(R.drawable.tunabab, "참치 마요 덮밥", "3500", 1,"Bab", 3)
     )
 
     val PopoItems = mutableStateListOf(

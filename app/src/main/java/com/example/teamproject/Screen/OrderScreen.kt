@@ -39,6 +39,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -283,8 +284,12 @@ fun Library_GusiaNoSideOrderScreen(      //side나 size 없는 경우
             fontSize = 20.sp
         )
 
+        Spacer(modifier = Modifier.height(16.dp))
+
         // Divider
         Divider(modifier = Modifier.padding(vertical = 8.dp))
+
+        Spacer(modifier = Modifier.height(16.dp))
 
         // Price
         Text(
@@ -294,8 +299,12 @@ fun Library_GusiaNoSideOrderScreen(      //side나 size 없는 경우
             fontSize = 18.sp
         )
 
+        Spacer(modifier = Modifier.height(16.dp))
+
         // Divider
         Divider(modifier = Modifier.padding(vertical = 8.dp))
+
+        Spacer(modifier = Modifier.height(16.dp))
 
         // Remaining Quantity
         Text(
@@ -304,6 +313,8 @@ fun Library_GusiaNoSideOrderScreen(      //side나 size 없는 경우
             fontFamily = FontFamily(Font(R.font.pretendard_semibold)),
             fontSize = 18.sp
         )
+
+        Spacer(modifier = Modifier.height(16.dp))
 
         // Divider
         Divider(modifier = Modifier.padding(vertical = 8.dp))
@@ -324,7 +335,7 @@ fun Library_GusiaNoSideOrderScreen(      //side나 size 없는 경우
                     painter = painterResource(id = R.drawable.ic_minus), // 이미지 리소스
                     contentDescription = "Decrease Quantity",
                     modifier = Modifier
-                        .clickable { if (quantity > 1) quantity-- }
+                        .clickable { if (quantity > 0) quantity-- }
                         .size(36.dp)
                 )
                 Text(
@@ -661,8 +672,12 @@ fun StudentUnion_GusiaNoSideOrderScreen(    //side나 size 없는 경우
             fontSize = 20.sp
         )
 
+        Spacer(modifier = Modifier.height(16.dp))
+
         // Divider
         Divider(modifier = Modifier.padding(vertical = 8.dp))
+
+        Spacer(modifier = Modifier.height(16.dp))
 
         // Price
         Text(
@@ -672,8 +687,12 @@ fun StudentUnion_GusiaNoSideOrderScreen(    //side나 size 없는 경우
             fontSize = 18.sp
         )
 
+        Spacer(modifier = Modifier.height(16.dp))
+
         // Divider
         Divider(modifier = Modifier.padding(vertical = 8.dp))
+
+        Spacer(modifier = Modifier.height(16.dp))
 
         // Remaining Quantity
         Text(
@@ -682,6 +701,8 @@ fun StudentUnion_GusiaNoSideOrderScreen(    //side나 size 없는 경우
             fontFamily = FontFamily(Font(R.font.pretendard_semibold)),
             fontSize = 18.sp
         )
+
+        Spacer(modifier = Modifier.height(16.dp))
 
         // Divider
         Divider(modifier = Modifier.padding(vertical = 8.dp))
@@ -702,7 +723,7 @@ fun StudentUnion_GusiaNoSideOrderScreen(    //side나 size 없는 경우
                     painter = painterResource(id = R.drawable.ic_minus), // 이미지 리소스
                     contentDescription = "Decrease Quantity",
                     modifier = Modifier
-                        .clickable { if (quantity > 1) quantity-- }
+                        .clickable { if (quantity > 0) quantity-- }
                         .size(36.dp)
                 )
                 Text(
@@ -815,8 +836,12 @@ fun StudentUnion_FirstfloorOrderScreen(   //1층 학식 주문 화면
             fontSize = 20.sp
         )
 
+        Spacer(modifier = Modifier.height(16.dp))
+
         // Divider
         Divider(modifier = Modifier.padding(vertical = 8.dp))
+
+        Spacer(modifier = Modifier.height(16.dp))
 
         // Price
         Text(
@@ -826,8 +851,12 @@ fun StudentUnion_FirstfloorOrderScreen(   //1층 학식 주문 화면
             fontSize = 18.sp
         )
 
+        Spacer(modifier = Modifier.height(16.dp))
+
         // Divider
         Divider(modifier = Modifier.padding(vertical = 8.dp))
+
+        Spacer(modifier = Modifier.height(16.dp))
 
         // Remaining Quantity
         Text(
@@ -836,6 +865,8 @@ fun StudentUnion_FirstfloorOrderScreen(   //1층 학식 주문 화면
             fontFamily = FontFamily(Font(R.font.pretendard_semibold)),
             fontSize = 18.sp
         )
+
+        Spacer(modifier = Modifier.height(16.dp))
 
         // Divider
         Divider(modifier = Modifier.padding(vertical = 8.dp))
@@ -856,7 +887,7 @@ fun StudentUnion_FirstfloorOrderScreen(   //1층 학식 주문 화면
                     painter = painterResource(id = R.drawable.ic_minus), // 이미지 리소스
                     contentDescription = "Decrease Quantity",
                     modifier = Modifier
-                        .clickable { if (quantity > 1) quantity-- }
+                        .clickable { if (quantity > 0) quantity-- }
                         .size(36.dp)
                 )
                 Text(
@@ -972,7 +1003,7 @@ fun SideSelector(selectedSide: String, onSideSelected: (String) -> Unit, sides: 
                     )
                     .border(
                         width = 1.dp,
-                        color = if (selectedSide == side) Color.Black else Color.Black,
+                        color = Color.Black,
                         shape = RoundedCornerShape(8.dp)
                     )
                     .padding(16.dp)

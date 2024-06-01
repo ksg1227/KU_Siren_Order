@@ -61,14 +61,15 @@ fun SignUpScreen(navController: NavHostController) {
             .verticalScroll(scrollState)
             .padding(16.dp),
     ) {
-        Text(
-            text = "회원가입",
-            modifier = Modifier.fillMaxWidth()
-                .padding(bottom = 40.dp),
-            textAlign = TextAlign.Center,
-            fontSize = 16.sp,
-            fontFamily = FontFamily(Font(R.font.pretendard_semibold))
+        TopAppBar(
+            onBackIconClick = { navController.popBackStack() },
+            title = "회원가입",
+            titleColor = Color.Black,
+            onRightIconClick = { /*TODO*/ },
+            rightIconImgId = null
         )
+
+        Spacer(modifier = Modifier.padding(bottom = 40.dp))
 
         Text(
             text = "아이디 *",
@@ -332,7 +333,7 @@ fun SignUpScreen(navController: NavHostController) {
                 text = "빈 칸 없이 입력해주세요.",
                 fontWeight = FontWeight.Bold,
                 color = MaterialTheme.colorScheme.error,
-                style = MaterialTheme.typography.bodyLarge,
+                fontFamily = FontFamily(Font(R.font.pretendard_semibold)),
                 modifier = Modifier.padding(start = 16.dp, top = 8.dp)
                     .fillMaxWidth(),
                 textAlign = TextAlign.Center

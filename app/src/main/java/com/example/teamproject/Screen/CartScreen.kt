@@ -20,16 +20,20 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.example.teamproject.R
+import com.example.teamproject.navigation.Routes
 
 @Composable
-fun CartScreen(modifier: Modifier = Modifier) {
+fun CartScreen(navController : NavHostController) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
         TopAppBar( // 상단바
-            onBackIconClick = { },
+            onBackIconClick = {
+                              navController.popBackStack()
+            },
             title = "장바구니",
             titleColor = Color.Black,
             onRightIconClick = { },

@@ -24,9 +24,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
+import com.example.teamproject.R
 import com.example.teamproject.Screen.LibraryBabScreen
 import com.example.teamproject.Screen.LibraryDonggasScreen
 import com.example.teamproject.Screen.LibraryPopoScreen
+import com.example.teamproject.Screen.TopAppBar
+import com.example.teamproject.navigation.Routes
 import kotlinx.coroutines.launch
 
 @Composable
@@ -36,6 +39,14 @@ fun CustomTabPager2(pagerState: PagerState, tabs: List<String>, navController:Na
 
     Column {
         // 탭 구현
+        TopAppBar(
+            onBackIconClick = { navController.popBackStack() },
+            title = "도서관 지하 학식",
+            titleColor = Color.Black,
+            onRightIconClick = { navController.navigate(Routes.Cart.route) },
+            rightIconImgId = R.drawable.konkuk
+        )
+
         ScrollableTabRow(
             selectedTabIndex = pagerState.currentPage,
             indicator = { tabPositions ->

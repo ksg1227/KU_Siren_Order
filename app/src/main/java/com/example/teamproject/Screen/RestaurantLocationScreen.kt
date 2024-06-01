@@ -95,7 +95,7 @@ fun Restaurant_Location_init(): List<LocationItem> {
             "서울 광진구 능동로 120 1층(화양동)",
             37.5418772,
             127.0782087,
-            Routes.LibraryGusia.route
+            Routes.StudentUnionFirstfloor.route
         ),
         LocationItem(
             "학생회관 지하 학식 (구시아푸드)",

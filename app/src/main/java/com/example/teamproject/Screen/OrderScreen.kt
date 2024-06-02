@@ -52,7 +52,7 @@ import com.example.teamproject.ViewModel.StudentUnionMenuViewModel
 import com.example.teamproject.navigation.Routes
 
 @Composable
-fun Library_GusiaOrderScreen(      //사이드 있는 경우
+fun Library_GusiaOrderScreen( //사이드 있는 경우
     menuItem: MenuItem,
     category: String,
     index: Int,
@@ -61,10 +61,9 @@ fun Library_GusiaOrderScreen(      //사이드 있는 경우
     onCheckout: () -> Unit,
     navController: NavHostController
 ) {
-
     val quantity by remember { mutableStateOf(1) }
-    var selectedSize by remember { mutableStateOf("기본") }
-    var selectedSide by remember { mutableStateOf("추가X") }
+    var selectedSize by remember { mutableStateOf("") }
+    var selectedSides by remember { mutableStateOf(listOf<String>()) }
 
     val sizesAdditionalPrice = when (selectedSize) {
         "레귤러 (+1,200)" -> 1200
@@ -73,16 +72,20 @@ fun Library_GusiaOrderScreen(      //사이드 있는 경우
         else -> 0
     }
 
-    val sideAdditionalPrice = when (selectedSide) {
-        "삼겹고기추가\n(+1,000)" -> 1000
-        "계란후라이\n(+800)" -> 800
-        "체다치즈\n(+800)" -> 800
-        "새우네트\n(+2,500)" -> 2500
-        "고구마롤\n(+1,800)" -> 1800
-        else -> 0
-    }
 
-    val totalPrice = remember(quantity, selectedSize, selectedSide, menuItem.price) {
+
+    val sideAdditionalPrice = selectedSides.map { side ->
+        when (side) {
+            "삼겹고기추가\n(+1,000)" -> 1000
+            "계란후라이\n(+800)" -> 800
+            "체다치즈\n(+800)" -> 800
+            "새우네트\n(+2,500)" -> 2500
+            "고구마롤\n(+1,800)" -> 1800
+            else -> 0
+        }
+    }.sum()
+
+    val totalPrice = remember(quantity, selectedSize, selectedSides, menuItem.price) {
         (menuItem.price.toInt() + sizesAdditionalPrice + sideAdditionalPrice) * quantity
     }
 
@@ -164,8 +167,14 @@ fun Library_GusiaOrderScreen(      //사이드 있는 경우
         }
 
         SideSelector(
-            selectedSide = selectedSide,
-            onSideSelected = { selectedSide = it },
+            selectedSides = selectedSides,
+            onSideSelected = { side ->
+                selectedSides = if (selectedSides.contains(side)) {
+                    selectedSides - side
+                } else {
+                    selectedSides + side
+                }
+            },
             sides = sides
         )
 
@@ -181,11 +190,6 @@ fun Library_GusiaOrderScreen(      //사이드 있는 경우
             horizontalArrangement = Arrangement.SpaceBetween,
             modifier = Modifier.fillMaxWidth()
         ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
-            }
             Text(
                 text = "${totalPrice}원",
                 fontSize = 25.sp,
@@ -195,7 +199,7 @@ fun Library_GusiaOrderScreen(      //사이드 있는 경우
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Action Buttons
+
         Row(
             horizontalArrangement = Arrangement.spacedBy(8.dp),
             modifier = Modifier.fillMaxWidth()
@@ -238,6 +242,7 @@ fun Library_GusiaOrderScreen(      //사이드 있는 경우
         }
     }
 }
+
 
 
 @Composable
@@ -405,7 +410,7 @@ fun Library_GusiaNoSideOrderScreen(      //side나 size 없는 경우
 }
 
 
-//==========================================
+
 @Composable
 fun StudentUnion_GusiaOrderScreen(   //사이드 메뉴 존재하는 경우
     menuItem: MenuItem,
@@ -418,8 +423,8 @@ fun StudentUnion_GusiaOrderScreen(   //사이드 메뉴 존재하는 경우
 ) {
 
     val quantity by remember { mutableStateOf(1) }
-    var selectedSize by remember { mutableStateOf("기본") }
-    var selectedSide by remember { mutableStateOf("추가X") }
+    var selectedSize by remember { mutableStateOf("") }
+    var selectedSides by remember { mutableStateOf(listOf<String>()) }
 
     val sizeAdditionalPrice = when (selectedSize) {
         "레귤러 (+1,200)" -> 1200
@@ -428,30 +433,32 @@ fun StudentUnion_GusiaOrderScreen(   //사이드 메뉴 존재하는 경우
         else -> 0
     }
 
-    val sideAdditionalPrice = when (selectedSide) {
-        "삼겹고기추가\n(+1,000)" -> 1000
-        "계란후라이\n(+800)" -> 800
-        "체다치즈\n(+800)" -> 800
-        "새우네트\n(+2,500)" -> 2500
-        "고구마롤\n(+1,800)" -> 1800
-        "고기추가\n(+1,000)" -> 1000
-        "순대추가\n(+1,000)" -> 1000
-        "다대기\n(+500)" -> 500
-        "비엔나소시지\n(+1,000)" -> 1000
-        "백목이버섯\n(+1,000)" -> 1000
-        "옥수수면\n(+1,000)" -> 1000
-        "뉴진면\n(+1,500)" -> 1500
-        "소고기\n(+1,500)" -> 1500
-        "모듬야채\n(+1,500)" -> 1500
-        "모둠햄\n(+2,000)" -> 2000
-        "모둠버섯\n(+2,000)" -> 2000
-        "수제비\n(+1,000)" -> 1000
-        "고구마떡\n(+1,000)" -> 1000
-        "팽이버섯\n(+1,000)" -> 1000
-        else -> 0
-    }
+    val sideAdditionalPrice = selectedSides.map { side ->
+        when (side) {
+            "삼겹고기추가\n(+1,000)" -> 1000
+            "계란후라이\n(+800)" -> 800
+            "체다치즈\n(+800)" -> 800
+            "새우네트\n(+2,500)" -> 2500
+            "고구마롤\n(+1,800)" -> 1800
+            "고기추가\n(+1,000)" -> 1000
+            "순대추가\n(+1,000)" -> 1000
+            "다대기\n(+500)" -> 500
+            "비엔나소시지\n(+1,000)" -> 1000
+            "백목이버섯\n(+1,000)" -> 1000
+            "옥수수면\n(+1,000)" -> 1000
+            "뉴진면\n(+1,500)" -> 1500
+            "소고기\n(+1,500)" -> 1500
+            "모듬야채\n(+1,500)" -> 1500
+            "모둠햄\n(+2,000)" -> 2000
+            "모둠버섯\n(+2,000)" -> 2000
+            "수제비\n(+1,000)" -> 1000
+            "고구마떡\n(+1,000)" -> 1000
+            "팽이버섯\n(+1,000)" -> 1000
+            else -> 0
+        }
+    }.sum()
 
-    val totalPrice = remember(quantity, selectedSize, selectedSide, menuItem.price) {
+    val totalPrice = remember(quantity, selectedSize, selectedSides, menuItem.price) {
         (menuItem.price.toInt() + sizeAdditionalPrice + sideAdditionalPrice) * quantity
     }
 
@@ -476,7 +483,6 @@ fun StudentUnion_GusiaOrderScreen(   //사이드 메뉴 존재하는 경우
                 .clip(RoundedCornerShape(16.dp))
         )
 
-
         // Menu Name
         Text(
             text = menuItem.name,
@@ -492,7 +498,6 @@ fun StudentUnion_GusiaOrderScreen(   //사이드 메뉴 존재하는 경우
 
         Spacer(modifier = Modifier.padding(bottom = 20.dp))
 
-
         // Size Selector
         Text(
             text = "사이즈",
@@ -500,7 +505,6 @@ fun StudentUnion_GusiaOrderScreen(   //사이드 메뉴 존재하는 경우
             fontSize = 18.sp
         )
         Spacer(modifier = Modifier.height(8.dp))
-
 
         val sizes = when (category) {
             "Bab" -> listOf("기본", "레귤러 (+1,200)", "점보 (+2,200)")
@@ -547,13 +551,18 @@ fun StudentUnion_GusiaOrderScreen(   //사이드 메뉴 존재하는 경우
                 "고구마떡\n(+1,000)",
                 "팽이버섯\n(+1,000)"
             )
-
             else -> listOf("추가X") // 기본 리스트 설정
         }
 
         SideSelector(
-            selectedSide = selectedSide,
-            onSideSelected = { selectedSide = it },
+            selectedSides = selectedSides,
+            onSideSelected = { side ->
+                selectedSides = if (selectedSides.contains(side)) {
+                    selectedSides - side
+                } else {
+                    selectedSides + side
+                }
+            },
             sides = sides
         )
 
@@ -569,18 +578,12 @@ fun StudentUnion_GusiaOrderScreen(   //사이드 메뉴 존재하는 경우
             horizontalArrangement = Arrangement.SpaceBetween,
             modifier = Modifier.fillMaxWidth()
         ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
-            }
             Text(
                 text = "${totalPrice}원",
                 fontSize = 25.sp,
                 fontFamily = FontFamily(Font(R.font.pretendard_semibold))
             )
         }
-
 
         Spacer(modifier = Modifier.height(16.dp))
 
@@ -985,8 +988,13 @@ fun SizeSelector(selectedSize: String, onSizeSelected: (String) -> Unit, sizes: 
     }
 }
 
+
 @Composable
-fun SideSelector(selectedSide: String, onSideSelected: (String) -> Unit, sides: List<String>) {
+fun SideSelector(
+    selectedSides: List<String>,
+    onSideSelected: (String) -> Unit,
+    sides: List<String>
+) {
     LazyHorizontalGrid(
         rows = GridCells.Adaptive(minSize = 60.dp),  // Adjust the minSize as needed
         horizontalArrangement = Arrangement.spacedBy(8.dp),
@@ -994,11 +1002,12 @@ fun SideSelector(selectedSide: String, onSideSelected: (String) -> Unit, sides: 
         modifier = Modifier.height(180.dp)
     ) {
         items(sides) { side ->
+            val isSelected = selectedSides.contains(side)
             Box(
                 modifier = Modifier
                     .clickable { onSideSelected(side) }
                     .background(
-                        color = if (selectedSide == side) Color.Gray else Color.Transparent,
+                        color = if (isSelected) Color.Gray else Color.Transparent,
                         shape = RoundedCornerShape(8.dp)
                     )
                     .border(
@@ -1011,12 +1020,13 @@ fun SideSelector(selectedSide: String, onSideSelected: (String) -> Unit, sides: 
             ) {
                 Text(
                     text = side,
-                    color = if (selectedSide == side) Color.White else Color.Black
+                    color = if (isSelected) Color.White else Color.Black
                 )
             }
         }
     }
 }
+
 
 
 

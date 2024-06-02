@@ -27,6 +27,8 @@ import com.example.teamproject.ViewModel.UserViewModelFactory
 import com.example.teamproject.navigation.Routes
 import com.google.firebase.Firebase
 import com.google.firebase.database.database
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 @Composable
 fun LoginScreen(navController: NavHostController) {
@@ -160,8 +162,6 @@ fun LoginScreen(navController: NavHostController) {
         }
 
         Spacer(modifier = Modifier.height(50.dp))
-
-
 
         Button(
             onClick = {

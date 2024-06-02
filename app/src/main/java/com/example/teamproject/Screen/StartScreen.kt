@@ -28,6 +28,7 @@ import com.example.teamproject.navigation.Routes
 
 @Composable
 fun StartScreen(navController: NavHostController) {
+
     Column(verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier.fillMaxSize()) {

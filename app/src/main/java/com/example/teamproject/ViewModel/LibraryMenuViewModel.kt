@@ -24,8 +24,8 @@ class LibraryMenuViewModel : ViewModel() {
     )
 
     val DonggasItems = mutableStateListOf(
-        MenuItem(R.drawable.donggas, "120 돈가스", "6300", 5, "Donggas", 0),
-        MenuItem(R.drawable.donggas, "170 돈가스", "6300", 10,"Donggas", 1),
+        MenuItem(R.drawable.donggas, "120 돈가스", "5800", 5, "Donggas", 0),
+        MenuItem(R.drawable.donggas, "170 돈가스", "6800", 10,"Donggas", 1),
         MenuItem(R.drawable.calbim, "칼빔면", "4500", 19,"Donggas", 2),
         MenuItem(R.drawable.curry, "카레라이스", "5200", 17,"Donggas", 3),
         MenuItem(R.drawable.donbi, "돈비세트", "7800", 2,"Donggas", 4),

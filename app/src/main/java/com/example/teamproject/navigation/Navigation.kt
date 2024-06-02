@@ -2,37 +2,43 @@ package com.example.teamproject.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.ui.graphics.BlendMode.Companion.Screen
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
-import com.example.teamproject.MenuItem
+import com.example.teamproject.Item.MenuItem
 import com.example.teamproject.Restaurant.Library_GusiaScreen
+import com.example.teamproject.Restaurant.StudentUnion_FirstfloorScreen
 import com.example.teamproject.Restaurant.StudentUnion_GusiaScreen
-import com.example.teamproject.Screen.LibraryOrderScreen
+import com.example.teamproject.Screen.CartScreen
+import com.example.teamproject.Screen.Library_GusiaNoSideOrderScreen
+import com.example.teamproject.Screen.Library_GusiaOrderScreen
 import com.example.teamproject.Screen.LoginScreen
 import com.example.teamproject.Screen.PaymentScreen
+import com.example.teamproject.Screen.RestaurantLocationScreen
+import com.example.teamproject.Screen.RestioLocationScreen
 import com.example.teamproject.Screen.SignUpScreen
 import com.example.teamproject.Screen.StartScreen
-import com.example.teamproject.Screen.StudentUnionOrderScreen
+import com.example.teamproject.Screen.StudentUnion_FirstfloorOrderScreen
+import com.example.teamproject.Screen.StudentUnion_GusiaNoSideOrderScreen
+import com.example.teamproject.Screen.StudentUnion_GusiaOrderScreen
 import com.example.teamproject.ViewModel.LibraryMenuViewModel
 import com.example.teamproject.ViewModel.LocalNavGraphViewModelStoreOwner
 import com.example.teamproject.ViewModel.StudentUnionMenuViewModel
 import com.example.teamproject.ViewModel.rememberViewModelStoreOwner
-import com.example.teamproject.Screen.MapScreen
 
 open class Routes(val route: String) {
     object Start : Routes("start_screen")
     object Login : Routes("login_screen")
     object SignUp : Routes("SignUp_screen")
-    object StudentUnionGusia : Routes("studentUnion_gusiaScreen")
+    object StudentUnionFirstfloor : Routes("StudentUnion_FirstfloorScreen")
+    object StudentUnionGusia : Routes("StudentUnion_gusiaScreen")
     object LibraryGusia : Routes("library_gusiaScreen")
-
     object Payment : Routes("Payment_Screen")
-    object Map : Routes("map_screen")
+    object RestioStart : Routes("restio_start")
+    object RestaurantStart : Routes("restaurant_start")
+    object Cart : Routes("cart")
+
 }
 
 
@@ -49,7 +55,6 @@ fun NavGraph(
     ) {
         NavHost(navController = navController, startDestination = Routes.Start.route) {
 
-
             composable(Routes.Start.route) {
                 StartScreen(navController)
             }
@@ -65,12 +70,28 @@ fun NavGraph(
                 StudentUnion_GusiaScreen(navController)
             }
 
+            composable(Routes.StudentUnionFirstfloor.route) {
+                StudentUnion_FirstfloorScreen(navController)
+            }
+
             composable(Routes.LibraryGusia.route) {
                 Library_GusiaScreen(navController)
             }
 
             composable(Routes.Payment.route) {
                 PaymentScreen(navController)
+            }
+
+            composable(Routes.RestioStart.route) {
+                RestioLocationScreen(navController = navController)
+            }
+
+            composable(Routes.RestaurantStart.route) {
+                RestaurantLocationScreen(navController = navController)
+            }
+
+            composable(Routes.Cart.route) {
+                CartScreen(navController)
             }
 
             composable("library_order_screen/{category}/{index}/{imageRes}/{menuName}/{menuPrice}/{quantity}") { backStackEntry ->
@@ -81,23 +102,46 @@ fun NavGraph(
                 val menuPrice = backStackEntry.arguments?.getString("menuPrice") ?: ""
                 val quantity = backStackEntry.arguments?.getString("quantity")?.toInt() ?: 0
 
-                val menuItem = MenuItem(imageRes, menuName, menuPrice, quantity)
+                val menuItem = MenuItem(imageRes, menuName, menuPrice, quantity, category, index)
 
-                LibraryOrderScreen(
-                    menuItem = menuItem,
-                    category = category,
-                    index = index,
-                    libraryViewModel = libraryViewModel,
-                    onAddToCart = {
-                        navController.navigate(Routes.LibraryGusia.route)
-                    },
-                    onCheckout = {
-                        // 결제 로직
-                        libraryViewModel.decreaseQuantity(category, index, quantity)
+                if (category == "Bab" || category == "Popo") {
+                    Library_GusiaOrderScreen(
+                        menuItem = menuItem,
+                        category = category,
+                        index = index,
+                        libraryViewModel = libraryViewModel,
+                        onAddToCart = {
+                            navController.navigate(Routes.LibraryGusia.route)
+                            //여기서 담기 버튼 누르면 어떻게 할지 고민
+                        },
+                        onCheckout = {
+                            // 결제 로직
+                            libraryViewModel.decreaseQuantity(category, index, quantity)
 
-                        navController.navigate(Routes.Payment.route)
-                    }
-                )
+                            navController.navigate(Routes.Payment.route)
+                        },
+                        navController = navController
+                    )
+                }else{
+                    Library_GusiaNoSideOrderScreen(
+                        menuItem = menuItem,
+                        category = category,
+                        index = index,
+                        libraryViewModel = libraryViewModel,
+                        onAddToCart = {
+                            navController.navigate(Routes.LibraryGusia.route)
+                            //여기서 담기 버튼 누르면 어떻게 할지 고민
+                        },
+                        onCheckout = {
+                            // 결제 로직
+                            libraryViewModel.decreaseQuantity(category, index, quantity)
+
+                            navController.navigate(Routes.Payment.route)
+                        },
+                        navController = navController
+                    )
+                }
+
             }
 
             composable("studentUnion_order_screen/{category}/{index}/{imageRes}/{menuName}/{menuPrice}/{quantity}") { backStackEntry ->
@@ -108,27 +152,66 @@ fun NavGraph(
                 val menuPrice = backStackEntry.arguments?.getString("menuPrice") ?: ""
                 val quantity = backStackEntry.arguments?.getString("quantity")?.toInt() ?: 0
 
-                val menuItem = MenuItem(imageRes, menuName, menuPrice, quantity)
+                val menuItem = MenuItem(imageRes, menuName, menuPrice, quantity, category, index)
 
-                StudentUnionOrderScreen(
-                    menuItem = menuItem,
-                    category = category,
-                    index = index,
-                    studentUnionViewModel = studentUnionViewModel,
-                    onAddToCart = {
-                        navController.navigate(Routes.LibraryGusia.route)
-                    },
-                    onCheckout = {
-                        // 결제 로직
-                        studentUnionViewModel.decreaseQuantity(category, index, quantity)
+                if (category == "Firstfloor") {
+                    StudentUnion_FirstfloorOrderScreen(
+                        menuItem = menuItem,
+                        category = category,
+                        index = index,
+                        studentUnionViewModel = studentUnionViewModel,
+                        onAddToCart = {
+                            navController.popBackStack()
+                            //여기서 추가적으로 담기 누르면 어떤 동작을 수행할지 결정해야함. ex) viewmodel에 값 담기
+                        },
+                        onCheckout = {
+                            // 결제 로직
+                            studentUnionViewModel.decreaseQuantity(category, index, quantity)
 
-                        navController.navigate(Routes.Payment.route)
+                            navController.navigate(Routes.Payment.route)
+                        },
+                        navController = navController
+                    )
+                } else {
+                    if (category == "Bab" || category == "Popo" || category == "Gookbab" || category == "Mara") {
+                        StudentUnion_GusiaOrderScreen(
+                            menuItem = menuItem,
+                            category = category,
+                            index = index,
+                            studentUnionViewModel = studentUnionViewModel,
+                            onAddToCart = {
+                                navController.popBackStack()
+                                //여기도 마찬가지
+                            },
+                            onCheckout = {
+                                // 결제 로직
+                                studentUnionViewModel.decreaseQuantity(category, index, quantity)
+
+                                navController.navigate(Routes.Payment.route)
+                            },
+                            navController = navController
+                        )
+                    } else {
+                        StudentUnion_GusiaNoSideOrderScreen(
+                            menuItem = menuItem,
+                            category = category,
+                            index = index,
+                            studentUnionViewModel = studentUnionViewModel,
+                            onAddToCart = {
+                                navController.navigate(Routes.StudentUnionGusia.route)
+                                //여기도 마찬가지
+                            },
+                            onCheckout = {
+                                // 결제 로직
+                                studentUnionViewModel.decreaseQuantity(category, index, quantity)
+
+                                navController.navigate(Routes.Payment.route)
+                            },
+                            navController = navController
+                        )
                     }
-                )
-            }
+                }
 
-            composable(Routes.Map.route) {
-                MapScreen(navController)
             }
         }
     }

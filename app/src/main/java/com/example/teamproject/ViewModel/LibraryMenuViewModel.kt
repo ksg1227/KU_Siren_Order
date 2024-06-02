@@ -20,12 +20,12 @@ class LibraryMenuViewModel : ViewModel() {
         MenuItem(R.drawable.chadolpopo, "차돌 쌀국수", "5500", 11, "Popo", 1),
         MenuItem(R.drawable.marapopo, "마라 쌀국수", "6200", 3, "Popo", 2),
         MenuItem(R.drawable.firepopo, "직화구이 쌀국수", "6000", 13, "Popo", 3),
-        MenuItem(R.drawable.img1, "완탕 쌀국수", "6000", 14, "Popo", 4),
+        MenuItem(R.drawable.wantang, "완탕 쌀국수", "6000", 14, "Popo", 4),
     )
 
     val DonggasItems = mutableStateListOf(
-        MenuItem(R.drawable.wangdon, "120 돈가스", "6300", 5, "Donggas", 0),
-        MenuItem(R.drawable.wangdon, "170 돈가스", "6300", 10,"Donggas", 1),
+        MenuItem(R.drawable.donggas, "120 돈가스", "6300", 5, "Donggas", 0),
+        MenuItem(R.drawable.donggas, "170 돈가스", "6300", 10,"Donggas", 1),
         MenuItem(R.drawable.calbim, "칼빔면", "4500", 19,"Donggas", 2),
         MenuItem(R.drawable.curry, "카레라이스", "5200", 17,"Donggas", 3),
         MenuItem(R.drawable.donbi, "돈비세트", "7800", 2,"Donggas", 4),

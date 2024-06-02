@@ -1,29 +1,51 @@
 package com.example.teamproject.Screen
 
+import android.widget.Toast
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Divider
+import androidx.compose.material.IconButton
+import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.teamproject.R
 
 @Composable
 fun CartScreen(modifier: Modifier = Modifier) {
+    val context = LocalContext.current
+
+    val resName: String;
+    val resNameColor: Int;
+
+    resName = "가게이름"
+    resNameColor = R.color.green_066b3f
+
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
@@ -35,9 +57,82 @@ fun CartScreen(modifier: Modifier = Modifier) {
             onRightIconClick = { },
             rightIconImgId = null
         )
+        SelectAndDeleteBox() // '전체선택' 체크박스 행
+
+        Divider(
+            color = colorResource(id = R.color.gray_b3b3b3),
+            modifier = Modifier.height(1.dp)
+        )
+
+        Text( // 가게 이름
+            modifier = Modifier
+                .padding(15.dp)
+                .fillMaxWidth(),
+            text = resName,
+            fontSize = 16.sp,
+            fontFamily = FontFamily(Font(R.font.pretendard_semibold)),
+            color = colorResource(id = resNameColor)
+        )
+
+        Divider(
+            color = colorResource(id = R.color.gray_b3b3b3),
+            modifier = Modifier.height(1.dp)
+        )
+
+        // 장바구니 제품 목록
+        CartItemUI()
+
         Spacer(Modifier.weight(1f))
-        GoOrderBtn {} // '주문하기' btn
+
+        GoOrderBtn(onClick = {
+            Toast.makeText(context, "주문하기 버튼 클릭됨!", Toast.LENGTH_SHORT).show()
+        }) // '주문하기' btn
         Spacer(modifier = Modifier.height(30.dp))
+    }
+}
+
+// '전체선택' 체크박스 행
+@Composable
+fun SelectAndDeleteBox() {
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        Checkbox(
+            checked = false,
+            modifier = Modifier
+                .padding(10.dp, 0.dp, 0.dp, 0.dp),
+            onCheckedChange = {}
+        )
+        Text(
+            text = "전체선택",
+            fontSize = 16.sp,
+            fontFamily = FontFamily(Font(R.font.pretendard_regular)),
+            modifier = Modifier.clickable {
+
+            })
+        Spacer(Modifier.weight(1f))
+        Text(
+            text = "선택삭제",
+            fontSize = 16.sp,
+            fontFamily = FontFamily(Font(R.font.pretendard_regular)),
+            modifier = Modifier.clickable {
+
+            })
+        Text(
+            text = " | ",
+            fontSize = 16.sp,
+            fontFamily = FontFamily(Font(R.font.pretendard_regular)),
+        )
+        Text(
+            text = "선택삭제",
+            fontSize = 16.sp,
+            fontFamily = FontFamily(Font(R.font.pretendard_regular)),
+            modifier = Modifier
+                .padding(0.dp, 0.dp, 15.dp, 0.dp)
+                .clickable {
+
+                }
+        )
     }
 }
 
@@ -62,4 +157,104 @@ fun GoOrderBtn(
             fontFamily = FontFamily(Font(R.font.pretendard_semibold))
         )
     }
+}
+
+// 장바구니 목록 LazyColumn
+@Composable
+fun CartItemList() {
+
+}
+
+// 장바구니 목록 LazyColumn에 담길 제품 UI
+@Composable
+fun CartItemUI(
+    // 추후 Item data class 구조 파악 후 인자로 추가 필요
+) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(150.dp)
+            .padding(20.dp)
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.ic_chk_unselected),
+            contentDescription = "CartItem Checkbox",
+            modifier = Modifier.size(15.dp)
+        )
+        Spacer(modifier = Modifier.width(20.dp))
+        Image(
+            painter = painterResource(id = R.drawable.donka),
+            contentDescription = "CartItem Image",
+            modifier = Modifier
+                .size(80.dp)
+                .clip(RoundedCornerShape(10.dp))
+        )
+        Spacer(modifier = Modifier.width(15.dp))
+        Column(modifier = Modifier.fillMaxHeight()) {
+            Text(
+                text = "제품이름",
+                fontSize = 16.sp,
+                fontFamily = FontFamily(Font(R.font.pretendard_semibold)),
+            )
+            Spacer(modifier = Modifier.height(2.dp))
+            Text(
+                text = "옵션1",
+                fontSize = 12.sp,
+                fontFamily = FontFamily(Font(R.font.pretendard_regular)),
+            )
+            Spacer(modifier = Modifier.height(2.dp))
+            Text(
+                text = "옵션2",
+                fontSize = 12.sp,
+                fontFamily = FontFamily(Font(R.font.pretendard_regular)),
+            )
+            Spacer(modifier = Modifier.weight(1f))
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.width(85.dp)
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.ic_minus),
+                    modifier = Modifier
+                        .size(20.dp)
+                        .clickable(onClick = { }),
+                    contentDescription = "제품 수량 감소"
+                )
+                Spacer(modifier = Modifier.weight(1f))
+                Text(
+                    text = "수량",
+                    fontSize = 12.sp,
+                    fontFamily = FontFamily(Font(R.font.pretendard_regular)),
+                )
+                Spacer(modifier = Modifier.weight(1f))
+                Image(
+                    painter = painterResource(id = R.drawable.ic_plus),
+                    modifier = Modifier
+                        .size(20.dp)
+                        .clickable(onClick = { }),
+                    contentDescription = "제품 수량 증가"
+                )
+            }
+        }
+        Spacer(modifier = Modifier.weight(1f))
+        Column(horizontalAlignment = Alignment.End) {
+            Image(
+                painter = painterResource(id = R.drawable.ic_delete),
+                modifier = Modifier
+                    .size(15.dp)
+                    .clickable(onClick = { }),
+                contentDescription = "제품 삭제"
+            )
+            Spacer(modifier = Modifier.weight(1f))
+            Text(
+                text = "4,500원",
+                fontSize = 12.sp,
+                fontFamily = FontFamily(Font(R.font.pretendard_semibold)),
+            )
+        }
+    }
+    Divider(
+        color = colorResource(id = R.color.gray_b3b3b3),
+        modifier = Modifier.height(1.dp)
+    )
 }

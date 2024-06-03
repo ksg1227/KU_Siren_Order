@@ -46,6 +46,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.example.teamproject.Item.MenuItem
 import com.example.teamproject.R
+import com.example.teamproject.ViewModel.CartMenuViewModel
 import com.example.teamproject.ViewModel.LibraryMenuViewModel
 import com.example.teamproject.ViewModel.LocalNavGraphViewModelStoreOwner
 import com.example.teamproject.ViewModel.StudentUnionMenuViewModel
@@ -57,7 +58,7 @@ fun Library_GusiaOrderScreen( //사이드 있는 경우
     category: String,
     index: Int,
     libraryViewModel: LibraryMenuViewModel = viewModel(viewModelStoreOwner = LocalNavGraphViewModelStoreOwner.current),
-    onAddToCart: () -> Unit,
+    cartViewModel: CartMenuViewModel = viewModel(viewModelStoreOwner = LocalNavGraphViewModelStoreOwner.current),
     onCheckout: () -> Unit,
     navController: NavHostController
 ) {
@@ -205,7 +206,10 @@ fun Library_GusiaOrderScreen( //사이드 있는 경우
             modifier = Modifier.fillMaxWidth()
         ) {
             Button(
-                onClick = onAddToCart,
+                onClick = {
+                    navController.navigate(Routes.LibraryGusia.route)
+
+                    cartViewModel.library_GusiaMenuList.add(menuItem.copy(quantity = quantity, price = totalPrice.toString())) },   //==================================================================
                 modifier = Modifier.weight(1f),
                 shape = RoundedCornerShape(30),
                 colors = ButtonDefaults.buttonColors(
@@ -251,7 +255,7 @@ fun Library_GusiaNoSideOrderScreen(      //side나 size 없는 경우
     category: String,
     index: Int,
     libraryViewModel: LibraryMenuViewModel = viewModel(viewModelStoreOwner = LocalNavGraphViewModelStoreOwner.current),
-    onAddToCart: () -> Unit,
+    cartViewModel: CartMenuViewModel = viewModel(viewModelStoreOwner = LocalNavGraphViewModelStoreOwner.current),
     onCheckout: () -> Unit,
     navController: NavHostController
 ) {
@@ -371,7 +375,11 @@ fun Library_GusiaNoSideOrderScreen(      //side나 size 없는 경우
             modifier = Modifier.fillMaxWidth()
         ) {
             Button(
-                onClick = onAddToCart,
+                onClick = {
+                    navController.navigate(Routes.LibraryGusia.route)
+
+                    cartViewModel.library_GusiaMenuList.add(menuItem.copy(quantity = quantity, price = (menuItem.price.toInt() * quantity).toString()))
+                          },    //==================================================================
                 modifier = Modifier.weight(1f),
                 shape = RoundedCornerShape(30),
                 colors = ButtonDefaults.buttonColors(
@@ -417,7 +425,7 @@ fun StudentUnion_GusiaOrderScreen(   //사이드 메뉴 존재하는 경우
     category: String,
     index: Int,
     studentUnionViewModel: StudentUnionMenuViewModel = viewModel(viewModelStoreOwner = LocalNavGraphViewModelStoreOwner.current),
-    onAddToCart: () -> Unit,
+    cartViewModel: CartMenuViewModel = viewModel(viewModelStoreOwner = LocalNavGraphViewModelStoreOwner.current),
     onCheckout: () -> Unit,
     navController: NavHostController
 ) {
@@ -593,7 +601,11 @@ fun StudentUnion_GusiaOrderScreen(   //사이드 메뉴 존재하는 경우
             modifier = Modifier.fillMaxWidth()
         ) {
             Button(
-                onClick = onAddToCart,
+                onClick = {
+                    navController.navigate(Routes.StudentUnionGusia.route)
+
+                    cartViewModel.studentUnion_GusiaMenuList.add(menuItem.copy(quantity = quantity, price = totalPrice.toString()))
+                          },    //==================================================================
                 modifier = Modifier.weight(1f),
                 shape = RoundedCornerShape(30),
                 colors = ButtonDefaults.buttonColors(
@@ -638,7 +650,7 @@ fun StudentUnion_GusiaNoSideOrderScreen(    //side나 size 없는 경우
     category: String,
     index: Int,
     studentUnionViewModel: StudentUnionMenuViewModel = viewModel(viewModelStoreOwner = LocalNavGraphViewModelStoreOwner.current),
-    onAddToCart: () -> Unit,
+    cartViewModel: CartMenuViewModel = viewModel(viewModelStoreOwner = LocalNavGraphViewModelStoreOwner.current),
     onCheckout: () -> Unit,
     navController: NavHostController
 ) {
@@ -757,7 +769,11 @@ fun StudentUnion_GusiaNoSideOrderScreen(    //side나 size 없는 경우
             modifier = Modifier.fillMaxWidth()
         ) {
             Button(
-                onClick = onAddToCart,
+                onClick = {
+                    navController.navigate(Routes.StudentUnionGusia.route)
+
+                    cartViewModel.studentUnion_GusiaMenuList.add(menuItem.copy(quantity = quantity, price = (menuItem.price.toInt() * quantity).toString()))
+                },   //==================================================================
                 modifier = Modifier.weight(1f),
                 shape = RoundedCornerShape(30),
                 colors = ButtonDefaults.buttonColors(
@@ -802,7 +818,7 @@ fun StudentUnion_FirstfloorOrderScreen(   //1층 학식 주문 화면
     category: String,
     index: Int,
     studentUnionViewModel: StudentUnionMenuViewModel = viewModel(viewModelStoreOwner = LocalNavGraphViewModelStoreOwner.current),
-    onAddToCart: () -> Unit,
+    cartViewModel: CartMenuViewModel = viewModel(viewModelStoreOwner = LocalNavGraphViewModelStoreOwner.current),
     onCheckout: () -> Unit,
     navController: NavHostController
 ) {
@@ -921,7 +937,11 @@ fun StudentUnion_FirstfloorOrderScreen(   //1층 학식 주문 화면
             modifier = Modifier.fillMaxWidth()
         ) {
             Button(
-                onClick = onAddToCart,
+                onClick = {
+                    navController.navigate(Routes.StudentUnionFirstfloor.route)
+
+                    cartViewModel.studentUnion_FirstfloorMenuList.add(menuItem.copy(quantity = quantity, price = (menuItem.price.toInt() * quantity).toString()))
+                },  //==================================================================
                 modifier = Modifier.weight(1f),
                 shape = RoundedCornerShape(30),
                 colors = ButtonDefaults.buttonColors(

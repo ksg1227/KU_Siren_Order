@@ -8,11 +8,12 @@ import com.google.firebase.database.ValueEventListener
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.tasks.await
 
 class Repository(private val table: DatabaseReference) {
 
-    fun InsertUser(user: User){
-        table.child(user.id).setValue(user)  //key값은 학번으로 구분
+    suspend fun InsertUser(user: User){
+        table.child(user.id).setValue(user).await()  //key값은 학번으로 구분
     }
 
     fun UpdateUser(user:User){

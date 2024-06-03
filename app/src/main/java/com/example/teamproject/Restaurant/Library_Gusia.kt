@@ -43,7 +43,7 @@ fun CustomTabPager2(pagerState: PagerState, tabs: List<String>, navController:Na
             onBackIconClick = { navController.popBackStack() },
             title = "도서관 지하 학식",
             titleColor = Color.Black,
-            onRightIconClick = { navController.navigate(Routes.Cart.route) },
+            onRightIconClick = { navController.navigate("cart_screen/상허기념도서관 지하 학식(구시아푸드)") },
             rightIconImgId = R.drawable.cart
         )
 

@@ -1,5 +1,6 @@
 package com.example.teamproject.navigation
 
+import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -22,6 +23,7 @@ import com.example.teamproject.Screen.StartScreen
 import com.example.teamproject.Screen.StudentUnion_FirstfloorOrderScreen
 import com.example.teamproject.Screen.StudentUnion_GusiaNoSideOrderScreen
 import com.example.teamproject.Screen.StudentUnion_GusiaOrderScreen
+import com.example.teamproject.ViewModel.CartMenuViewModel
 import com.example.teamproject.ViewModel.LibraryMenuViewModel
 import com.example.teamproject.ViewModel.LocalNavGraphViewModelStoreOwner
 import com.example.teamproject.ViewModel.StudentUnionMenuViewModel
@@ -46,7 +48,8 @@ open class Routes(val route: String) {
 fun NavGraph(
     navController: NavHostController,
     libraryViewModel: LibraryMenuViewModel = viewModel(),
-    studentUnionViewModel: StudentUnionMenuViewModel = viewModel()
+    studentUnionViewModel: StudentUnionMenuViewModel = viewModel(),
+    cartViewModel: CartMenuViewModel = viewModel()
 ) {
 
     val navStoreOwner = rememberViewModelStoreOwner()
@@ -90,8 +93,9 @@ fun NavGraph(
                 RestaurantLocationScreen(navController = navController)
             }
 
-            composable(Routes.Cart.route) {
-                CartScreen(navController)
+            composable("cart_screen/{placeName}") {backStackEntry ->
+                val placeName = backStackEntry.arguments?.getString("placeName") ?: ""
+                CartScreen(navController, placeName)
             }
 
             composable("library_order_screen/{category}/{index}/{imageRes}/{menuName}/{menuPrice}/{quantity}") { backStackEntry ->
@@ -110,11 +114,7 @@ fun NavGraph(
                         category = category,
                         index = index,
                         libraryViewModel = libraryViewModel,
-                        onAddToCart = {
-                            navController.navigate(Routes.LibraryGusia.route)
-                            //여기서 담기 버튼 누르면 어떻게 할지 고민
-                        },
-
+                        cartViewModel = cartViewModel,
                         onCheckout = {
                             // 결제 로직
                             libraryViewModel.decreaseQuantity(category, index, quantity)
@@ -129,13 +129,10 @@ fun NavGraph(
                         category = category,
                         index = index,
                         libraryViewModel = libraryViewModel,
-                        onAddToCart = {
-                            navController.navigate(Routes.LibraryGusia.route)
-                            //여기서 담기 버튼 누르면 어떻게 할지 고민
-                        },
+                        cartViewModel = cartViewModel,
                         onCheckout = {
                             // 결제 로직
-                            libraryViewModel.decreaseQuantity(category, index, quantity)
+//                            libraryViewModel.decreaseQuantity(category, index, quantity)
 
                             navController.navigate(Routes.Payment.route)
                         },
@@ -161,13 +158,10 @@ fun NavGraph(
                         category = category,
                         index = index,
                         studentUnionViewModel = studentUnionViewModel,
-                        onAddToCart = {
-                            navController.popBackStack()
-                            //여기서 추가적으로 담기 누르면 어떤 동작을 수행할지 결정해야함. ex) viewmodel에 값 담기
-                        },
+                        cartViewModel = cartViewModel,
                         onCheckout = {
                             // 결제 로직
-                            studentUnionViewModel.decreaseQuantity(category, index, quantity)
+//                            studentUnionViewModel.decreaseQuantity(category, index, quantity)
 
                             navController.navigate(Routes.Payment.route)
                         },
@@ -180,13 +174,10 @@ fun NavGraph(
                             category = category,
                             index = index,
                             studentUnionViewModel = studentUnionViewModel,
-                            onAddToCart = {
-                                navController.popBackStack()
-                                //여기도 마찬가지
-                            },
+                            cartViewModel = cartViewModel,
                             onCheckout = {
                                 // 결제 로직
-                                studentUnionViewModel.decreaseQuantity(category, index, quantity)
+//                                studentUnionViewModel.decreaseQuantity(category, index, quantity)
 
                                 navController.navigate(Routes.Payment.route)
                             },
@@ -198,13 +189,10 @@ fun NavGraph(
                             category = category,
                             index = index,
                             studentUnionViewModel = studentUnionViewModel,
-                            onAddToCart = {
-                                navController.navigate(Routes.StudentUnionGusia.route)
-                                //여기도 마찬가지
-                            },
+                            cartViewModel = cartViewModel,
                             onCheckout = {
                                 // 결제 로직
-                                studentUnionViewModel.decreaseQuantity(category, index, quantity)
+//                                studentUnionViewModel.decreaseQuantity(category, index, quantity)
 
                                 navController.navigate(Routes.Payment.route)
                             },

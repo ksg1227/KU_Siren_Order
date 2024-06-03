@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "646666032802",
+    "firebase_url": "https://sirenorder-66d85-default-rtdb.firebaseio.com",
+    "project_id": "sirenorder-66d85",
+    "storage_bucket": "sirenorder-66d85.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:646666032802:android:10cba598ab89cf2532e9fb",
+        "android_client_info": {
+          "package_name": "com.example.teamproject"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3Rc6fiKiHSH2WF04l19AW48APmrADdH0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

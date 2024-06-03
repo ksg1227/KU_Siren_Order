@@ -84,7 +84,7 @@ fun TopAppBar(
                     ) {
                         Image(
                             painter = painterResource(id = rightIconImgId),
-                            modifier = Modifier.size(25.dp),
+                            modifier = Modifier.size(40.dp),
                             contentDescription = "우측 아이콘"
                         )
                     }

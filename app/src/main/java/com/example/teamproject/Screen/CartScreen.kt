@@ -39,7 +39,7 @@ import com.example.teamproject.R
 import com.example.teamproject.navigation.Routes
 
 @Composable
-fun CartScreen(navController : NavHostController) {
+fun CartScreen(navController: NavHostController) {
     val context = LocalContext.current
 
     val resName: String;
@@ -47,14 +47,13 @@ fun CartScreen(navController : NavHostController) {
 
     resName = "가게이름"
     resNameColor = R.color.green_066b3f
-  
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
         TopAppBar( // 상단바
             onBackIconClick = {
-                              navController.popBackStack()
+                navController.popBackStack()
             },
             title = "장바구니",
             titleColor = Color.Black,

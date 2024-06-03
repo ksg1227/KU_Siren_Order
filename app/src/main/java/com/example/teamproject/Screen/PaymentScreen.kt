@@ -1,5 +1,7 @@
 package com.example.teamproject.Screen
 
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -19,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
@@ -53,18 +56,51 @@ fun PaymentScreen(navController: NavHostController, modifier: Modifier = Modifie
         Row {
             PaymentBtnWithText(text = "신용・체크카드") {}
             Spacer(modifier = Modifier.width(20.dp))
-            PaymentBtnWithImg(imgId = R.drawable.img_tosspay) {}
+            PaymentAppButton(
+                // toss 앱 연결
+                imgId = R.drawable.img_tosspay,
+                packageName = "viva.republica.toss"
+            )
         }
         Spacer(modifier = Modifier.height(20.dp))
         Row {
-            PaymentBtnWithImg(imgId = R.drawable.img_kakaopay) {}
+            PaymentAppButton(
+                // kakaopay 앱 연결
+                imgId = R.drawable.img_kakaopay,
+                packageName = "com.kakaopay.app"
+            )
             Spacer(modifier = Modifier.width(20.dp))
-            PaymentBtnWithImg(imgId = R.drawable.img_payco) {}
+            PaymentAppButton(
+                // payco 앱 연결
+                imgId = R.drawable.img_payco,
+                packageName = "com.nhnent.payapp"
+            )
         }
         Spacer(Modifier.weight(1f))
         GoPaymentBtn {
         }
         Spacer(modifier = Modifier.height(30.dp))
+    }
+}
+
+// 각 결제 수단을 위한 앱 버튼
+@Composable
+fun PaymentAppButton(
+    imgId: Int,
+    packageName: String
+) {
+    val context = LocalContext.current
+    val intent = context.packageManager.getLaunchIntentForPackage(packageName)
+
+    PaymentBtnWithImg(imgId = imgId) {
+        if (intent != null) {
+            context.startActivity(intent)
+        } else {
+            // 앱이 설치되어 있지 않다면 플레이스토어로 이동
+            val uri = Uri.parse("market://details?id=$packageName")
+            val marketIntent = Intent(Intent.ACTION_VIEW, uri)
+            context.startActivity(marketIntent)
+        }
     }
 }
 

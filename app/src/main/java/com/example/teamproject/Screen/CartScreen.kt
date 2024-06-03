@@ -56,7 +56,6 @@ fun CartScreen(navController : NavHostController, placeName:String, cartMenuView
 
     resName = placeName    //매장 이름
     resNameColor = R.color.green_066b3f
-  
     Column(
         modifier = Modifier.verticalScroll(scrollState),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -64,7 +63,7 @@ fun CartScreen(navController : NavHostController, placeName:String, cartMenuView
     ) {
         TopAppBar( // 상단바
             onBackIconClick = {
-                              navController.popBackStack()
+                navController.popBackStack()
             },
             title = "장바구니",
             titleColor = Color.Black,

@@ -34,9 +34,16 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import com.example.teamproject.Item.User
 import com.example.teamproject.R
+import com.example.teamproject.ViewModel.Repository
+import com.example.teamproject.ViewModel.UserViewModel
+import com.example.teamproject.ViewModel.UserViewModelFactory
 import com.example.teamproject.navigation.Routes
+import com.google.firebase.Firebase
+import com.google.firebase.database.database
 
 
 @Composable
@@ -54,6 +61,11 @@ fun SignUpScreen(navController: NavHostController) {
     var showEmptyFieldsError by remember { mutableStateOf(false) }
 
     val scrollState = rememberScrollState()
+
+    val table = Firebase.database.getReference("UserDB/users")
+
+    val viewModel: UserViewModel =
+        viewModel(factory = UserViewModelFactory(Repository(table)))
 
     Column(
         modifier = Modifier
@@ -312,6 +324,10 @@ fun SignUpScreen(navController: NavHostController) {
                     studentId.isNotEmpty() && department.isNotEmpty() &&
                     !showError
                 ) {
+                    val user = User(id, password, name, phoneNumber, emailUser+"@"+emailDomain, studentId, department)
+
+                    viewModel.InsertUser(user)
+
                     navController.navigate(Routes.LibraryGusia.route)
                 } else {
                     showEmptyFieldsError = true

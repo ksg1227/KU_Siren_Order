@@ -46,8 +46,8 @@ fun CustomTabPager(pagerState: PagerState, tabs: List<String>, navController : N
             onBackIconClick = { navController.popBackStack() },
             title = "학생회관 지하 학식",
             titleColor = Color.Black,
-            onRightIconClick = { navController.navigate(Routes.Cart.route) },
-            rightIconImgId = R.drawable.konkuk
+            onRightIconClick = { navController.navigate("cart_screen/학생회관 지하 학식(구시아푸드)") },
+            rightIconImgId = R.drawable.cart
         )
 
         ScrollableTabRow(

@@ -5,7 +5,7 @@ data class MenuItem(
     val name: String,
     val price: String,
     var quantity: Int,
-    var caragory: String,
+    var category: String,
     var index: Int
 )
 

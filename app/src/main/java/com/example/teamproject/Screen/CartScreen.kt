@@ -43,10 +43,15 @@ import com.example.teamproject.R
 import com.example.teamproject.ViewModel.CartMenuViewModel
 import com.example.teamproject.ViewModel.LibraryMenuViewModel
 import com.example.teamproject.ViewModel.LocalNavGraphViewModelStoreOwner
+import com.example.teamproject.ViewModel.StudentUnionMenuViewModel
 import com.example.teamproject.navigation.Routes
 
 @Composable
-fun CartScreen(navController : NavHostController, placeName:String, cartMenuViewModel: CartMenuViewModel = viewModel(viewModelStoreOwner = LocalNavGraphViewModelStoreOwner.current)) {
+fun CartScreen(navController : NavHostController,
+               placeName:String,
+               cartMenuViewModel: CartMenuViewModel = viewModel(viewModelStoreOwner = LocalNavGraphViewModelStoreOwner.current),
+               libraryMenuViewModel: LibraryMenuViewModel = viewModel(viewModelStoreOwner = LocalNavGraphViewModelStoreOwner.current),
+               studentUnionMenuViewModel: StudentUnionMenuViewModel = viewModel(viewModelStoreOwner = LocalNavGraphViewModelStoreOwner.current)) {
     val context = LocalContext.current
     
     val scrollState = rememberScrollState()
@@ -268,7 +273,7 @@ fun CartItemUI(
                         painter = painterResource(id = R.drawable.ic_delete),
                         modifier = Modifier
                             .size(15.dp)
-                            .clickable(onClick = { }),
+                            .clickable(onClick = {  }),
                         contentDescription = "제품 삭제"
                     )
                     Spacer(modifier = Modifier.weight(1f))

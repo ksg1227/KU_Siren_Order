@@ -25,11 +25,11 @@ class LibraryMenuViewModel : ViewModel() {
 
     val DonggasItems = mutableStateListOf(
         MenuItem(R.drawable.donggas, "120 돈가스", "5800", 5, "Donggas", 0),
-        MenuItem(R.drawable.donggas, "170 돈가스", "6800", 10,"Donggas", 1),
-        MenuItem(R.drawable.calbim, "칼빔면", "4500", 19,"Donggas", 2),
-        MenuItem(R.drawable.curry, "카레라이스", "5200", 17,"Donggas", 3),
-        MenuItem(R.drawable.donbi, "돈비세트", "7800", 2,"Donggas", 4),
-        MenuItem(R.drawable.donka, "돈카세트", "8500", 1,"Donggas", 5),
+        MenuItem(R.drawable.donggas, "170 돈가스", "6800", 10, "Donggas", 1),
+        MenuItem(R.drawable.calbim, "칼빔면", "4500", 19, "Donggas", 2),
+        MenuItem(R.drawable.curry, "카레라이스", "5200", 17, "Donggas", 3),
+        MenuItem(R.drawable.donbi, "돈비세트", "7800", 2, "Donggas", 4),
+        MenuItem(R.drawable.donka, "돈카세트", "8500", 1, "Donggas", 5),
     )
 
 
@@ -39,23 +39,47 @@ class LibraryMenuViewModel : ViewModel() {
                 "Bab" -> {
                     if (BabItems[index].quantity >= quantity) {
                         BabItems[index].quantity -= quantity
+                    } else {
+                        BabItems[index].quantity = 0
                     }
                 }
+
                 "Popo" -> {
                     if (PopoItems[index].quantity >= quantity) {
                         PopoItems[index].quantity -= quantity
+                    } else {
+                        PopoItems[index].quantity = 0
                     }
                 }
+
                 "Donggas" -> {
                     if (DonggasItems[index].quantity >= quantity) {
                         DonggasItems[index].quantity -= quantity
+                    } else {
+                        DonggasItems[index].quantity = 0
                     }
                 }
             }
         }
     }
 
+    fun increaseQuantity(category: String, index: Int, quantity: Int) {
+        viewModelScope.launch {
+            when (category) {
+                "Bab" -> {
+                    BabItems[index].quantity += quantity
+                }
 
+                "Popo" -> {
+                    PopoItems[index].quantity += quantity
+                }
+
+                "Donggas" -> {
+                    DonggasItems[index].quantity += quantity
+                }
+            }
+        }
+    }
 
 
 }

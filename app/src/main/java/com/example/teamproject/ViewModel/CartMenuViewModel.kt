@@ -7,8 +7,24 @@ import com.example.teamproject.Item.MenuItem
 class CartMenuViewModel : ViewModel() {
 
     val library_GusiaMenuList = mutableStateListOf<MenuItem>()
+    val selected_library_GusiaMenuList = mutableStateListOf<MenuItem>()
 
     val studentUnion_GusiaMenuList = mutableStateListOf<MenuItem>()
+    val selected_studentUnion_GusiaMenuList = mutableStateListOf<MenuItem>()
 
     val studentUnion_FirstfloorMenuList = mutableStateListOf<MenuItem>()
+    val selected_studentUnion_FirstfloorMenuList = mutableStateListOf<MenuItem>()
+
+    fun calculateTotalPrice(placeName: String): Int {
+        val totalPrice = when (placeName) {
+            "학생회관 1층 학식" -> studentUnion_FirstfloorMenuList.sumOf { it.price.toInt()}
+            "학생회관 지하 학식(구시아푸드)" -> studentUnion_GusiaMenuList.sumOf { it.price.toInt()}
+            "상허기념도서관 지하 학식(구시아푸드)" -> library_GusiaMenuList.sumOf { it.price.toInt()}
+            else -> 0
+        }
+
+        return totalPrice
+    }
+
+
 }

@@ -79,37 +79,79 @@ class StudentUnionMenuViewModel : ViewModel() {
                 "Bab" -> {
                     if (BabItems[index].quantity >= quantity) {
                         BabItems[index].quantity -= quantity
+                    } else{
+                        BabItems[index].quantity = 0
                     }
                 }
                 "Popo" -> {
                     if (PopoItems[index].quantity >= quantity) {
                         PopoItems[index].quantity -= quantity
+                    } else{
+                        PopoItems[index].quantity = 0
                     }
                 }
                 "Donggas" -> {
                     if (DonggasItems[index].quantity >= quantity) {
                         DonggasItems[index].quantity -= quantity
+                    } else{
+                        DonggasItems[index].quantity = 0
                     }
                 }
                 "Gookbab" -> {
                     if (GookbabItems[index].quantity >= quantity) {
                         GookbabItems[index].quantity -= quantity
+                    } else{
+                        GookbabItems[index].quantity = 0
                     }
                 }
                 "Boonsik" -> {
                     if (BoonsikItems[index].quantity >= quantity) {
                         BoonsikItems[index].quantity -= quantity
+                    } else{
+                        BoonsikItems[index].quantity = 0
                     }
                 }
                 "Mara" -> {
                     if (MaraItems[index].quantity >= quantity) {
                         MaraItems[index].quantity -= quantity
+                    }else{
+                        MaraItems[index].quantity = 0
                     }
                 }
                 "Firstfloor" -> {
                     if (FirstfloorItems[index].quantity >= quantity){
                         FirstfloorItems[index].quantity -= quantity
+                    }else{
+                        FirstfloorItems[index].quantity = 0
                     }
+                }
+            }
+        }
+    }
+
+    fun increaseQuantity(category: String, index: Int, quantity: Int) {
+        viewModelScope.launch {
+            when (category) {
+                "Bab" -> {
+                    BabItems[index].quantity += quantity
+                }
+                "Popo" -> {
+                    PopoItems[index].quantity += quantity
+                }
+                "Donggas" -> {
+                    DonggasItems[index].quantity += quantity
+                }
+                "Gookbab" -> {
+                    GookbabItems[index].quantity += quantity
+                }
+                "Boonsik" -> {
+                    BoonsikItems[index].quantity += quantity
+                }
+                "Mara" -> {
+                    MaraItems[index].quantity += quantity
+                }
+                "Firstfloor" -> {
+                    FirstfloorItems[index].quantity += quantity
                 }
             }
         }

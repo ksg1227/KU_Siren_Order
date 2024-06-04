@@ -74,7 +74,6 @@ fun Library_GusiaOrderScreen( //사이드 있는 경우
     }
 
 
-
     val sideAdditionalPrice = selectedSides.map { side ->
         when (side) {
             "삼겹고기추가\n(+1,000)" -> 1000
@@ -209,7 +208,14 @@ fun Library_GusiaOrderScreen( //사이드 있는 경우
                 onClick = {
                     navController.navigate(Routes.LibraryGusia.route)
 
-                    cartViewModel.library_GusiaMenuList.add(menuItem.copy(quantity = quantity, price = totalPrice.toString())) },   //==================================================================
+                    libraryViewModel.decreaseQuantity(category, index, quantity)
+                    cartViewModel.library_GusiaMenuList.add(
+                        menuItem.copy(
+                            quantity = quantity,
+                            price = totalPrice.toString()
+                        )
+                    )
+                },   //==================================================================
                 modifier = Modifier.weight(1f),
                 shape = RoundedCornerShape(30),
                 colors = ButtonDefaults.buttonColors(
@@ -246,7 +252,6 @@ fun Library_GusiaOrderScreen( //사이드 있는 경우
         }
     }
 }
-
 
 
 @Composable
@@ -378,8 +383,14 @@ fun Library_GusiaNoSideOrderScreen(      //side나 size 없는 경우
                 onClick = {
                     navController.navigate(Routes.LibraryGusia.route)
 
-                    cartViewModel.library_GusiaMenuList.add(menuItem.copy(quantity = quantity, price = (menuItem.price.toInt() * quantity).toString()))
-                          },    //==================================================================
+                    libraryViewModel.decreaseQuantity(category, index, quantity)
+                    cartViewModel.library_GusiaMenuList.add(
+                        menuItem.copy(
+                            quantity = quantity,
+                            price = (menuItem.price.toInt() * quantity).toString()
+                        )
+                    )
+                },    //==================================================================
                 modifier = Modifier.weight(1f),
                 shape = RoundedCornerShape(30),
                 colors = ButtonDefaults.buttonColors(
@@ -416,7 +427,6 @@ fun Library_GusiaNoSideOrderScreen(      //side나 size 없는 경우
         }
     }
 }
-
 
 
 @Composable
@@ -559,6 +569,7 @@ fun StudentUnion_GusiaOrderScreen(   //사이드 메뉴 존재하는 경우
                 "고구마떡\n(+1,000)",
                 "팽이버섯\n(+1,000)"
             )
+
             else -> listOf("추가X") // 기본 리스트 설정
         }
 
@@ -604,8 +615,14 @@ fun StudentUnion_GusiaOrderScreen(   //사이드 메뉴 존재하는 경우
                 onClick = {
                     navController.navigate(Routes.StudentUnionGusia.route)
 
-                    cartViewModel.studentUnion_GusiaMenuList.add(menuItem.copy(quantity = quantity, price = totalPrice.toString()))
-                          },    //==================================================================
+                    studentUnionViewModel.decreaseQuantity(category, index, quantity)
+                    cartViewModel.studentUnion_GusiaMenuList.add(
+                        menuItem.copy(
+                            quantity = quantity,
+                            price = totalPrice.toString()
+                        )
+                    )
+                },    //==================================================================
                 modifier = Modifier.weight(1f),
                 shape = RoundedCornerShape(30),
                 colors = ButtonDefaults.buttonColors(
@@ -772,7 +789,13 @@ fun StudentUnion_GusiaNoSideOrderScreen(    //side나 size 없는 경우
                 onClick = {
                     navController.navigate(Routes.StudentUnionGusia.route)
 
-                    cartViewModel.studentUnion_GusiaMenuList.add(menuItem.copy(quantity = quantity, price = (menuItem.price.toInt() * quantity).toString()))
+                    studentUnionViewModel.decreaseQuantity(category, index, quantity)
+                    cartViewModel.studentUnion_GusiaMenuList.add(
+                        menuItem.copy(
+                            quantity = quantity,
+                            price = (menuItem.price.toInt() * quantity).toString()
+                        )
+                    )
                 },   //==================================================================
                 modifier = Modifier.weight(1f),
                 shape = RoundedCornerShape(30),
@@ -940,7 +963,13 @@ fun StudentUnion_FirstfloorOrderScreen(   //1층 학식 주문 화면
                 onClick = {
                     navController.navigate(Routes.StudentUnionFirstfloor.route)
 
-                    cartViewModel.studentUnion_FirstfloorMenuList.add(menuItem.copy(quantity = quantity, price = (menuItem.price.toInt() * quantity).toString()))
+                    studentUnionViewModel.decreaseQuantity(category, index, quantity)
+                    cartViewModel.studentUnion_FirstfloorMenuList.add(
+                        menuItem.copy(
+                            quantity = quantity,
+                            price = (menuItem.price.toInt() * quantity).toString()
+                        )
+                    )
                 },  //==================================================================
                 modifier = Modifier.weight(1f),
                 shape = RoundedCornerShape(30),

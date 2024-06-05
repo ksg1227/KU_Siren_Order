@@ -380,6 +380,10 @@ fun GoOrderBtn(
     }
 }
 
+
+
+
+
 // 장바구니 목록 LazyColumn에 담길 제품 UI
 @Composable
 fun CartItemUI(
@@ -485,11 +489,53 @@ fun CartItemUI(
                         .fillMaxHeight()
                         .weight(1f)
                 ) {
-                    Text(
-                        text = menu.menuItem.name,
-                        fontSize = 14.sp,
-                        fontFamily = FontFamily(Font(R.font.pretendard_semibold)),
-                    )
+                    Row {
+                        Text(
+                            text = menu.menuItem.name,
+                            fontSize = 14.sp,
+                            fontFamily = FontFamily(Font(R.font.pretendard_semibold)),
+                        )
+                        Spacer(modifier = Modifier.weight(1f))
+                        Image(
+                            painter = painterResource(id = R.drawable.ic_delete),
+                            modifier = Modifier
+                                .size(15.dp)
+                                .align(Alignment.CenterVertically)
+                                .clickable(onClick = {
+                                    when (placeName) {
+                                        "학생회관 1층 학식" -> {
+                                            cartMenuViewModel.studentUnion_FirstfloorMenuList.remove(
+                                                menu
+                                            )
+                                            studentUnionMenuViewModel.increaseQuantity(
+                                                menu.menuItem.category,
+                                                menu.menuItem.index,
+                                                menu.menuItem.quantity
+                                            )
+                                        }
+
+                                        "학생회관 지하 학식(구시아푸드)" -> {
+                                            cartMenuViewModel.studentUnion_GusiaMenuList.remove(menu)
+                                            studentUnionMenuViewModel.increaseQuantity(
+                                                menu.menuItem.category,
+                                                menu.menuItem.index,
+                                                menu.menuItem.quantity
+                                            )
+                                        }
+
+                                        "상허기념도서관 지하 학식(구시아푸드)" -> {
+                                            cartMenuViewModel.library_GusiaMenuList.remove(menu)
+                                            libraryMenuViewModel.increaseQuantity(
+                                                menu.menuItem.category,
+                                                menu.menuItem.index,
+                                                menu.menuItem.quantity
+                                            )
+                                        }
+                                    }
+                                }),
+                            contentDescription = "제품 삭제"
+                        )
+                    }
                     Spacer(modifier = Modifier.height(2.dp))
                     Text(
                         text = menu.size ?: "",
@@ -539,52 +585,6 @@ fun CartItemUI(
                             modifier = Modifier.align(Alignment.CenterVertically)
                         )
                     }
-                }
-                Spacer(modifier = Modifier.width(10.dp))
-                Column(
-                    modifier = Modifier
-                        .fillMaxHeight()
-                        .padding(bottom = 4.dp), // Adjust padding as needed
-                    verticalArrangement = Arrangement.SpaceBetween
-                ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.ic_delete),
-                        modifier = Modifier
-                            .size(15.dp)
-                            .clickable(onClick = {
-                                when (placeName) {
-                                    "학생회관 1층 학식" -> {
-                                        cartMenuViewModel.studentUnion_FirstfloorMenuList.remove(
-                                            menu
-                                        )
-                                        studentUnionMenuViewModel.increaseQuantity(
-                                            menu.menuItem.category,
-                                            menu.menuItem.index,
-                                            menu.menuItem.quantity
-                                        )
-                                    }
-
-                                    "학생회관 지하 학식(구시아푸드)" -> {
-                                        cartMenuViewModel.studentUnion_GusiaMenuList.remove(menu)
-                                        studentUnionMenuViewModel.increaseQuantity(
-                                            menu.menuItem.category,
-                                            menu.menuItem.index,
-                                            menu.menuItem.quantity
-                                        )
-                                    }
-
-                                    "상허기념도서관 지하 학식(구시아푸드)" -> {
-                                        cartMenuViewModel.library_GusiaMenuList.remove(menu)
-                                        libraryMenuViewModel.increaseQuantity(
-                                            menu.menuItem.category,
-                                            menu.menuItem.index,
-                                            menu.menuItem.quantity
-                                        )
-                                    }
-                                }
-                            }),
-                        contentDescription = "제품 삭제"
-                    )
                 }
             }
             Divider(

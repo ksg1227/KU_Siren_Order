@@ -16,6 +16,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -392,14 +395,14 @@ fun CartItemUI(
     studentUnionMenuViewModel: StudentUnionMenuViewModel,
     placeName: String
 ) {
-    Column {
-        val menuList = when (placeName) {
-            "학생회관 1층 학식" -> cartMenuViewModel.studentUnion_FirstfloorMenuList
-            "학생회관 지하 학식(구시아푸드)" -> cartMenuViewModel.studentUnion_GusiaMenuList
-            "상허기념도서관 지하 학식(구시아푸드)" -> cartMenuViewModel.library_GusiaMenuList
-            else -> mutableListOf()
-        }
+    val menuList = when (placeName) {
+        "학생회관 1층 학식" -> cartMenuViewModel.studentUnion_FirstfloorMenuList
+        "학생회관 지하 학식(구시아푸드)" -> cartMenuViewModel.studentUnion_GusiaMenuList
+        "상허기념도서관 지하 학식(구시아푸드)" -> cartMenuViewModel.library_GusiaMenuList
+        else -> mutableListOf()
+    }
 
+    Column {
         menuList.forEach { menu ->
             var isChecked by remember { mutableStateOf(false) }
 
@@ -425,47 +428,28 @@ fun CartItemUI(
                             if (isChecked) {
                                 when (placeName) {
                                     "학생회관 1층 학식" -> {
-                                        if (!cartMenuViewModel.selected_studentUnion_FirstfloorMenuList.contains(
-                                                menu
-                                            )
-                                        )
-                                            cartMenuViewModel.selected_studentUnion_FirstfloorMenuList.add(
-                                                menu
-                                            )
+                                        if (!cartMenuViewModel.selected_studentUnion_FirstfloorMenuList.contains(menu))
+                                            cartMenuViewModel.selected_studentUnion_FirstfloorMenuList.add(menu)
                                     }
 
                                     "학생회관 지하 학식(구시아푸드)" -> {
-                                        if (!cartMenuViewModel.selected_studentUnion_GusiaMenuList.contains(
-                                                menu
-                                            )
-                                        )
-                                            cartMenuViewModel.selected_studentUnion_GusiaMenuList.add(
-                                                menu
-                                            )
+                                        if (!cartMenuViewModel.selected_studentUnion_GusiaMenuList.contains(menu))
+                                            cartMenuViewModel.selected_studentUnion_GusiaMenuList.add(menu)
                                     }
 
                                     "상허기념도서관 지하 학식(구시아푸드)" -> {
-                                        if (!cartMenuViewModel.selected_library_GusiaMenuList.contains(
-                                                menu
-                                            )
-                                        )
-                                            cartMenuViewModel.selected_library_GusiaMenuList.add(
-                                                menu
-                                            )
+                                        if (!cartMenuViewModel.selected_library_GusiaMenuList.contains(menu))
+                                            cartMenuViewModel.selected_library_GusiaMenuList.add(menu)
                                     }
                                 }
                             } else {
                                 when (placeName) {
                                     "학생회관 1층 학식" -> {
-                                        cartMenuViewModel.selected_studentUnion_FirstfloorMenuList.remove(
-                                            menu
-                                        )
+                                        cartMenuViewModel.selected_studentUnion_FirstfloorMenuList.remove(menu)
                                     }
 
                                     "학생회관 지하 학식(구시아푸드)" -> {
-                                        cartMenuViewModel.selected_studentUnion_GusiaMenuList.remove(
-                                            menu
-                                        )
+                                        cartMenuViewModel.selected_studentUnion_GusiaMenuList.remove(menu)
                                     }
 
                                     "상허기념도서관 지하 학식(구시아푸드)" -> {
@@ -504,9 +488,7 @@ fun CartItemUI(
                                 .clickable(onClick = {
                                     when (placeName) {
                                         "학생회관 1층 학식" -> {
-                                            cartMenuViewModel.studentUnion_FirstfloorMenuList.remove(
-                                                menu
-                                            )
+                                            cartMenuViewModel.studentUnion_FirstfloorMenuList.remove(menu)
                                             studentUnionMenuViewModel.increaseQuantity(
                                                 menu.menuItem.category,
                                                 menu.menuItem.index,
@@ -543,29 +525,28 @@ fun CartItemUI(
                         fontFamily = FontFamily(Font(R.font.pretendard_regular)),
                     )
                     Spacer(modifier = Modifier.height(8.dp))
-                    Box(modifier = Modifier.horizontalScroll(rememberScrollState())) {
-                        Column {
-                            val options = menu.optionList ?: emptyList()
-                            for (i in options.indices step 2) {
-                                Row {
-                                    Text(
-                                        text = options[i],
-                                        fontSize = 13.sp,
-                                        fontFamily = FontFamily(Font(R.font.pretendard_regular)),
-                                        modifier = Modifier.padding(end = 8.dp)
-                                    )
-                                    if (i + 1 < options.size) {
-                                        Text(
-                                            text = options[i + 1],
-                                            fontSize = 12.sp,
-                                            fontFamily = FontFamily(Font(R.font.pretendard_regular)),
-                                            modifier = Modifier.padding(end = 8.dp)
-                                        )
-                                    }
-                                }
+
+                    // 사이드메뉴 가로로 2행 배치
+                    val options = menu.optionList ?: emptyList()
+
+                    if(options.isNotEmpty()) {
+                        LazyHorizontalGrid(
+                            rows = GridCells.Fixed(2),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(60.dp)
+                        ) {
+                            items(options) { option ->
+                                Text(
+                                    text = option,
+                                    fontSize = 13.sp,
+                                    fontFamily = FontFamily(Font(R.font.pretendard_regular)),
+                                    modifier = Modifier.padding(end = 8.dp)
+                                )
                             }
                         }
                     }
+
                     Spacer(modifier = Modifier.height(8.dp))
                     Row(
                         verticalAlignment = Alignment.CenterVertically,

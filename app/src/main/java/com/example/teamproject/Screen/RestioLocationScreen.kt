@@ -18,9 +18,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.teamproject.Item.LocationItem
+import com.example.teamproject.R
 import com.example.teamproject.navigation.Routes
 import kotlinx.coroutines.launch
 
@@ -31,13 +33,22 @@ fun RestioTabPager(pagerState: PagerState, tabs: List<String>, navController: Na
     val location = Restio_Location_init()
 
     Column {
+        // 상단바
+        TopAppBar(
+            onBackIconClick = { navController.popBackStack() },
+            title = "레스티오",
+            titleColor = Color.Black,
+            onRightIconClick = { /*TODO*/ }, // 추후 마이페이지로 이동 가능하도록 구현
+            rightIconImgId = R.drawable.ic_mypage
+        )
+
         // 탭 구현
         TabRow(
             selectedTabIndex = pagerState.currentPage,
             indicator = { tabPositions ->
                 TabRowDefaults.SecondaryIndicator(
                     modifier = Modifier.tabIndicatorOffset(tabPositions[pagerState.currentPage]),
-                    color = Color.Green, // 인디케이터 색상 변경
+                    color = colorResource(id = R.color.green_066b3f), // 인디케이터 색상 변경
                 )
             },
             divider = {}, // 빈 컴포저블을 지정하여 경계선 제거

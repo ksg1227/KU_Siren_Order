@@ -23,7 +23,6 @@ class CartMenuViewModel : ViewModel() {
             "상허기념도서관 지하 학식(구시아푸드)" -> library_GusiaMenuList.sumOf { it.menuItem.price.toInt()}
             else -> 0
         }
-
         return totalPrice
     }
 

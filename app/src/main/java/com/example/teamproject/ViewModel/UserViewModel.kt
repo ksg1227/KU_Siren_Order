@@ -1,5 +1,6 @@
 package com.example.teamproject.ViewModel
 
+import android.media.CamcorderProfile.getAll
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
@@ -23,7 +24,9 @@ class UserViewModel (private val repository : Repository) : ViewModel(){
 
     val userList = _userList.asStateFlow()
 
-    init{}
+    init{
+        getAll()
+    }
 
     fun InsertUser(user:User){
         viewModelScope.launch {   //viewmodel에서의 coroutine scope
@@ -54,6 +57,13 @@ class UserViewModel (private val repository : Repository) : ViewModel(){
     fun getUserId(id:String){
         viewModelScope.launch {
             repository.getUserId(id).collect{
+                _userList.value = it
+            }
+        }
+    }
+    private fun getAll() {
+        viewModelScope.launch {
+            repository.getAll().collect {
                 _userList.value = it
             }
         }

@@ -57,6 +57,7 @@ fun SignUpScreen(navController: NavHostController, userViewModel: UserViewModel)
     var studentIdShowError by remember { mutableStateOf(false) }
     var showEmptyFieldsError by remember { mutableStateOf(false) }
     var isButtonEnabled by remember { mutableStateOf(false) }
+    var signUpPossible by remember { mutableStateOf(false) }
 
     val scrollState = rememberScrollState()
 
@@ -64,7 +65,7 @@ fun SignUpScreen(navController: NavHostController, userViewModel: UserViewModel)
 //
 //    val viewModel: UserViewModel = viewModel(factory = UserViewModelFactory(Repository(table)))
 
-    val userIdList by userViewModel.userIdList.collectAsState()
+    val userList by userViewModel.userList.collectAsState()
 
     Column(
         modifier = Modifier
@@ -91,14 +92,14 @@ fun SignUpScreen(navController: NavHostController, userViewModel: UserViewModel)
             value = id,
             onValueChange = {
                 id = it
-//<<<<<<< HEAD
-//
-//                viewModel.getUserId(id)
-//=======
-                userViewModel.getUserId(id)
-//>>>>>>> c1d3b09eee14ded1c6f6fca7788c84146e2af093
 
-                if (userIdList.isNotEmpty()) {
+                for(user in userList){
+                    if(user.id == id){
+                        signUpPossible = false
+                    }
+                }
+
+                if (!signUpPossible) {
                     idShowError = true
                     isButtonEnabled = false
                 } else {

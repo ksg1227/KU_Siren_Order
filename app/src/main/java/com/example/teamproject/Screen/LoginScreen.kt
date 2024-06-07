@@ -44,6 +44,7 @@ fun LoginScreen(navController: NavHostController, userViewModel: UserViewModel) 
     var id by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var errorMessage by remember { mutableStateOf("") }
+    var loginPossible by remember { mutableStateOf(false) }
 
 //    val table = Firebase.database.getReference("UserDB/users")
 //
@@ -179,9 +180,14 @@ fun LoginScreen(navController: NavHostController, userViewModel: UserViewModel) 
                 } else {
                     errorMessage = ""
 
-                    userViewModel.getUsers(id, password);
+//                    userViewModel.getUsers(id, password);
+                    for (user in userList){
+                        if(user.id == id && user.passwd == password){
+                            loginPossible = true
+                        }
+                    }
 
-                    if(userList.isEmpty()) {    //정보가 존재하지 않는 경우
+                    if(!loginPossible) {    //정보가 존재하지 않는 경우
                         errorMessage = "회원님의 정보가 존재하지 않습니다."
                     }else{
                         navController.navigate(Routes.StudentUnionFirstfloor.route)

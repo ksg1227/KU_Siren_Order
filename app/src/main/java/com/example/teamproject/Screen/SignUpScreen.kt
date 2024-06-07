@@ -1,7 +1,6 @@
 package com.example.teamproject.Screen
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -34,19 +33,14 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.example.teamproject.Item.User
 import com.example.teamproject.R
-import com.example.teamproject.ViewModel.Repository
 import com.example.teamproject.ViewModel.UserViewModel
-import com.example.teamproject.ViewModel.UserViewModelFactory
 import com.example.teamproject.navigation.Routes
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
 
 @Composable
-fun SignUpScreen(navController: NavHostController) {
+fun SignUpScreen(navController: NavHostController, userViewModel: UserViewModel) {
     var id by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var confirmPassword by remember { mutableStateOf("") }
@@ -66,11 +60,11 @@ fun SignUpScreen(navController: NavHostController) {
 
     val scrollState = rememberScrollState()
 
-    val table = Firebase.database.getReference("UserDB/users")
+//    val table = Firebase.database.getReference("UserDB/users")
+//
+//    val viewModel: UserViewModel = viewModel(factory = UserViewModelFactory(Repository(table)))
 
-    val viewModel: UserViewModel = viewModel(factory = UserViewModelFactory(Repository(table)))
-
-    val userList by viewModel.userList.collectAsState()
+    val userIdList by userViewModel.userIdList.collectAsState()
 
     Column(
         modifier = Modifier
@@ -97,10 +91,14 @@ fun SignUpScreen(navController: NavHostController) {
             value = id,
             onValueChange = {
                 id = it
+//<<<<<<< HEAD
+//
+//                viewModel.getUserId(id)
+//=======
+                userViewModel.getUserId(id)
+//>>>>>>> c1d3b09eee14ded1c6f6fca7788c84146e2af093
 
-                viewModel.getUserId(id)
-
-                if (userList.isNotEmpty()) {
+                if (userIdList.isNotEmpty()) {
                     idShowError = true
                     isButtonEnabled = false
                 } else {
@@ -391,7 +389,7 @@ fun SignUpScreen(navController: NavHostController) {
                 ) {
                     val user = User(id, password, name, phoneNumber, "$emailUser@$emailDomain", studentId, department)
 
-                    viewModel.InsertUser(user)
+                    userViewModel.InsertUser(user)
 
                     navController.navigate(Routes.Start.route)
                 } else {

@@ -1,13 +1,30 @@
 package com.example.teamproject.Screen
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.Person
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextFieldDefaults
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -17,31 +34,23 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
-import com.example.teamproject.Item.User
 import com.example.teamproject.R
-import com.example.teamproject.ViewModel.Repository
 import com.example.teamproject.ViewModel.UserViewModel
-import com.example.teamproject.ViewModel.UserViewModelFactory
 import com.example.teamproject.navigation.Routes
-import com.google.firebase.Firebase
-import com.google.firebase.database.database
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 @Composable
-fun LoginScreen(navController: NavHostController) {
+fun LoginScreen(navController: NavHostController, userViewModel: UserViewModel) {
     var id by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var errorMessage by remember { mutableStateOf("") }
 
-    val table = Firebase.database.getReference("UserDB/users")
+//    val table = Firebase.database.getReference("UserDB/users")
+//
+//    val viewModel: UserViewModel =
+//        viewModel(factory = UserViewModelFactory(Repository(table)))
 
-    val viewModel: UserViewModel =
-        viewModel(factory = UserViewModelFactory(Repository(table)))
-
-    val userList by viewModel.userList.collectAsState()
+    val userList by userViewModel.userList.collectAsState()
 
     Column(
         modifier = Modifier
@@ -57,9 +66,9 @@ fun LoginScreen(navController: NavHostController) {
             onRightIconClick = { /*TODO*/ },
             rightIconImgId = null
         )
-        
+
         Spacer(modifier = Modifier.padding(bottom = 150.dp))
-        
+
         Image(
             painter = painterResource(id = R.drawable.konkuk),
             contentDescription = "건국대로고",
@@ -170,7 +179,7 @@ fun LoginScreen(navController: NavHostController) {
                 } else {
                     errorMessage = ""
 
-                    viewModel.getUsers(id, password);
+                    userViewModel.getUsers(id, password);
 
                     if(userList.isEmpty()) {    //정보가 존재하지 않는 경우
                         errorMessage = "회원님의 정보가 존재하지 않습니다."

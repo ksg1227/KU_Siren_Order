@@ -50,7 +50,6 @@ data class Product(
     val category: String
 )
 
-@OptIn(ExperimentalPagerApi::class)
 @Composable
 fun EngineeringRestioScreen() {
     val categories = listOf("커피 HOT", "커피 ICE", "티라떼/아이스티", "에이드/티백", "레스치노/스무디/과일주스", "베이커리", "샌드위치/핫도그")
@@ -215,32 +214,6 @@ fun EngineeringRestioScreen() {
                         }
                     }
                 }
-
-                // 주문 요약 하단부
-//                Row(
-//                    modifier = Modifier
-//                        .fillMaxWidth()
-//                        .padding(16.dp),
-//                    horizontalArrangement = Arrangement.SpaceBetween,
-//                    verticalAlignment = Alignment.CenterVertically
-//                ) {
-//                    Button(
-//                        onClick = { /* 장바구니 */ },
-//                        shape = RoundedCornerShape(50)
-//                    ) {
-//                        Text(text = "장바구니", fontSize = 14.sp)
-//                    }
-//                    Column(horizontalAlignment = Alignment.End) {
-//                        Text(text = "선택한 상품 개수")
-//                        Text(text = "원 결제예정")
-//                    }
-//                    Button(
-//                        onClick = { /* 결제 처리 */ },
-//                        shape = RoundedCornerShape(50)
-//                    ) {
-//                        Text(text = "결제하기", fontSize = 14.sp)
-//                    }
-//                }
             }
         }
     }

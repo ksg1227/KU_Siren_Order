@@ -127,16 +127,16 @@ fun RestioPayScreen(product: Product, onClose: () -> Unit) {
                         Text(text = "+$option", fontSize = 16.sp)
                         Text(text = "₩ $price", fontSize = 16.sp)
                     }
-                    Spacer(modifier = Modifier.height(4.dp))  // Row 간격 추가
+                    Spacer(modifier = Modifier.height(4.dp))
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Button(
                             onClick = { if (optionCounts[index] > 0) optionCounts = optionCounts.toMutableList().apply { set(index, get(index) - 1) } },
                         ) {
                             Text(text = "-")
                         }
-                        Spacer(modifier = Modifier.width(8.dp))  // 간격 추가
+                        Spacer(modifier = Modifier.width(8.dp))
                         Text(text = "${optionCounts[index]}", fontSize = 16.sp)
-                        Spacer(modifier = Modifier.width(8.dp))  // 간격 추가
+                        Spacer(modifier = Modifier.width(8.dp))
                         Button(
                             onClick = { optionCounts = optionCounts.toMutableList().apply { set(index, get(index) + 1) } },
                         ) {

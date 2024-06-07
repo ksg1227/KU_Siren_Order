@@ -59,7 +59,7 @@ fun MyPageShowScreen() {
                         .clip(CircleShape)
                 )
                 Spacer(modifier = Modifier.height(60.dp))
-                UserInfoRow(label = "아이디", value = "None")
+                UserInfoRow(label = "아이디", value = "None") /* todo: 개인정보 연결 */
                 UserInfoRow(label = "이름", value = "None")
                 UserInfoRow(label = "학번/학과", value = "None")
                 UserInfoRow(label = "이메일", value = "None")

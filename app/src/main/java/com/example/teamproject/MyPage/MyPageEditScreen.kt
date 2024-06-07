@@ -1,12 +1,7 @@
-package com.example.teamproject.MyPage
+package com.example.teamproject.mypage
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -14,25 +9,18 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavHostController
 import com.example.teamproject.R
-import com.example.teamproject.navigation.Routes
+
 
 @Composable
-fun MyPageEditScreen(
-//    navController: NavHostController
-) {
+fun MyPageEditScreen() {
     val currentPassword = remember { mutableStateOf("") }
     val newPassword = remember { mutableStateOf("") }
     val confirmPassword = remember { mutableStateOf("") }
@@ -45,7 +33,7 @@ fun MyPageEditScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-                .verticalScroll(rememberScrollState())
+            .verticalScroll(rememberScrollState())
     ) {
         // 상단
         com.example.teamproject.Screen.TopAppBar(
@@ -93,23 +81,19 @@ fun MyPageEditScreen(
                 onValueChange = { confirmPassword.value = it },
                 isPassword = true
             )
-            UserInfoEditField(
-                label = "이름",
+            UserInfoEditField(label = "이름",
                 text = "기존 정보",
                 value = name.value,
                 onValueChange = { name.value = it })
-            UserInfoEditField(
-                label = "학과",
+            UserInfoEditField(label = "학과",
                 text = "기존 정보",
                 value = department.value,
                 onValueChange = { department.value = it })
-            UserInfoEditField(
-                label = "이메일",
+            UserInfoEditField(label = "이메일",
                 text = "기존 정보",
                 value = email.value,
                 onValueChange = { email.value = it })
-            UserInfoEditField(
-                label = "전화번호",
+            UserInfoEditField(label = "전화번호",
                 text = "기존 정보",
                 value = phoneNumber.value,
                 onValueChange = { phoneNumber.value = it })
@@ -121,15 +105,11 @@ fun MyPageEditScreen(
                     .padding(vertical = 16.dp),
                 horizontalArrangement = Arrangement.End
             ) {
-                TextButton(
-                    onClick = { /* 취소 버튼 클릭 처리 */ }
-                ) {
+                TextButton(onClick = { /* 취소 버튼 클릭 처리 */ }) {
                     Text(text = "취소", color = Color.Gray)
                 }
                 Spacer(modifier = Modifier.width(16.dp))
-                Button(
-                    onClick = { /* 저장 버튼 클릭 처리 */ }
-                ) {
+                Button(onClick = { /* 저장 버튼 클릭 처리 */ }) {
                     Text(text = "저장")
                 }
             }
@@ -167,8 +147,7 @@ fun UserInfoEditField(
                     color = Color(0xFFB3B3B3)
                 )
             },
-            modifier = Modifier
-                .fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth(),
             singleLine = true,
             visualTransformation = if (isPassword) PasswordVisualTransformation() else VisualTransformation.None,
             colors = TextFieldDefaults.colors(

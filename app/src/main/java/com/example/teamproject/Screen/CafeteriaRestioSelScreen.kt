@@ -3,12 +3,10 @@ package com.example.teamproject.Screen
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -74,7 +72,7 @@ fun CafeteriaRestioSelScreen() {
                         .background(Color(0xFFF5E6CA), shape = RoundedCornerShape(16.dp))
                         .border(1.dp, Color.Black, shape = RoundedCornerShape(16.dp)),
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = Color.Transparent, // 배경색은 이미 Modifier.background에서 설정했으므로 투명하게 설정
+                        containerColor = Color.Transparent,
                         contentColor = Color.Black
                     )
                 ) {
@@ -92,7 +90,7 @@ fun CafeteriaRestioSelScreen() {
                         Text(text = "학식", fontSize = 20.sp)
                     }
                 }
-                Spacer(modifier = Modifier.width(16.dp)) // Add space between the buttons
+                Spacer(modifier = Modifier.width(16.dp))
                 Button(
                     onClick = { /* TODO 화면 전환 */ },
                     modifier = Modifier
@@ -101,7 +99,7 @@ fun CafeteriaRestioSelScreen() {
                         .background(Color(0xFFD6E8E8), shape = RoundedCornerShape(16.dp))
                         .border(1.dp, Color.Black, shape = RoundedCornerShape(16.dp)),
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = Color.Transparent, // 배경색은 이미 Modifier.background에서 설정했으므로 투명하게 설정
+                        containerColor = Color.Transparent,
                         contentColor = Color.Black
                     )
                 ) {
@@ -124,8 +122,4 @@ fun CafeteriaRestioSelScreen() {
         }
     }
 }
-
-// 백 구현, 프로필 버튼 구현
-// Text 회원 이름 구현
-// 버튼 이동 구현
 

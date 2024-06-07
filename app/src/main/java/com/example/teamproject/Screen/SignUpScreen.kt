@@ -57,7 +57,6 @@ fun SignUpScreen(navController: NavHostController, userViewModel: UserViewModel)
     var studentIdShowError by remember { mutableStateOf(false) }
     var showEmptyFieldsError by remember { mutableStateOf(false) }
     var isButtonEnabled by remember { mutableStateOf(false) }
-    var signUpPossible by remember { mutableStateOf(false) }
 
     val scrollState = rememberScrollState()
 
@@ -93,13 +92,15 @@ fun SignUpScreen(navController: NavHostController, userViewModel: UserViewModel)
             onValueChange = {
                 id = it
 
+                var possibleId = true
+
                 for(user in userList){
                     if(user.id == id){
-                        signUpPossible = false
+                        possibleId = false
                     }
                 }
 
-                if (!signUpPossible) {
+                if (!possibleId) {
                     idShowError = true
                     isButtonEnabled = false
                 } else {

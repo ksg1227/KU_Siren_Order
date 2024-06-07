@@ -44,7 +44,6 @@ fun LoginScreen(navController: NavHostController, userViewModel: UserViewModel) 
     var id by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var errorMessage by remember { mutableStateOf("") }
-    var loginPossible by remember { mutableStateOf(false) }
 
 //    val table = Firebase.database.getReference("UserDB/users")
 //
@@ -179,6 +178,8 @@ fun LoginScreen(navController: NavHostController, userViewModel: UserViewModel) 
                     errorMessage = "아이디와 패스워드를 모두 입력해주세요."
                 } else {
                     errorMessage = ""
+
+                    var loginPossible = false
 
 //                    userViewModel.getUsers(id, password);
                     for (user in userList){

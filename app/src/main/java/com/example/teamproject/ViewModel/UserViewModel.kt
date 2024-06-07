@@ -48,4 +48,12 @@ class UserViewModel (private val repository : Repository) : ViewModel(){
             }
         }
     }
+
+    fun getUserId(id:String){
+        viewModelScope.launch {
+            repository.getUserId(id).collect{
+                _userList.value = it
+            }
+        }
+    }
 }

@@ -34,9 +34,16 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import com.example.teamproject.Item.User
 import com.example.teamproject.R
+import com.example.teamproject.ViewModel.Repository
+import com.example.teamproject.ViewModel.UserViewModel
+import com.example.teamproject.ViewModel.UserViewModelFactory
 import com.example.teamproject.navigation.Routes
+import com.google.firebase.Firebase
+import com.google.firebase.database.database
 
 
 @Composable
@@ -55,20 +62,26 @@ fun SignUpScreen(navController: NavHostController) {
 
     val scrollState = rememberScrollState()
 
+    val table = Firebase.database.getReference("UserDB/users")
+
+    val viewModel: UserViewModel =
+        viewModel(factory = UserViewModelFactory(Repository(table)))
+
     Column(
         modifier = Modifier
             .fillMaxSize()
             .verticalScroll(scrollState)
             .padding(16.dp),
     ) {
-        Text(
-            text = "회원가입",
-            modifier = Modifier.fillMaxWidth()
-                .padding(bottom = 40.dp),
-            textAlign = TextAlign.Center,
-            fontSize = 16.sp,
-            fontFamily = FontFamily(Font(R.font.pretendard_semibold))
+        TopAppBar(
+            onBackIconClick = { navController.popBackStack() },
+            title = "회원가입",
+            titleColor = Color.Black,
+            onRightIconClick = { /*TODO*/ },
+            rightIconImgId = null
         )
+
+        Spacer(modifier = Modifier.padding(bottom = 40.dp))
 
         Text(
             text = "아이디 *",
@@ -311,6 +324,10 @@ fun SignUpScreen(navController: NavHostController) {
                     studentId.isNotEmpty() && department.isNotEmpty() &&
                     !showError
                 ) {
+                    val user = User(id, password, name, phoneNumber, emailUser+"@"+emailDomain, studentId, department)
+
+                    viewModel.InsertUser(user)
+
                     navController.navigate(Routes.LibraryGusia.route)
                 } else {
                     showEmptyFieldsError = true
@@ -332,7 +349,7 @@ fun SignUpScreen(navController: NavHostController) {
                 text = "빈 칸 없이 입력해주세요.",
                 fontWeight = FontWeight.Bold,
                 color = MaterialTheme.colorScheme.error,
-                style = MaterialTheme.typography.bodyLarge,
+                fontFamily = FontFamily(Font(R.font.pretendard_semibold)),
                 modifier = Modifier.padding(start = 16.dp, top = 8.dp)
                     .fillMaxWidth(),
                 textAlign = TextAlign.Center

@@ -17,15 +17,31 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import com.example.teamproject.Item.User
 import com.example.teamproject.R
+import com.example.teamproject.ViewModel.Repository
+import com.example.teamproject.ViewModel.UserViewModel
+import com.example.teamproject.ViewModel.UserViewModelFactory
 import com.example.teamproject.navigation.Routes
+import com.google.firebase.Firebase
+import com.google.firebase.database.database
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 @Composable
 fun LoginScreen(navController: NavHostController) {
-    var username by remember { mutableStateOf("") }
+    var id by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var errorMessage by remember { mutableStateOf("") }
+
+    val table = Firebase.database.getReference("UserDB/users")
+
+    val viewModel: UserViewModel =
+        viewModel(factory = UserViewModelFactory(Repository(table)))
+
+    val userList by viewModel.userList.collectAsState()
 
     Column(
         modifier = Modifier
@@ -34,9 +50,12 @@ fun LoginScreen(navController: NavHostController) {
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = "로그인",
-            fontSize = 16.sp,
-            fontFamily = FontFamily(Font(R.font.pretendard_semibold))
+        TopAppBar(
+            onBackIconClick = { navController.popBackStack() },
+            title = "로그인",
+            titleColor = Color.Black,
+            onRightIconClick = { /*TODO*/ },
+            rightIconImgId = null
         )
         
         Spacer(modifier = Modifier.padding(bottom = 150.dp))
@@ -69,8 +88,8 @@ fun LoginScreen(navController: NavHostController) {
                 color = Color(0xFF444444)
             )
             OutlinedTextField(
-                value = username,
-                onValueChange = { username = it },
+                value = id,
+                onValueChange = { id = it },
                 label = {
                     Text(
                         "아이디를 입력하세요.",
@@ -134,16 +153,30 @@ fun LoginScreen(navController: NavHostController) {
             )
         }
 
-        Spacer(modifier = Modifier.height(130.dp))
+        Spacer(modifier = Modifier.height(30.dp))
+
+        if (errorMessage.isNotEmpty()) {
+            Spacer(modifier = Modifier.height(20.dp))
+            Text(text = errorMessage, color = MaterialTheme.colorScheme.error,
+                fontFamily = FontFamily(Font(R.font.pretendard_semibold)) )
+        }
+
+        Spacer(modifier = Modifier.height(50.dp))
 
         Button(
             onClick = {
-                if (username.isEmpty() || password.isEmpty()) {
+                if (id.isEmpty() || password.isEmpty()) {
                     errorMessage = "아이디와 패스워드를 모두 입력해주세요."
                 } else {
                     errorMessage = ""
-                    // 로그인 로직을 추가하세요
-                    navController.navigate(Routes.StudentUnionGusia.route)
+
+                    viewModel.getUsers(id, password);
+
+                    if(userList.isEmpty()) {    //정보가 존재하지 않는 경우
+                        errorMessage = "회원님의 정보가 존재하지 않습니다."
+                    }else{
+                        navController.navigate(Routes.StudentUnionFirstfloor.route)
+                    }
                 }
             },
             colors = ButtonDefaults.buttonColors(
@@ -157,11 +190,6 @@ fun LoginScreen(navController: NavHostController) {
                 fontSize = 16.sp,
                 fontFamily = FontFamily(Font(R.font.pretendard_semibold))
             )
-        }
-
-        if (errorMessage.isNotEmpty()) {
-            Spacer(modifier = Modifier.height(16.dp))
-            Text(text = errorMessage, color = MaterialTheme.colorScheme.error)
         }
     }
 }

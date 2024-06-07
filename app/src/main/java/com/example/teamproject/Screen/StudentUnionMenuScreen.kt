@@ -2,11 +2,16 @@ package com.example.teamproject.Screen
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Modifier
 import com.example.teamproject.Component.MenuGrid
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.example.teamproject.ViewModel.LocalNavGraphViewModelStoreOwner
 import com.example.teamproject.ViewModel.StudentUnionMenuViewModel
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import okhttp3.internal.wait
 
 
 @Composable
@@ -83,6 +88,19 @@ fun StudentUnionMaraScreen(viewModel: StudentUnionMenuViewModel = viewModel(view
             onItemClick = { index ->
                 val item = viewModel.MaraItems[index]
                 navController.navigate("studentUnion_order_screen/Mara/$index/${item.imageRes}/${item.name}/${item.price}/${item.quantity}")
+            }
+        )
+    }
+}
+
+@Composable
+fun StudentUnion_FirstfloorMenuScreen(viewModel: StudentUnionMenuViewModel = viewModel(viewModelStoreOwner = LocalNavGraphViewModelStoreOwner.current), navController: NavHostController) {
+    Column {
+        MenuGrid(
+            menuItems = viewModel.FirstfloorItems,
+            onItemClick = { index ->
+                val item = viewModel.FirstfloorItems[index]
+                navController.navigate("studentUnion_order_screen/Firstfloor/$index/${item.imageRes}/${item.name}/${item.price}/${item.quantity}")
             }
         )
     }

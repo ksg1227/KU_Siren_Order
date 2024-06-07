@@ -18,9 +18,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.teamproject.Item.LocationItem
+import com.example.teamproject.R
 import com.example.teamproject.navigation.Routes
 import kotlinx.coroutines.launch
 
@@ -35,13 +37,22 @@ fun RestaurantTabPager(
     val location = Restaurant_Location_init()
 
     Column {
+        // 상단바
+        TopAppBar(
+            onBackIconClick = { navController.popBackStack() },
+            title = "학식",
+            titleColor = Color.Black,
+            onRightIconClick = { /*TODO*/ }, // 추후 마이페이지로 이동 가능하도록 구현
+            rightIconImgId = R.drawable.ic_mypage
+        )
+
         // 탭 구현
         TabRow(
             selectedTabIndex = pagerState.currentPage,
             indicator = { tabPositions ->
                 TabRowDefaults.SecondaryIndicator(
                     modifier = Modifier.tabIndicatorOffset(tabPositions[pagerState.currentPage]),
-                    color = Color.Green, // 인디케이터 색상 변경
+                    color = colorResource(id = R.color.gold_cf982e), // 인디케이터 색상 변경
                 )
             },
             divider = {},
@@ -95,7 +106,7 @@ fun Restaurant_Location_init(): List<LocationItem> {
             "서울 광진구 능동로 120 1층(화양동)",
             37.5418772,
             127.0782087,
-            Routes.LibraryGusia.route
+            Routes.StudentUnionFirstfloor.route
         ),
         LocationItem(
             "학생회관 지하 학식 (구시아푸드)",

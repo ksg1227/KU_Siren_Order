@@ -72,6 +72,8 @@ fun CartScreen(
     resName = placeName    //매장 이름
     resNameColor = R.color.green_066b3f
 
+    var totalPrice = cartMenuViewModel.calculateTotalPrice(placeName)
+
     Column(
         modifier = Modifier.verticalScroll(scrollState),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -120,7 +122,7 @@ fun CartScreen(
         Spacer(Modifier.weight(1f))
 
         GoOrderBtn(onClick = {
-            Toast.makeText(context, "주문하기 버튼 클릭됨!", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(context, "주문하기 버튼 클릭됨!", Toast.LENGTH_SHORT).show()
 
             when (placeName) {
                 "학생회관 1층 학식" -> {
@@ -160,7 +162,13 @@ fun CartScreen(
                 }
             }
 
-        }, totalPrice = cartMenuViewModel.calculateTotalPrice(placeName)) // '주문하기' btn
+            if(totalPrice==0){
+                Toast.makeText(context, "장바구니에 메뉴를 먼저 담아주세요!", Toast.LENGTH_SHORT).show()
+            }else{
+                navController.navigate(Routes.Payment.route) // 결제화면으로 이동
+            }
+
+        }, totalPrice = totalPrice) // '주문하기' btn
         Spacer(modifier = Modifier.height(30.dp))
     }
 }

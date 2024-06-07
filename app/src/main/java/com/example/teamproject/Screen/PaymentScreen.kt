@@ -40,7 +40,7 @@ fun PaymentScreen(navController: NavHostController, modifier: Modifier = Modifie
         verticalArrangement = Arrangement.Center
     ) {
         TopAppBar(
-            onBackIconClick = { },
+            onBackIconClick = { navController.popBackStack() },
             title = "결제 수단 선택",
             titleColor = Color.Black,
             onRightIconClick = { },

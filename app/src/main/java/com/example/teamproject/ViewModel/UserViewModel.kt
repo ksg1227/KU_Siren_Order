@@ -23,6 +23,8 @@ class UserViewModel (private val repository : Repository) : ViewModel(){
 
     val userList = _userList.asStateFlow()
 
+    init{}
+
     fun InsertUser(user:User){
         viewModelScope.launch {   //viewmodel에서의 coroutine scope
             repository.InsertUser(user)

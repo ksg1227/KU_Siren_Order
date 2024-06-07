@@ -80,4 +80,24 @@ class Repository(private val table: DatabaseReference) {
             table.removeEventListener(listener)
         }
     }
+    fun getAll(): Flow<List<User>> = callbackFlow {
+        val listener = object: ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {    //변화가 감지될 때마다 여기로 데이터를 전달함
+                val userList = mutableListOf<User>()
+                for(itemSnapShot in snapshot.children){
+                    val user = itemSnapShot.getValue(User::class.java)
+                    user?.let{
+                        userList.add(it)
+                    }
+                }
+
+                trySend(userList)
+            }
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        }
+        table.addValueEventListener(listener)
+        awaitClose { table.removeEventListener(listener) }
+    }
 }

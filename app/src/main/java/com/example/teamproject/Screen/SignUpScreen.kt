@@ -97,9 +97,10 @@ fun SignUpScreen(navController: NavHostController) {
             value = id,
             onValueChange = {
                 id = it
+
                 viewModel.getUserId(id)
 
-                if (userList.any { user -> user.id == id }) {
+                if (userList.isNotEmpty()) {
                     idShowError = true
                     isButtonEnabled = false
                 } else {
@@ -392,7 +393,7 @@ fun SignUpScreen(navController: NavHostController) {
 
                     viewModel.InsertUser(user)
 
-                    navController.navigate(Routes.LibraryGusia.route)
+                    navController.navigate(Routes.Start.route)
                 } else {
                     showEmptyFieldsError = true
                 }

@@ -39,7 +39,6 @@ open class Routes(val route: String) {
     object Payment : Routes("Payment_Screen")
     object RestioStart : Routes("restio_start")
     object RestaurantStart : Routes("restaurant_start")
-    object Cart : Routes("cart")
 
 }
 

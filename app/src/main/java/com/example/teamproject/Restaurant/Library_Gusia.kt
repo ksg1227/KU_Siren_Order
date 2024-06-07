@@ -21,6 +21,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
@@ -40,9 +41,9 @@ fun CustomTabPager2(pagerState: PagerState, tabs: List<String>, navController:Na
     Column {
         // 탭 구현
         TopAppBar(
-            onBackIconClick = { navController.popBackStack() },
+            onBackIconClick = { navController.navigate(Routes.RestaurantStart.route) },
             title = "도서관 지하 학식",
-            titleColor = Color.Black,
+            titleColor = colorResource(R.color.gold_cf982e),
             onRightIconClick = { navController.navigate("cart_screen/상허기념도서관 지하 학식(구시아푸드)") },
             rightIconImgId = R.drawable.cart
         )
@@ -52,7 +53,7 @@ fun CustomTabPager2(pagerState: PagerState, tabs: List<String>, navController:Na
             indicator = { tabPositions ->
                 TabRowDefaults.SecondaryIndicator(
                     modifier = Modifier.tabIndicatorOffset(tabPositions[pagerState.currentPage]),
-                    color = Color.Black, // 인디케이터 색상 변경
+                    color = colorResource(R.color.gold_cf982e), // 인디케이터 색상 변경
                 )
             },
             divider = {}, // 빈 컴포저블을 지정하여 경계선 제거

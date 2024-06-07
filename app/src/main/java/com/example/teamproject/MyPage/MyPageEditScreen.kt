@@ -29,7 +29,6 @@ fun MyPageEditScreen() {
     val email = remember { mutableStateOf("") }
     val phoneNumber = remember { mutableStateOf("") }
 
-
     Column(
         modifier = Modifier
             .fillMaxSize()

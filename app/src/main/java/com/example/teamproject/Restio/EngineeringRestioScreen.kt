@@ -44,13 +44,6 @@ import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.rememberPagerState
 import kotlinx.coroutines.launch
 
-data class Product(
-    val name: String,
-    val price: String,
-    val imageRes: Int,
-    val category: String
-)
-
 @Composable
 fun EngineeringRestioScreen(navController: NavHostController) {
     val categories = listOf("커피 HOT", "커피 ICE", "티라떼/아이스티", "에이드/티백", "레스치노/스무디/과일주스", "베이커리", "샌드위치/핫도그")
@@ -220,42 +213,3 @@ fun EngineeringRestioScreen(navController: NavHostController) {
     }
 }
 
-@Composable
-fun ProductCard(product: Product, onClick: (Product) -> Unit) {
-    Column(
-        modifier = Modifier
-            .padding(8.dp)
-            .border(width = 1.dp, color = Color.Black, shape = RoundedCornerShape(4.dp))
-            .clickable { onClick(product) }
-            .padding(8.dp)
-            .width(120.dp)
-            .height(200.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
-    ) {
-        Image(
-            painter = painterResource(id = product.imageRes),
-            contentDescription = product.name,
-            modifier = Modifier.size(80.dp)
-        )
-        Spacer(modifier = Modifier.height(4.dp))
-        Divider(
-            color = Color.Gray,
-            thickness = 1.dp,
-            modifier = Modifier.padding(vertical = 4.dp)
-        )
-        Text(
-            text = product.name,
-            fontSize = 14.sp,
-            fontWeight = FontWeight.Bold,
-            maxLines = 1,
-            overflow = TextOverflow.Ellipsis
-        )
-        Spacer(modifier = Modifier.height(4.dp))
-        Text(
-            text = product.price,
-            fontSize = 12.sp,
-            color = Color.Gray
-        )
-    }
-}

@@ -1,6 +1,5 @@
 package com.example.teamproject.navigation
 
-import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -27,6 +26,7 @@ import com.example.teamproject.ViewModel.CartMenuViewModel
 import com.example.teamproject.ViewModel.LibraryMenuViewModel
 import com.example.teamproject.ViewModel.LocalNavGraphViewModelStoreOwner
 import com.example.teamproject.ViewModel.StudentUnionMenuViewModel
+import com.example.teamproject.ViewModel.UserViewModel
 import com.example.teamproject.ViewModel.rememberViewModelStoreOwner
 
 open class Routes(val route: String) {
@@ -39,7 +39,6 @@ open class Routes(val route: String) {
     object Payment : Routes("Payment_Screen")
     object RestioStart : Routes("restio_start")
     object RestaurantStart : Routes("restaurant_start")
-    object Cart : Routes("cart")
 
 }
 
@@ -47,7 +46,8 @@ open class Routes(val route: String) {
 @Composable
 fun NavGraph(
     navController: NavHostController,
-    libraryViewModel: LibraryMenuViewModel = viewModel(),
+    userViewModel: UserViewModel = viewModel(),
+    libraryViewModel : LibraryMenuViewModel = viewModel(),
     studentUnionViewModel: StudentUnionMenuViewModel = viewModel(),
     cartViewModel: CartMenuViewModel = viewModel()
 ) {
@@ -63,10 +63,10 @@ fun NavGraph(
             }
 
             composable(Routes.Login.route) {
-                LoginScreen(navController)
+                LoginScreen(navController,userViewModel)
             }
             composable(Routes.SignUp.route) {
-                SignUpScreen(navController)
+                SignUpScreen(navController,userViewModel)
             }
 
             composable(Routes.StudentUnionGusia.route) {

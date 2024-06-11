@@ -39,9 +39,9 @@ fun RestaurantTabPager(
     Column {
         // 상단바
         TopAppBar(
-            onBackIconClick = { navController.popBackStack() },
+            onBackIconClick = { navController.navigate(Routes.Start.route) },
             title = "학식",
-            titleColor = Color.Black,
+            titleColor = colorResource(R.color.gold_cf982e),
             onRightIconClick = { /*TODO*/ }, // 추후 마이페이지로 이동 가능하도록 구현
             rightIconImgId = R.drawable.ic_mypage
         )
@@ -102,7 +102,7 @@ fun RestaurantTabPager(
 fun Restaurant_Location_init(): List<LocationItem> {
     val location: List<LocationItem> = listOf(
         LocationItem(
-            "학생회관 1충 학식",
+            "학생회관 1층 학식",
             "서울 광진구 능동로 120 1층(화양동)",
             37.5418772,
             127.0782087,

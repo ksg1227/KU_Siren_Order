@@ -23,7 +23,7 @@ import com.example.teamproject.navigation.Routes
 
 
 @Composable
-fun MyPageShowScreen() {
+fun MyPageShowScreen(navController: NavHostController) {
     Box(
         modifier = Modifier
             .fillMaxSize()

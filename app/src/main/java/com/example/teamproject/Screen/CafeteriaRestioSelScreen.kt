@@ -35,8 +35,8 @@ fun CafeteriaRestioSelScreen(navController: NavHostController) {
                 onBackIconClick = { /*TODO*/ },
                 title = "학식 / 레스티오",
                 titleColor = Color.Black,
-                onRightIconClick = { /*TODO*/ },
-                rightIconImgId = null
+                onRightIconClick = { navController.navigate(Routes.MyPageMain.route) },
+                rightIconImgId = R.drawable.profile
             )
 
             // 내용 화면 구성

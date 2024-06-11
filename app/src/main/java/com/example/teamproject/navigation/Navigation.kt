@@ -7,6 +7,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.teamproject.Item.MenuItem
+import com.example.teamproject.MyPage.MyPageShowScreen
 import com.example.teamproject.Restaurant.Library_GusiaScreen
 import com.example.teamproject.Restaurant.StudentUnion_GusiaScreen
 import com.example.teamproject.Restio.AnimalLifeRestioScreen
@@ -26,6 +27,8 @@ import com.example.teamproject.ViewModel.LibraryMenuViewModel
 import com.example.teamproject.ViewModel.LocalNavGraphViewModelStoreOwner
 import com.example.teamproject.ViewModel.StudentUnionMenuViewModel
 import com.example.teamproject.ViewModel.rememberViewModelStoreOwner
+import com.example.teamproject.mypage.MyPageEditScreen
+import com.example.teamproject.mypage.MyPageMainScreen
 
 open class Routes(val route: String) {
     object Start : Routes("start_screen")
@@ -44,6 +47,9 @@ open class Routes(val route: String) {
     object LibraryRestio : Routes("library_restio")
     object ManagementRestio : Routes("management_restio")
     object IndustryResio : Routes("industry_restio")
+    object MyPageMain : Routes("mypage_main")
+    object MyPageEdit : Routes("mypage_edit")
+    object MyPageShow : Routes("mypage_show")
 }
 
 
@@ -115,6 +121,18 @@ fun NavGraph(
 
             composable (Routes.IndustryResio.route) {
                 IndustryRestioScreen(navController)
+            }
+
+            composable (Routes.MyPageMain.route) {
+                MyPageMainScreen(navController)
+            }
+
+            composable (Routes.MyPageShow.route) {
+                MyPageShowScreen(navController)
+            }
+
+            composable (Routes.MyPageEdit.route) {
+                MyPageEditScreen(navController)
             }
 
             composable("library_order_screen/{category}/{index}/{imageRes}/{menuName}/{menuPrice}/{quantity}") { backStackEntry ->

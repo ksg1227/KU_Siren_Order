@@ -15,10 +15,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.example.teamproject.R
+import com.example.teamproject.navigation.Routes
 
 @Composable
-fun CafeteriaRestioSelScreen() {
+fun CafeteriaRestioSelScreen(navController: NavHostController) {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -65,7 +67,7 @@ fun CafeteriaRestioSelScreen() {
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Button(
-                    onClick = { /* TODO 화면 전환*/ },
+                    onClick = { navController.navigate(Routes.RestaurantStart.route) },
                     modifier = Modifier
                         .height(250.dp)
                         .weight(1f)
@@ -92,7 +94,7 @@ fun CafeteriaRestioSelScreen() {
                 }
                 Spacer(modifier = Modifier.width(16.dp))
                 Button(
-                    onClick = { /* TODO 화면 전환 */ },
+                    onClick = { navController.navigate(Routes.RestioStart.route) },
                     modifier = Modifier
                         .height(250.dp)
                         .weight(1f)

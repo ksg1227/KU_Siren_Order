@@ -311,7 +311,7 @@ fun SignUpScreen(navController: NavHostController) {
                     studentId.isNotEmpty() && department.isNotEmpty() &&
                     !showError
                 ) {
-                    navController.navigate(Routes.LibraryGusia.route)
+                    navController.navigate(Routes.EatRestioSel.route)
                 } else {
                     showEmptyFieldsError = true
                 }

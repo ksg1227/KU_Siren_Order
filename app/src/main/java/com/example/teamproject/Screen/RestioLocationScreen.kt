@@ -91,35 +91,35 @@ fun Restio_Location_init(): List<LocationItem> {
             "서울 광진구 능동로 120 1층(화양동)",
             37.5403664,
             127.0743614,
-            Routes.LibraryGusia.route
+            Routes.AnimalLifeRestio.route
         ),
         LocationItem(
             "레스티오 상허기념도서관",
             "서울 광진구 능동로 120 3층(화양동)",
             37.5419226,
             127.0737408,
-            Routes.LibraryGusia.route
+            Routes.LibraryRestio.route
         ),
         LocationItem(
             "레스티오 경영관",
             "서울 광진구 능동로 120 1층(화양동)",
             37.5442615,
             127.0760717,
-            Routes.LibraryGusia.route
+            Routes.ManagementRestio.route
         ),
         LocationItem(
             "레스티오 공학관",
             "서울 광진구 능동로 120 건국대학교 공학관 1층(화양동)",
             37.541635,
             127.0787904,
-            Routes.LibraryGusia.route
+            Routes.EngineeringRestio.route
         ),
         LocationItem(
             "레스티오 산학협동관",
             "서울 광진구 능동로 120 1층(화양동)",
             37.5396663,
             127.0732309,
-            Routes.LibraryGusia.route
+            Routes.IndustryResio.route
         )
     )
     return location

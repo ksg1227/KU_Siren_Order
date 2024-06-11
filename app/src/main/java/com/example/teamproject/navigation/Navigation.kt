@@ -9,6 +9,11 @@ import androidx.navigation.compose.composable
 import com.example.teamproject.Item.MenuItem
 import com.example.teamproject.Restaurant.Library_GusiaScreen
 import com.example.teamproject.Restaurant.StudentUnion_GusiaScreen
+import com.example.teamproject.Restio.AnimalLifeRestioScreen
+import com.example.teamproject.Restio.IndustryRestioScreen
+import com.example.teamproject.Restio.LibraryRestioScreen
+import com.example.teamproject.Restio.ManagementRestioScreen
+import com.example.teamproject.Screen.CafeteriaRestioSelScreen
 import com.example.teamproject.Screen.LibraryOrderScreen
 import com.example.teamproject.Screen.LoginScreen
 import com.example.teamproject.Screen.PaymentScreen
@@ -32,6 +37,13 @@ open class Routes(val route: String) {
     object Payment : Routes("Payment_Screen")
     object RestioStart : Routes("restio_start")
     object RestaurantStart : Routes("restaurant_start")
+
+    object EatRestioSel : Routes("cafeteria_restio_sel")
+    object EngineeringRestio : Routes("engineering_restio")
+    object AnimalLifeRestio : Routes("animallife_restio")
+    object LibraryRestio : Routes("library_restio")
+    object ManagementRestio : Routes("management_restio")
+    object IndustryResio : Routes("industry_restio")
 }
 
 
@@ -56,8 +68,13 @@ fun NavGraph(
             composable(Routes.Login.route) {
                 LoginScreen(navController)
             }
+
             composable(Routes.SignUp.route) {
                 SignUpScreen(navController)
+            }
+
+            composable(Routes.EatRestioSel.route) {
+                CafeteriaRestioSelScreen(navController)
             }
 
             composable(Routes.StudentUnionGusia.route) {
@@ -78,6 +95,26 @@ fun NavGraph(
 
             composable (Routes.RestaurantStart.route){
                 RestaurantLocationScreen(navController = navController)
+            }
+
+            composable (Routes.EngineeringRestio.route){
+                com.example.teamproject.Restio.EngineeringRestioScreen(navController = navController)
+            }
+
+            composable (Routes.AnimalLifeRestio.route) {
+                AnimalLifeRestioScreen(navController = navController)
+            }
+
+            composable (Routes.LibraryRestio.route) {
+                LibraryRestioScreen(navController)
+            }
+
+            composable (Routes.ManagementRestio.route) {
+                ManagementRestioScreen(navController)
+            }
+
+            composable (Routes.IndustryResio.route) {
+                IndustryRestioScreen(navController)
             }
 
             composable("library_order_screen/{category}/{index}/{imageRes}/{menuName}/{menuPrice}/{quantity}") { backStackEntry ->

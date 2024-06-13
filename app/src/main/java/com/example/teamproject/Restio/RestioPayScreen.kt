@@ -132,7 +132,7 @@ fun RestioPayScreen(
                     contentAlignment = Alignment.Center
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.konkuk), // 이미지 받아오기
+                        painter = painterResource(product.imageRes), // 이미지 받아오기
                         contentDescription = null
                     )
                 }

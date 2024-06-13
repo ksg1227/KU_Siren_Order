@@ -123,7 +123,7 @@ fun RestioPayScreen(
             )
             Column(
                 modifier = Modifier
-                    .padding(horizontal = 15.dp)
+                    .padding(horizontal = 16.dp)
             ) {
                 Box(
                     modifier = Modifier

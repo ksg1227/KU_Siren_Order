@@ -80,6 +80,7 @@ fun StartScreen(navController: NavHostController) {
                 fontFamily = FontFamily(Font(R.font.pretendard_medium)))
         }
 
+
         Button(
             onClick = { navController.navigate(Routes.RestioStart.route) },
             colors = ButtonDefaults.buttonColors(

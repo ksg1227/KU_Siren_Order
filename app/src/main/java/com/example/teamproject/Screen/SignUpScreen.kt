@@ -122,6 +122,7 @@ fun SignUpScreen(navController: NavHostController, userViewModel: UserViewModel)
             ),
             singleLine = true,
             isError = idShowError
+
         )
         if (idShowError) {
             Text(

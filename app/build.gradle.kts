@@ -92,4 +92,14 @@ dependencies {
 
     implementation("com.google.android.gms:play-services-maps:18.2.0")
     implementation("com.google.android.gms:play-services-location:21.0.1")
+
+    // bootpay 결제 연동
+    implementation("io.github.bootpay:android:4.4.2")
+    implementation("io.github.bootpay:android-bio:4.4.5")
+
+    implementation("com.google.code.gson:gson:2.9.0")
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.squareup.retrofit2:converter-moshi:2.9.0")
+    implementation("com.squareup.retrofit2:adapter-rxjava2:2.9.0")
 }

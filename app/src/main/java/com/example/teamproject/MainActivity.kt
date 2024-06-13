@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.rememberNavController
 import com.example.teamproject.ViewModel.Repository
@@ -17,7 +18,7 @@ import com.example.teamproject.ui.theme.TeamProjectTheme
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
-class MainActivity : ComponentActivity() {
+class MainActivity : FragmentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -31,7 +32,8 @@ class MainActivity : ComponentActivity() {
                     color = Color.White
                 ) {
                     val navController = rememberNavController()
-                    NavGraph(navController,viewModel)
+//                    NavGraph(navController,viewModel)
+                    NavGraph(navController,supportFragmentManager,viewModel)
                 }
             }
         }

@@ -35,6 +35,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -79,26 +80,38 @@ fun LoginScreen(navController: NavHostController, userViewModel: UserViewModel) 
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(horizontal = 16.dp),
-                verticalArrangement = Arrangement.Top,
-                horizontalAlignment = Alignment.CenterHorizontally
+                    .padding(horizontal = 16.dp)
             ) {
-                Spacer(modifier = Modifier.padding(bottom = 150.dp))
+//                Spacer(modifier = Modifier.padding(bottom = 150.dp))
 
-                Image(
-                    painter = painterResource(id = R.drawable.konkuk),
-                    contentDescription = "건국대로고",
+                Box(
                     modifier = Modifier
-                        .padding(bottom = 60.dp)
-                        .size(100.dp)
-                )
+                        .fillMaxWidth()
+                        .padding(vertical = 16.dp),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.konkuk),
+                        contentDescription = "건국대로고",
+                        modifier = Modifier
+                            .padding(bottom = 60.dp)
+                            .size(100.dp)
+                    )
+                }
 
-                Text(
-                    text = "KU 레스티오/학식 사이렌 오더",
-                    fontSize = 20.sp,
-                    fontFamily = FontFamily(Font(R.font.pretendard_bold)),
-                    color = Color(0xFF000000)
-                )
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 16.dp),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = "KU 레스티오/학식 사이렌 오더",
+                        fontSize = 20.sp,
+                        fontFamily = FontFamily(Font(R.font.pretendard_bold)),
+                        color = Color(0xFF000000)
+                    )
+                }
 
                 Spacer(modifier = Modifier.height(50.dp))
 

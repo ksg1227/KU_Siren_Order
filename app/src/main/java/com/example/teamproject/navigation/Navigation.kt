@@ -7,17 +7,17 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.teamproject.Item.MenuItem
-import com.example.teamproject.MyPage.MyPageShowScreen
+import com.example.teamproject.mypage.MyPageShowScreen
 import com.example.teamproject.R
 import com.example.teamproject.Restaurant.Library_GusiaScreen
 import com.example.teamproject.Restaurant.StudentUnion_FirstfloorScreen
 import com.example.teamproject.Restaurant.StudentUnion_GusiaScreen
 import com.example.teamproject.Restio.AnimalLifeRestioScreen
-import com.example.teamproject.Restio.EngineeringRestioScreen
 import com.example.teamproject.Restio.IndustryRestioScreen
 import com.example.teamproject.Restio.LibraryRestioScreen
 import com.example.teamproject.Restio.ManageMentRestioScreen
 import com.example.teamproject.Restio.RestioPayScreen
+import com.example.teamproject.Restio.EngineeringRestioScreen
 import com.example.teamproject.Screen.CafeteriaRestioSelScreen
 import com.example.teamproject.Screen.CartScreen
 import com.example.teamproject.Screen.Library_GusiaNoSideOrderScreen
@@ -273,7 +273,8 @@ fun NavGraph(
                 RestioPayScreen(
                     place = place,
                     product = product,
-                    onClose = { navController.popBackStack() }
+                    onClose = { navController.popBackStack() },
+                    navController = navController
                 )
             }
         }

@@ -22,6 +22,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import com.example.teamproject.Item.CartMenuItem
 import com.example.teamproject.Item.MenuItem
 import com.example.teamproject.R
@@ -36,6 +38,7 @@ fun RestioPayScreen(
     product: MenuItem,
     onClose: () -> Unit,
     viewModel: CartMenuViewModel = viewModel(viewModelStoreOwner = LocalNavGraphViewModelStoreOwner.current),
+    navController: NavHostController
 ) {
 
     val options1 = listOf(
@@ -262,7 +265,7 @@ fun RestioPayScreen(
                         Text(text = "담기")
                     }
                     Spacer(modifier = Modifier.width(8.dp))
-                    Button(onClick = { /* todo 결제하기 */ }, modifier = Modifier.weight(1f)) {
+                    Button(onClick = { navController.navigate(Routes.Payment.route) }, modifier = Modifier.weight(1f)) {
                         Text(text = "결제하기")
                     }
                 }

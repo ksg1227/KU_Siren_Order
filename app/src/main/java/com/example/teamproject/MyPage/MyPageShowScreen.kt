@@ -1,4 +1,4 @@
-package com.example.teamproject.MyPage
+package com.example.teamproject.mypage
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

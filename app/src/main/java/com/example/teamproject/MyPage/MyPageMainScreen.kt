@@ -23,11 +23,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import com.example.teamproject.R
 import com.example.teamproject.Screen.TopAppBar
+import com.example.teamproject.navigation.Routes
 
 @Composable
-fun MyPageMainScreen() {
+fun MyPageMainScreen(navController: NavHostController) {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -38,7 +40,7 @@ fun MyPageMainScreen() {
                 .fillMaxSize()
         ) {
             TopAppBar(
-                onBackIconClick = { /*TODO*/ },
+                onBackIconClick = { navController.popBackStack() },
                 title = "마이페이지",
                 titleColor = Color.Black,
                 onRightIconClick = { /*TODO*/ },
@@ -55,8 +57,7 @@ fun MyPageMainScreen() {
                     .padding(bottom = 50.dp)
             )
             Button(
-                onClick = { /* Todo */ },
-                modifier = Modifier
+                onClick = { navController.navigate(Routes.MyPageShowScreen.route) }, modifier = Modifier
                     .border(1.dp, Color.Black, shape = RoundedCornerShape(16.dp))
                     .width(330.dp)
                     .align(Alignment.CenterHorizontally),
@@ -69,7 +70,7 @@ fun MyPageMainScreen() {
             }
             Spacer(modifier = Modifier.padding(top = 20.dp))
             Button(
-                onClick = { /* todo */ },
+                onClick = { navController.navigate(Routes.MyPageEditScreen.route) },
                 modifier = Modifier
                     .border(1.dp, Color.Black, shape = RoundedCornerShape(16.dp))
                     .width(330.dp)

@@ -56,7 +56,7 @@ fun TopAppBar(
             // title
             Box(
                 modifier = Modifier
-                    .weight(1f)
+                    .weight(2f)
                     .fillMaxWidth()
             ) {
                 Text(

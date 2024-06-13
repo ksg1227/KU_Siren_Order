@@ -2,10 +2,8 @@ package com.example.teamproject.MyPage
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -23,7 +21,7 @@ import com.example.teamproject.navigation.Routes
 
 
 @Composable
-fun MyPageShowScreen() {
+fun MyPageShowScreen(navController: NavHostController) {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -36,7 +34,7 @@ fun MyPageShowScreen() {
 
             // 상단
             TopAppBar(
-                onBackIconClick = { /*TODO*/ },
+                onBackIconClick = { navController.popBackStack() },
                 title = "개인 정보 확인",
                 titleColor = Color.Black,
                 onRightIconClick = { /*TODO*/ },

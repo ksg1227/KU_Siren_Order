@@ -42,8 +42,8 @@ fun RestaurantTabPager(
             onBackIconClick = { navController.navigate(Routes.Start.route) },
             title = "학식",
             titleColor = colorResource(R.color.gold_cf982e),
-            onRightIconClick = { /*TODO*/ }, // 추후 마이페이지로 이동 가능하도록 구현
-            rightIconImgId = R.drawable.ic_mypage
+            onRightIconClick = { navController.navigate(Routes.MyPageMainScreen.route) }, // 추후 마이페이지로 이동 가능하도록 구현
+            rightIconImgId = R.drawable.profile
         )
 
         // 탭 구현

@@ -18,9 +18,11 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.TabRowDefaults
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ScrollableTabRow
 import androidx.compose.material3.Tab
+import androidx.compose.material3.TabRowDefaults.tabIndicatorOffset
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -31,6 +33,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -48,7 +51,7 @@ import com.google.accompanist.pager.rememberPagerState
 import kotlinx.coroutines.launch
 
 @Composable
-fun EngineeringRestioScreen(title: String,navController: NavHostController, viewModel: EngineeringRestioMenuViewModel = viewModel()) {
+fun AnimalLifeRestioScreen(title: String, navController: NavHostController, viewModel: AnimalLifeRestioMenuViewModel = viewModel()) {
     val categories = listOf(
         "커피 HOT",
         "커피 ICE",
@@ -77,7 +80,7 @@ fun EngineeringRestioScreen(title: String,navController: NavHostController, view
                 onBackIconClick = { navController.navigate(Routes.RestioStart.route) },
                 title = title,
                 titleColor = Color.Black,
-                onRightIconClick = { navController.navigate("cart_screen/공학관 레스티오") },
+                onRightIconClick = { navController.navigate("cart_screen/동물생명과학관 레스티오") },
                 rightIconImgId = R.drawable.cart
             )
 
@@ -87,7 +90,17 @@ fun EngineeringRestioScreen(title: String,navController: NavHostController, view
                 // 상단 탭
                 ScrollableTabRow(
                     selectedTabIndex = pagerState.currentPage,
-                    edgePadding = 0.dp
+                    containerColor = Color.White,
+                    contentColor = Color.Black,
+                    edgePadding = 0.dp,
+                    indicator = { tabPositions ->
+                        TabRowDefaults.Indicator(
+                            Modifier
+                                .tabIndicatorOffset(tabPositions[pagerState.currentPage])
+                                .height(4.dp),
+                            color = colorResource(id = R.color.green_066b3f)
+                        )
+                    }
                 ) {
                     categories.forEachIndexed { index, category ->
                         Tab(

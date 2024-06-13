@@ -7,9 +7,18 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.teamproject.Item.MenuItem
+import com.example.teamproject.mypage.MyPageShowScreen
+import com.example.teamproject.R
 import com.example.teamproject.Restaurant.Library_GusiaScreen
 import com.example.teamproject.Restaurant.StudentUnion_FirstfloorScreen
 import com.example.teamproject.Restaurant.StudentUnion_GusiaScreen
+import com.example.teamproject.Restio.AnimalLifeRestioScreen
+import com.example.teamproject.Restio.IndustryRestioScreen
+import com.example.teamproject.Restio.LibraryRestioScreen
+import com.example.teamproject.Restio.ManageMentRestioScreen
+import com.example.teamproject.Restio.RestioPayScreen
+import com.example.teamproject.Restio.EngineeringRestioScreen
+import com.example.teamproject.Screen.CafeteriaRestioSelScreen
 import com.example.teamproject.Screen.CartScreen
 import com.example.teamproject.Screen.Library_GusiaNoSideOrderScreen
 import com.example.teamproject.Screen.Library_GusiaOrderScreen
@@ -28,6 +37,8 @@ import com.example.teamproject.ViewModel.LocalNavGraphViewModelStoreOwner
 import com.example.teamproject.ViewModel.StudentUnionMenuViewModel
 import com.example.teamproject.ViewModel.UserViewModel
 import com.example.teamproject.ViewModel.rememberViewModelStoreOwner
+import com.example.teamproject.mypage.MyPageEditScreen
+import com.example.teamproject.mypage.MyPageMainScreen
 
 open class Routes(val route: String) {
     object Start : Routes("start_screen")
@@ -39,6 +50,15 @@ open class Routes(val route: String) {
     object Payment : Routes("Payment_Screen")
     object RestioStart : Routes("restio_start")
     object RestaurantStart : Routes("restaurant_start")
+    object AnimalLifeRestioScreen : Routes("animallife_restio_screen")
+    object EngineeringRestioScreen : Routes("engineering_restio_screen")
+    object IndustryRestioScreen : Routes("industry_restio_screen")
+    object LibraryRestioScreen : Routes("library_restio_screen")
+    object ManagementRestioScreen : Routes("management_restio_screen")
+    object MyPageMainScreen : Routes("mypage_main_screen")
+    object MyPageEditScreen : Routes("mypage_edit_screen")
+    object MyPageShowScreen : Routes("mypage_show_screen")
+    object CafeteriaRestioSelScreen : Routes("cafeteria_restio_sel_screen")
 
 }
 
@@ -93,9 +113,47 @@ fun NavGraph(
                 RestaurantLocationScreen(navController = navController)
             }
 
+            // Restio
+            composable(Routes.AnimalLifeRestioScreen.route) {
+                AnimalLifeRestioScreen(title = "동물생명과학관 레스티오",navController)
+            }
+
+            composable(Routes.EngineeringRestioScreen.route) {
+                EngineeringRestioScreen(title = "공학관 레스티오", navController)
+            }
+
+            composable(Routes.IndustryRestioScreen.route) {
+                IndustryRestioScreen(title = "산학협동관 레스티오", navController)
+            }
+
+            composable(Routes.LibraryRestioScreen.route) {
+                LibraryRestioScreen(title = "상허기념도서관 레스티오", navController)
+            }
+
+            composable(Routes.ManagementRestioScreen.route) {
+                ManageMentRestioScreen(title = "경영관 레스티오", navController)
+            }
+
+            // MyPage 3
+            composable(Routes.MyPageMainScreen.route) {
+                MyPageMainScreen(navController)
+            }
+
+            composable(Routes.MyPageEditScreen.route) {
+                MyPageEditScreen(navController)
+            }
+
+            composable(Routes.MyPageShowScreen.route) {
+                MyPageShowScreen(navController)
+            }
             composable("cart_screen/{placeName}") {backStackEntry ->
                 val placeName = backStackEntry.arguments?.getString("placeName") ?: ""
                 CartScreen(navController, placeName)
+            }
+
+            // CafeteriaRestioSel
+            composable(Routes.CafeteriaRestioSelScreen.route) {
+                CafeteriaRestioSelScreen(navController)
             }
 
             composable("library_order_screen/{category}/{index}/{imageRes}/{menuName}/{menuPrice}/{quantity}") { backStackEntry ->
@@ -200,7 +258,24 @@ fun NavGraph(
                         )
                     }
                 }
+            }
 
+            composable("restioPay/{place}/{productName}/{productPrice}/{productImageRes}/{productCategory}") { backStackEntry ->
+                val place = backStackEntry.arguments?.getString("place") ?: ""
+                val product = MenuItem(
+                    imageRes = backStackEntry.arguments?.getString("productImageRes")?.toInt() ?: R.drawable.konkuk,
+                    name = backStackEntry.arguments?.getString("productName") ?: "",
+                    price = backStackEntry.arguments?.getString("productPrice") ?: "",
+                    quantity = 1, // Initial quantity set to 1
+                    category = backStackEntry.arguments?.getString("productCategory") ?: "",
+                    index = 0 // Provide the appropriate index
+                )
+                RestioPayScreen(
+                    place = place,
+                    product = product,
+                    onClose = { navController.popBackStack() },
+                    navController = navController
+                )
             }
         }
     }

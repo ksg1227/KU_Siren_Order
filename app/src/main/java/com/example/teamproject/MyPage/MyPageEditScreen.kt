@@ -16,11 +16,13 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.example.teamproject.R
+import com.example.teamproject.navigation.Routes
 
 
 @Composable
-fun MyPageEditScreen() {
+fun MyPageEditScreen(navController: NavHostController) {
     val currentPassword = remember { mutableStateOf("") }
     val newPassword = remember { mutableStateOf("") }
     val confirmPassword = remember { mutableStateOf("") }
@@ -36,10 +38,10 @@ fun MyPageEditScreen() {
     ) {
         // 상단
         com.example.teamproject.Screen.TopAppBar(
-            onBackIconClick = { /*TODO*/ },
+            onBackIconClick = { navController.popBackStack() },
             title = "개인 정보 수정",
             titleColor = Color.Black,
-            onRightIconClick = { /*TODO*/ },
+            onRightIconClick = {  },
             rightIconImgId = null
         )
 

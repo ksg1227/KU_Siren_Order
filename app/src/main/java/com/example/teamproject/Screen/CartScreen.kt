@@ -221,6 +221,56 @@ fun SelectAndDeleteBox(
                             cartMenuViewModel.selected_library_GusiaMenuList.clear()
                         }
                     }
+
+                    "공학관 레스티오" -> {
+                        if (checked) {
+                            cartMenuViewModel.selected_engineeringRestioMenuList.addAll(
+                                cartMenuViewModel.engineeringRestioMenuList
+                            )
+                        } else {
+                            cartMenuViewModel.selected_engineeringRestioMenuList.clear()
+                        }
+                    }
+
+                    "동물생명과학관 레스티오" -> {
+                        if (checked) {
+                            cartMenuViewModel.selected_animalLifeRestioMenuList.addAll(
+                                cartMenuViewModel.animalLifeRestioMenuList
+                            )
+                        } else {
+                            cartMenuViewModel.selected_animalLifeRestioMenuList.clear()
+                        }
+                    }
+
+                    "상허기념도서관 레스티오" -> {
+                        if (checked) {
+                            cartMenuViewModel.selected_libraryRestioMenuList.addAll(
+                                cartMenuViewModel.library_GusiaMenuList
+                            )
+                        } else {
+                            cartMenuViewModel.selected_libraryRestioMenuList.clear()
+                        }
+                    }
+
+                    "경영관 레스티오" -> {
+                        if (checked) {
+                            cartMenuViewModel.selected_managementRestioMenuList.addAll(
+                                cartMenuViewModel.managementRestioMenuList
+                            )
+                        } else {
+                            cartMenuViewModel.selected_managementRestioMenuList.clear()
+                        }
+                    }
+
+                    "산학협동관 레스티오" -> {
+                        if (checked) {
+                            cartMenuViewModel.selected_industryRestioMenuList.addAll(
+                                cartMenuViewModel.industryRestioMenuList
+                            )
+                        } else {
+                            cartMenuViewModel.selected_industryRestioMenuList.clear()
+                        }
+                    }
                 }
             }
         )
@@ -258,6 +308,56 @@ fun SelectAndDeleteBox(
                             )
                         } else {
                             cartMenuViewModel.selected_library_GusiaMenuList.clear()
+                        }
+                    }
+
+                    "공학관 레스티오" -> {
+                        if (checked) {
+                            cartMenuViewModel.selected_engineeringRestioMenuList.addAll(
+                                cartMenuViewModel.engineeringRestioMenuList
+                            )
+                        } else {
+                            cartMenuViewModel.selected_engineeringRestioMenuList.clear()
+                        }
+                    }
+
+                    "동물생명과학관 레스티오" -> {
+                        if (checked) {
+                            cartMenuViewModel.selected_animalLifeRestioMenuList.addAll(
+                                cartMenuViewModel.animalLifeRestioMenuList
+                            )
+                        } else {
+                            cartMenuViewModel.selected_animalLifeRestioMenuList.clear()
+                        }
+                    }
+
+                    "상허기념도서관 레스티오" -> {
+                        if (checked) {
+                            cartMenuViewModel.selected_libraryRestioMenuList.addAll(
+                                cartMenuViewModel.library_GusiaMenuList
+                            )
+                        } else {
+                            cartMenuViewModel.selected_libraryRestioMenuList.clear()
+                        }
+                    }
+
+                    "경영관 레스티오" -> {
+                        if (checked) {
+                            cartMenuViewModel.selected_managementRestioMenuList.addAll(
+                                cartMenuViewModel.managementRestioMenuList
+                            )
+                        } else {
+                            cartMenuViewModel.selected_managementRestioMenuList.clear()
+                        }
+                    }
+
+                    "산학협동관 레스티오" -> {
+                        if (checked) {
+                            cartMenuViewModel.selected_industryRestioMenuList.addAll(
+                                cartMenuViewModel.industryRestioMenuList
+                            )
+                        } else {
+                            cartMenuViewModel.selected_industryRestioMenuList.clear()
                         }
                     }
                 }
@@ -306,6 +406,31 @@ fun SelectAndDeleteBox(
                             )
                         }
                         cartMenuViewModel.selected_library_GusiaMenuList.clear()
+                    }
+
+                    "공학관 레스티오" -> {
+                        cartMenuViewModel.engineeringRestioMenuList.removeAll(cartMenuViewModel.selected_engineeringRestioMenuList)
+                        cartMenuViewModel.selected_engineeringRestioMenuList.clear()
+                    }
+
+                    "동물생명과학관 레스티오" -> {
+                        cartMenuViewModel.animalLifeRestioMenuList.removeAll(cartMenuViewModel.selected_animalLifeRestioMenuList)
+                        cartMenuViewModel.selected_animalLifeRestioMenuList.clear()
+                    }
+
+                    "상허기념도서관 레스티오" -> {
+                        cartMenuViewModel.libraryRestioMenuList.removeAll(cartMenuViewModel.selected_libraryRestioMenuList)
+                        cartMenuViewModel.selected_libraryRestioMenuList.clear()
+                    }
+
+                    "경영관 레스티오" -> {
+                        cartMenuViewModel.managementRestioMenuList.removeAll(cartMenuViewModel.selected_managementRestioMenuList)
+                        cartMenuViewModel.selected_managementRestioMenuList.clear()
+                    }
+
+                    "산학협동관 레스티오" -> {
+                        cartMenuViewModel.industryRestioMenuList.removeAll(cartMenuViewModel.selected_industryRestioMenuList)
+                        cartMenuViewModel.selected_industryRestioMenuList.clear()
                     }
                 }
                 checked = false // Uncheck all items
@@ -359,6 +484,31 @@ fun SelectAndDeleteBox(
                             cartMenuViewModel.library_GusiaMenuList.clear()
                             cartMenuViewModel.selected_library_GusiaMenuList.clear()
                         }
+
+                        "공학관 레스티오" -> {
+                            cartMenuViewModel.engineeringRestioMenuList.clear()
+                            cartMenuViewModel.selected_engineeringRestioMenuList
+                        }
+
+                        "동물생명과학관 레스티오" -> {
+                            cartMenuViewModel.animalLifeRestioMenuList.clear()
+                            cartMenuViewModel.selected_animalLifeRestioMenuList.clear()
+                        }
+
+                        "상허기념도서관 레스티오" -> {
+                            cartMenuViewModel.libraryRestioMenuList.clear()
+                            cartMenuViewModel.selected_libraryRestioMenuList.clear()
+                        }
+
+                        "경영관 레스티오" -> {
+                            cartMenuViewModel.managementRestioMenuList.clear()
+                            cartMenuViewModel.selected_managementRestioMenuList.clear()
+                        }
+
+                        "산학협동관 레스티오" -> {
+                            cartMenuViewModel.industryRestioMenuList.clear()
+                            cartMenuViewModel.selected_industryRestioMenuList.clear()
+                        }
                     }
                     checked = false // Uncheck all items
                 }
@@ -407,6 +557,11 @@ fun CartItemUI(
         "학생회관 1층 학식" -> cartMenuViewModel.studentUnion_FirstfloorMenuList
         "학생회관 지하 학식(구시아푸드)" -> cartMenuViewModel.studentUnion_GusiaMenuList
         "상허기념도서관 지하 학식(구시아푸드)" -> cartMenuViewModel.library_GusiaMenuList
+        "공학관 레스티오" -> cartMenuViewModel.engineeringRestioMenuList
+        "동물생명과학관 레스티오" -> cartMenuViewModel.animalLifeRestioMenuList
+        "상허기념도서관 레스티오" -> cartMenuViewModel.libraryRestioMenuList
+        "경영관 레스티오" -> cartMenuViewModel.managementRestioMenuList
+        "산학협동관 레스티오" -> cartMenuViewModel.industryRestioMenuList
         else -> mutableListOf()
     }
 
@@ -416,7 +571,12 @@ fun CartItemUI(
 
             if (cartMenuViewModel.selected_studentUnion_FirstfloorMenuList.contains(menu) ||
                 cartMenuViewModel.selected_studentUnion_GusiaMenuList.contains(menu) ||
-                cartMenuViewModel.selected_library_GusiaMenuList.contains(menu)
+                cartMenuViewModel.selected_library_GusiaMenuList.contains(menu) ||
+                cartMenuViewModel.selected_engineeringRestioMenuList.contains(menu) ||
+                cartMenuViewModel.selected_libraryRestioMenuList.contains(menu) ||
+                cartMenuViewModel.selected_animalLifeRestioMenuList.contains(menu) ||
+                cartMenuViewModel.selected_industryRestioMenuList.contains(menu) ||
+                cartMenuViewModel.selected_managementRestioMenuList.contains(menu)
             ) {
                 isChecked = true
             }
@@ -449,6 +609,60 @@ fun CartItemUI(
                                         if (!cartMenuViewModel.selected_library_GusiaMenuList.contains(menu))
                                             cartMenuViewModel.selected_library_GusiaMenuList.add(menu)
                                     }
+
+                                    "공학관 레스티오" -> {
+                                        if (!cartMenuViewModel.selected_engineeringRestioMenuList.contains(
+                                                menu
+                                            )
+                                        )
+                                            cartMenuViewModel.selected_engineeringRestioMenuList.add(
+                                                menu
+                                            )
+                                    }
+
+                                    "동물생명과학관 레스티오" -> {
+                                        if (!cartMenuViewModel.selected_animalLifeRestioMenuList.contains(
+                                                menu
+                                            )
+                                        ) {
+                                            cartMenuViewModel.selected_animalLifeRestioMenuList.add(
+                                                menu
+                                            )
+                                        }
+                                    }
+
+                                    "상허기념도서관 레스티오" -> {
+                                        if (!cartMenuViewModel.selected_libraryRestioMenuList.contains(
+                                                menu
+                                            )
+                                        ) {
+                                            cartMenuViewModel.selected_libraryRestioMenuList.add(
+                                                menu
+                                            )
+                                        }
+                                    }
+
+                                    "경영관 레스티오" -> {
+                                        if (!cartMenuViewModel.selected_managementRestioMenuList.contains(
+                                                menu
+                                            )
+                                        ) {
+                                            cartMenuViewModel.selected_managementRestioMenuList.add(
+                                                menu
+                                            )
+                                        }
+                                    }
+
+                                    "산학협동관 레스티오" -> {
+                                        if (!cartMenuViewModel.selected_industryRestioMenuList.contains(
+                                                menu
+                                            )
+                                        ) {
+                                            cartMenuViewModel.selected_industryRestioMenuList.add(
+                                                menu
+                                            )
+                                        }
+                                    }
                                 }
                             } else {
                                 when (placeName) {
@@ -462,6 +676,34 @@ fun CartItemUI(
 
                                     "상허기념도서관 지하 학식(구시아푸드)" -> {
                                         cartMenuViewModel.selected_library_GusiaMenuList.remove(menu)
+                                    }
+
+                                    "공학관 레스티오" -> {
+                                        cartMenuViewModel.selected_engineeringRestioMenuList.remove(
+                                            menu
+                                        )
+                                    }
+
+                                    "동물생명과학관 레스티오" -> {
+                                        cartMenuViewModel.selected_animalLifeRestioMenuList.remove(
+                                            menu
+                                        )
+                                    }
+
+                                    "상허기념도서관 레스티오" -> {
+                                        cartMenuViewModel.selected_libraryRestioMenuList.remove(menu)
+                                    }
+
+                                    "경영관 레스티오" -> {
+                                        cartMenuViewModel.selected_managementRestioMenuList.remove(
+                                            menu
+                                        )
+                                    }
+
+                                    "산학협동관 레스티오" -> {
+                                        cartMenuViewModel.selected_industryRestioMenuList.remove(
+                                            menu
+                                        )
                                     }
                                 }
                             }
@@ -520,6 +762,26 @@ fun CartItemUI(
                                                 menu.menuItem.index,
                                                 menu.menuItem.quantity
                                             )
+                                        }
+
+                                        "공학관 레스티오" -> {
+                                            cartMenuViewModel.engineeringRestioMenuList.remove(menu)
+                                        }
+
+                                        "동물생명과학관 레스티오" -> {
+                                            cartMenuViewModel.animalLifeRestioMenuList.remove(menu)
+                                        }
+
+                                        "상허기념도서관 레스티오" -> {
+                                            cartMenuViewModel.libraryRestioMenuList.remove(menu)
+                                        }
+
+                                        "경영관 레스티오" -> {
+                                            cartMenuViewModel.managementRestioMenuList.remove(menu)
+                                        }
+
+                                        "산학협동관 레스티오" -> {
+                                            cartMenuViewModel.industryRestioMenuList.remove(menu)
                                         }
                                     }
                                 }),

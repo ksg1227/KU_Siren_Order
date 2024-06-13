@@ -48,7 +48,7 @@ import com.google.accompanist.pager.rememberPagerState
 import kotlinx.coroutines.launch
 
 @Composable
-fun EngineeringRestioScreen(title: String,navController: NavHostController, viewModel: EngineeringRestioMenuViewModel = viewModel()) {
+fun IndustryRestioScreen(title: String, navController: NavHostController, viewModel: IndustryRestioMenuViewModel = viewModel()) {
     val categories = listOf(
         "커피 HOT",
         "커피 ICE",
@@ -77,7 +77,7 @@ fun EngineeringRestioScreen(title: String,navController: NavHostController, view
                 onBackIconClick = { navController.navigate(Routes.RestioStart.route) },
                 title = title,
                 titleColor = Color.Black,
-                onRightIconClick = { navController.navigate("cart_screen/공학관 레스티오") },
+                onRightIconClick = { navController.navigate("cart_screen/산학협동관 레스티오") },
                 rightIconImgId = R.drawable.cart
             )
 

@@ -472,7 +472,6 @@ fun SignUpScreen(navController: NavHostController, userViewModel: UserViewModel)
                 textAlign = TextAlign.Center
             )
         }
-
     }
 }
 

@@ -41,7 +41,7 @@ fun CustomTabPager2(pagerState: PagerState, tabs: List<String>, navController:Na
     Column {
         // 탭 구현
         TopAppBar(
-            onBackIconClick = { navController.navigate(Routes.RestaurantStart.route) },
+            onBackIconClick = { navController.popBackStack() },
             title = "도서관 지하 학식",
             titleColor = colorResource(R.color.gold_cf982e),
             onRightIconClick = { navController.navigate("cart_screen/상허기념도서관 지하 학식(구시아푸드)") },

@@ -39,7 +39,7 @@ fun RestaurantTabPager(
     Column {
         // 상단바
         TopAppBar(
-            onBackIconClick = { navController.navigate(Routes.Start.route) },
+            onBackIconClick = { navController.popBackStack() },
             title = "학식",
             titleColor = colorResource(R.color.gold_cf982e),
             onRightIconClick = { navController.navigate(Routes.MyPageMainScreen.route) }, // 추후 마이페이지로 이동 가능하도록 구현
@@ -90,8 +90,8 @@ fun RestaurantTabPager(
             ) {
                 // 페이지별 컨텐츠
                 when (page) {
-                    0 -> MapScreen(navController = navController, location)
-                    1 -> ListScreen(navController = navController, location)
+                    1 -> MapScreen(navController = navController, location)
+                    0 -> ListScreen(navController = navController, location)
 
                 }
             }
@@ -128,7 +128,7 @@ fun Restaurant_Location_init(): List<LocationItem> {
 
 @Composable
 fun RestaurantLocationScreen(navController: NavHostController) {
-    val tabs = listOf("지도로 보기", "리스트로 보기")
+    val tabs = listOf("리스트로 보기","지도로 보기")
     val pagerState = rememberPagerState {
         tabs.size
     }

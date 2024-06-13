@@ -166,8 +166,10 @@ fun LoginScreen(navController: NavHostController, userViewModel: UserViewModel) 
 
         if (errorMessage.isNotEmpty()) {
             Spacer(modifier = Modifier.height(20.dp))
-            Text(text = errorMessage, color = MaterialTheme.colorScheme.error,
-                fontFamily = FontFamily(Font(R.font.pretendard_semibold)) )
+            Text(
+                text = errorMessage, color = MaterialTheme.colorScheme.error,
+                fontFamily = FontFamily(Font(R.font.pretendard_semibold))
+            )
         }
 
         Spacer(modifier = Modifier.height(50.dp))
@@ -182,16 +184,18 @@ fun LoginScreen(navController: NavHostController, userViewModel: UserViewModel) 
                     var loginPossible = false
 
 //                    userViewModel.getUsers(id, password);
-                    for (user in userList){
-                        if(user.id == id && user.passwd == password){
+                    for (user in userList) {
+                        if (user.id == id && user.passwd == password) {
                             loginPossible = true
                         }
                     }
 
-                    if(!loginPossible) {    //정보가 존재하지 않는 경우
+                    if (!loginPossible) {    //정보가 존재하지 않는 경우
                         errorMessage = "회원님의 정보가 존재하지 않습니다."
-                    }else{
-                        navController.navigate(Routes.CafeteriaRestioSelScreen.route)
+                    } else {
+                        navController.navigate(Routes.CafeteriaRestioSelScreen.route) {
+                            popUpTo(Routes.Start.route)
+                        }
                     }
                 }
             },

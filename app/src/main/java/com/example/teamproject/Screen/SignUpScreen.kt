@@ -501,7 +501,7 @@ fun SignUpScreen(navController: NavHostController, userViewModel: UserViewModel)
 }
 
 fun isPasswordValid(password: String): Boolean {
-    val passwordRegex =
-        "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@\$!%*#?&])[A-Za-z\\d@\$!%*#?&]{8,}\$".toRegex()
+    val passwordRegex = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@\$!%*#?&])[A-Za-z\\d@\$!%*#?&]{8,}\$".toRegex()
+
     return passwordRegex.matches(password)
 }

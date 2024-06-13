@@ -2,6 +2,9 @@ package com.example.teamproject.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.ui.platform.LocalContext
+import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -66,6 +69,7 @@ open class Routes(val route: String) {
 @Composable
 fun NavGraph(
     navController: NavHostController,
+    fragmentManager: FragmentManager,
     userViewModel: UserViewModel = viewModel(),
     libraryViewModel : LibraryMenuViewModel = viewModel(),
     studentUnionViewModel: StudentUnionMenuViewModel = viewModel(),
@@ -102,7 +106,7 @@ fun NavGraph(
             }
 
             composable(Routes.Payment.route) {
-                PaymentScreen(navController)
+                PaymentScreen(navController, fragmentManager)
             }
 
             composable(Routes.RestioStart.route) {

@@ -35,7 +35,7 @@ fun CafeteriaRestioSelScreen(navController: NavHostController, userViewModel: Us
         ) {
             // 상단 바 구현
             TopAppBar(
-                onBackIconClick = { /*TODO*/ },
+                onBackIconClick = { navController.popBackStack() },
                 title = "학식 / 레스티오",
                 titleColor = Color.Black,
                 onRightIconClick = { navController.navigate(Routes.MyPageMainScreen.route) },

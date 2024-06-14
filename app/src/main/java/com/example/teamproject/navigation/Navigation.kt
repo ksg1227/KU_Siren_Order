@@ -10,17 +10,16 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.teamproject.Item.MenuItem
-import com.example.teamproject.mypage.MyPageShowScreen
 import com.example.teamproject.R
 import com.example.teamproject.Restaurant.Library_GusiaScreen
 import com.example.teamproject.Restaurant.StudentUnion_FirstfloorScreen
 import com.example.teamproject.Restaurant.StudentUnion_GusiaScreen
 import com.example.teamproject.Restio.AnimalLifeRestioScreen
+import com.example.teamproject.Restio.EngineeringRestioScreen
 import com.example.teamproject.Restio.IndustryRestioScreen
 import com.example.teamproject.Restio.LibraryRestioScreen
 import com.example.teamproject.Restio.ManageMentRestioScreen
 import com.example.teamproject.Restio.RestioPayScreen
-import com.example.teamproject.Restio.EngineeringRestioScreen
 import com.example.teamproject.Screen.CafeteriaRestioSelScreen
 import com.example.teamproject.Screen.CartScreen
 import com.example.teamproject.Screen.Library_GusiaNoSideOrderScreen
@@ -42,6 +41,7 @@ import com.example.teamproject.ViewModel.UserViewModel
 import com.example.teamproject.ViewModel.rememberViewModelStoreOwner
 import com.example.teamproject.mypage.MyPageEditScreen
 import com.example.teamproject.mypage.MyPageMainScreen
+import com.example.teamproject.mypage.MyPageShowScreen
 
 open class Routes(val route: String) {
     object Start : Routes("start_screen")
@@ -119,23 +119,23 @@ fun NavGraph(
 
             // Restio
             composable(Routes.AnimalLifeRestioScreen.route) {
-                AnimalLifeRestioScreen(title = "동물생명과학관 레스티오",navController)
+                AnimalLifeRestioScreen(title = "레스티오 동물생명과학관",navController)
             }
 
             composable(Routes.EngineeringRestioScreen.route) {
-                EngineeringRestioScreen(title = "공학관 레스티오", navController)
+                EngineeringRestioScreen(title = "레스티오 공학관", navController)
             }
 
             composable(Routes.IndustryRestioScreen.route) {
-                IndustryRestioScreen(title = "산학협동관 레스티오", navController)
+                IndustryRestioScreen(title = "레스티오 산학협동관", navController)
             }
 
             composable(Routes.LibraryRestioScreen.route) {
-                LibraryRestioScreen(title = "상허기념도서관 레스티오", navController)
+                LibraryRestioScreen(title = "레스티오 상허기념도서관", navController)
             }
 
             composable(Routes.ManagementRestioScreen.route) {
-                ManageMentRestioScreen(title = "경영관 레스티오", navController)
+                ManageMentRestioScreen(title = "레스티오 경영관", navController)
             }
 
             // MyPage 3

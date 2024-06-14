@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -38,6 +39,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import com.example.teamproject.Component.KioskMenuItem
 import com.example.teamproject.Item.MenuItem
 import com.example.teamproject.R
 import com.example.teamproject.Screen.TopAppBar
@@ -112,15 +114,24 @@ fun EngineeringRestioScreen(title: String,navController: NavHostController, view
                 ) { page ->
                     LazyVerticalGrid(
                         columns = GridCells.Fixed(3),
-                        contentPadding = PaddingValues(8.dp),
-                        verticalArrangement = Arrangement.Top,
-                        modifier = Modifier.fillMaxSize()
+                        modifier = Modifier
+                            .fillMaxHeight()
+                            .padding(horizontal = 10.dp),
+                        contentPadding = PaddingValues(vertical = 30.dp),
+                        horizontalArrangement = Arrangement.spacedBy(10.dp),
+                        verticalArrangement = Arrangement.spacedBy(15.dp)
                     ) {
                         viewModel.productsMap[categories[page]]?.let { products ->
                             items(products) { product ->
-                                ProductCard(product) {
+                                KioskMenuItem(
+                                    imageRes = product.imageRes,
+                                    menuName = product.name,
+                                    menuPrice = product.price,
+                                    initialQuantity = product.quantity,
+                                    place = ""
+                                ) {
                                     navController.navigate(
-                                        "restioPay/${title}/${it.name}/${it.price}/${it.imageRes}/${it.category}"
+                                        "restioPay/${title}/${product.name}/${product.price}/${product.imageRes}/${product.category}"
                                     )
                                 }
                             }

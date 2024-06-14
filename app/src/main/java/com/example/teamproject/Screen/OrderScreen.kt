@@ -1,5 +1,6 @@
 package com.example.teamproject.Screen
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -63,7 +64,7 @@ fun Library_GusiaOrderScreen( //사이드 있는 경우
     onCheckout: () -> Unit,
     navController: NavHostController
 ) {
-    val quantity by remember { mutableStateOf(1) }
+    var quantity by remember { mutableStateOf(1) }
     var selectedSize by remember { mutableStateOf("기본") }
     var selectedSides by remember { mutableStateOf(listOf<String>()) }
 
@@ -192,6 +193,30 @@ fun Library_GusiaOrderScreen( //사이드 있는 경우
                     horizontalArrangement = Arrangement.SpaceBetween,
                     modifier = Modifier.fillMaxWidth()
                 ) {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        Image(
+                            painter = painterResource(id = R.drawable.ic_minus), // 이미지 리소스
+                            contentDescription = "Decrease Quantity",
+                            modifier = Modifier
+                                .clickable { if (quantity > 0) quantity-- }
+                                .size(36.dp)
+                        )
+                        Text(
+                            text = quantity.toString(),
+                            fontSize = 20.sp,
+                            fontFamily = FontFamily(Font(R.font.pretendard_semibold))
+                        )
+                        Image(
+                            painter = painterResource(id = R.drawable.ic_plus), // 이미지 리소스
+                            contentDescription = "Increase Quantity",
+                            modifier = Modifier
+                                .clickable { if (quantity < menuItem.quantity) quantity++ }
+                                .size(36.dp)
+                        )
+                    }
                     Text(
                         text = "${totalPrice}원",
                         fontSize = 25.sp,
@@ -478,7 +503,7 @@ fun StudentUnion_GusiaOrderScreen(   //사이드 메뉴 존재하는 경우
     navController: NavHostController
 ) {
 
-    val quantity by remember { mutableStateOf(1) }
+    var quantity by remember { mutableStateOf(1) }
     var selectedSize by remember { mutableStateOf("기본") }
     var selectedSides by remember { mutableStateOf(listOf<String>()) }
 
@@ -639,6 +664,30 @@ fun StudentUnion_GusiaOrderScreen(   //사이드 메뉴 존재하는 경우
                     horizontalArrangement = Arrangement.SpaceBetween,
                     modifier = Modifier.fillMaxWidth()
                 ) {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        Image(
+                            painter = painterResource(id = R.drawable.ic_minus), // 이미지 리소스
+                            contentDescription = "Decrease Quantity",
+                            modifier = Modifier
+                                .clickable { if (quantity > 0) quantity-- }
+                                .size(36.dp)
+                        )
+                        Text(
+                            text = quantity.toString(),
+                            fontSize = 20.sp,
+                            fontFamily = FontFamily(Font(R.font.pretendard_semibold))
+                        )
+                        Image(
+                            painter = painterResource(id = R.drawable.ic_plus), // 이미지 리소스
+                            contentDescription = "Increase Quantity",
+                            modifier = Modifier
+                                .clickable { if (quantity < menuItem.quantity) quantity++ }
+                                .size(36.dp)
+                        )
+                    }
                     Text(
                         text = "${totalPrice}원",
                         fontSize = 25.sp,

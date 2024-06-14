@@ -15,12 +15,15 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.example.teamproject.R
+import com.example.teamproject.ViewModel.LocalNavGraphViewModelStoreOwner
+import com.example.teamproject.ViewModel.UserViewModel
 import com.example.teamproject.navigation.Routes
 
 @Composable
-fun CafeteriaRestioSelScreen(navController: NavHostController) {
+fun CafeteriaRestioSelScreen(navController: NavHostController, userViewModel: UserViewModel = viewModel(viewModelStoreOwner = LocalNavGraphViewModelStoreOwner.current)) {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -52,7 +55,7 @@ fun CafeteriaRestioSelScreen(navController: NavHostController) {
             Spacer(modifier = Modifier.height(30.dp))
 
             Text(
-                text = "000 학우님 안녕하세요", /* todo 아이디 연결 */
+                text = "${userViewModel.user.name} 학우님 안녕하세요", /* todo 아이디 연결 */
                 modifier = Modifier
                     .align(Alignment.CenterHorizontally),
                 fontSize = 18.sp

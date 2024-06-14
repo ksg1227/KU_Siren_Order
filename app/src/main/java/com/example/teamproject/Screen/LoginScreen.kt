@@ -31,7 +31,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
@@ -52,164 +54,193 @@ fun LoginScreen(navController: NavHostController, userViewModel: UserViewModel) 
 
     val userList by userViewModel.userList.collectAsState()
 
-    Column(
+    val scrollState = rememberScrollState()
+
+    Box(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp),
-        verticalArrangement = Arrangement.Top,
-        horizontalAlignment = Alignment.CenterHorizontally
+            .background(Color.White)
     ) {
-        TopAppBar(
-            onBackIconClick = { navController.popBackStack() },
-            title = "로그인",
-            titleColor = Color.Black,
-            onRightIconClick = { /*TODO*/ },
-            rightIconImgId = null
-        )
-
-        Spacer(modifier = Modifier.padding(bottom = 150.dp))
-
-        Image(
-            painter = painterResource(id = R.drawable.konkuk),
-            contentDescription = "건국대로고",
+        Column(
             modifier = Modifier
-                .padding(bottom = 60.dp)
-                .size(100.dp)
-        )
+                .fillMaxSize()
+                .verticalScroll(scrollState)
 
-        Text(
-            text = "KU 레스티오/학식 사이렌 오더",
-            fontSize = 20.sp,
-            fontFamily = FontFamily(Font(R.font.pretendard_bold)),
-            color = Color(0xFF000000)
-        )
-
-        Spacer(modifier = Modifier.height(50.dp))
-
-        Column(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalAlignment = Alignment.Start
         ) {
-            Text(
-                text = "아이디",
-                fontSize = 13.sp,
-                fontFamily = FontFamily(Font(R.font.pretendard_semibold)),
-                color = Color(0xFF444444)
+            TopAppBar(
+                onBackIconClick = { navController.popBackStack() },
+                title = "로그인",
+                titleColor = Color.Black,
+                onRightIconClick = { /*TODO*/ },
+                rightIconImgId = null
             )
-            OutlinedTextField(
-                value = id,
-                onValueChange = { id = it },
-                label = {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(horizontal = 16.dp)
+            ) {
+//                Spacer(modifier = Modifier.padding(bottom = 150.dp))
+
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 16.dp),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.konkuk),
+                        contentDescription = "건국대로고",
+                        modifier = Modifier
+                            .padding(bottom = 60.dp)
+                            .size(100.dp)
+                    )
+                }
+
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 16.dp),
+                    contentAlignment = Alignment.Center
+                ) {
                     Text(
-                        "아이디를 입력하세요.",
-                        fontSize = 13.sp,
-                        fontFamily = FontFamily(Font(R.font.pretendard_medium)),
-                        color = Color(0xFFB3B3B3)
+                        text = "KU 레스티오/학식 사이렌 오더",
+                        fontSize = 20.sp,
+                        fontFamily = FontFamily(Font(R.font.pretendard_bold)),
+                        color = Color(0xFF000000)
                     )
-                },
-                singleLine = true,
-                leadingIcon = {
-                    Icon(
-                        imageVector = Icons.Default.Person,
-                        contentDescription = "아이디 아이콘"
-                    )
-                },
-                colors = TextFieldDefaults.colors(
-                    focusedContainerColor = Color.Transparent,
-                    unfocusedContainerColor = Color.Transparent
-                ),
+                }
 
-                modifier = Modifier.fillMaxWidth()
-            )
-        }
+                Spacer(modifier = Modifier.height(50.dp))
 
-        Spacer(modifier = Modifier.height(16.dp))
-
-        Column(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalAlignment = Alignment.Start
-        ) {
-            Text(
-                text = "비밀번호",
-                fontSize = 13.sp,
-                fontFamily = FontFamily(Font(R.font.pretendard_semibold)),
-                color = Color(0xFF444444)
-            )
-            OutlinedTextField(
-                value = password,
-                onValueChange = { password = it },
-                label = {
+                Column(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalAlignment = Alignment.Start
+                ) {
                     Text(
-                        "비밀번호를 입력하세요.",
+                        text = "아이디",
                         fontSize = 13.sp,
-                        fontFamily = FontFamily(Font(R.font.pretendard_medium)),
-                        color = Color(0xFFB3B3B3)
+                        fontFamily = FontFamily(Font(R.font.pretendard_semibold)),
+                        color = Color(0xFF444444)
                     )
-                },
-                singleLine = true,
-                visualTransformation = PasswordVisualTransformation(),
-                leadingIcon = {
-                    Icon(
-                        imageVector = Icons.Default.Lock,
-                        contentDescription = "비밀번호 아이콘"
+                    OutlinedTextField(
+                        value = id,
+                        onValueChange = { id = it },
+                        label = {
+                            Text(
+                                "아이디를 입력하세요.",
+                                fontSize = 13.sp,
+                                fontFamily = FontFamily(Font(R.font.pretendard_medium)),
+                                color = Color(0xFFB3B3B3)
+                            )
+                        },
+                        singleLine = true,
+                        leadingIcon = {
+                            Icon(
+                                imageVector = Icons.Default.Person,
+                                contentDescription = "아이디 아이콘"
+                            )
+                        },
+                        colors = TextFieldDefaults.colors(
+                            focusedContainerColor = Color.Transparent,
+                            unfocusedContainerColor = Color.Transparent
+                        ),
+
+                        modifier = Modifier.fillMaxWidth()
                     )
-                },
-                colors = TextFieldDefaults.colors(
-                    focusedContainerColor = Color.Transparent,
-                    unfocusedContainerColor = Color.Transparent
-                ),
-                modifier = Modifier.fillMaxWidth()
-            )
-        }
+                }
 
-        Spacer(modifier = Modifier.height(30.dp))
+                Spacer(modifier = Modifier.height(16.dp))
 
-        if (errorMessage.isNotEmpty()) {
-            Spacer(modifier = Modifier.height(20.dp))
-            Text(
-                text = errorMessage, color = MaterialTheme.colorScheme.error,
-                fontFamily = FontFamily(Font(R.font.pretendard_semibold))
-            )
-        }
+                Column(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalAlignment = Alignment.Start
+                ) {
+                    Text(
+                        text = "비밀번호",
+                        fontSize = 13.sp,
+                        fontFamily = FontFamily(Font(R.font.pretendard_semibold)),
+                        color = Color(0xFF444444)
+                    )
+                    OutlinedTextField(
+                        value = password,
+                        onValueChange = { password = it },
+                        label = {
+                            Text(
+                                "비밀번호를 입력하세요.",
+                                fontSize = 13.sp,
+                                fontFamily = FontFamily(Font(R.font.pretendard_medium)),
+                                color = Color(0xFFB3B3B3)
+                            )
+                        },
+                        singleLine = true,
+                        visualTransformation = PasswordVisualTransformation(),
+                        leadingIcon = {
+                            Icon(
+                                imageVector = Icons.Default.Lock,
+                                contentDescription = "비밀번호 아이콘"
+                            )
+                        },
+                        colors = TextFieldDefaults.colors(
+                            focusedContainerColor = Color.Transparent,
+                            unfocusedContainerColor = Color.Transparent
+                        ),
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                }
 
-        Spacer(modifier = Modifier.height(50.dp))
+                Spacer(modifier = Modifier.height(30.dp))
 
-        Button(
-            onClick = {
-                if (id.isEmpty() || password.isEmpty()) {
-                    errorMessage = "아이디와 패스워드를 모두 입력해주세요."
-                } else {
-                    errorMessage = ""
+                if (errorMessage.isNotEmpty()) {
+                    Spacer(modifier = Modifier.height(20.dp))
+                    Text(
+                        text = errorMessage, color = MaterialTheme.colorScheme.error,
+                        fontFamily = FontFamily(Font(R.font.pretendard_semibold)),
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                }
 
-                    var loginPossible = false
+                Spacer(modifier = Modifier.height(50.dp))
+
+                Button(
+                    onClick = {
+                        if (id.isEmpty() || password.isEmpty()) {
+                            errorMessage = "아이디와 패스워드를 모두 입력해주세요."
+                        } else {
+                            errorMessage = ""
+
+                            var loginPossible = false
 
 //                    userViewModel.getUsers(id, password);
-                    for (user in userList) {
-                        if (user.id == id && user.passwd == password) {
-                            loginPossible = true
-                        }
-                    }
+                            for (user in userList) {
+                                if (user.id == id && user.passwd == password) {
+                                    loginPossible = true
+                                    userViewModel.user = user
+                                }
+                            }
 
-                    if (!loginPossible) {    //정보가 존재하지 않는 경우
-                        errorMessage = "회원님의 정보가 존재하지 않습니다."
-                    } else {
-                        navController.navigate(Routes.CafeteriaRestioSelScreen.route) {
-                            popUpTo(Routes.Start.route)
+                            if (!loginPossible) {    //정보가 존재하지 않는 경우
+                                errorMessage = "회원님의 정보가 존재하지 않습니다."
+                            } else {
+                                navController.navigate(Routes.CafeteriaRestioSelScreen.route){
+                                    popUpTo(Routes.Start.route)
+                                }
+                            }
                         }
-                    }
+                    },
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color(0xFF65A25B), // 배경색
+                        contentColor = Color.White // 텍스트 색상
+                    ),
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text(
+                        "로그인",
+                        fontSize = 16.sp,
+                        fontFamily = FontFamily(Font(R.font.pretendard_semibold))
+                    )
                 }
-            },
-            colors = ButtonDefaults.buttonColors(
-                containerColor = Color(0xFF65A25B), // 배경색
-                contentColor = Color.White // 텍스트 색상
-            ),
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            Text(
-                "로그인",
-                fontSize = 16.sp,
-                fontFamily = FontFamily(Font(R.font.pretendard_semibold))
-            )
+            }
         }
     }
 }

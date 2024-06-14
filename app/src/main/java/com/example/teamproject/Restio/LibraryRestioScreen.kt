@@ -76,7 +76,7 @@ fun LibraryRestioScreen(title: String, navController: NavHostController, viewMod
                 .fillMaxSize()
         ) {
             TopAppBar(
-                onBackIconClick = { navController.navigate(Routes.RestioStart.route) },
+                onBackIconClick = { navController.popBackStack() },
                 title = title,
                 titleColor = Color.Black,
                 onRightIconClick = { navController.navigate("cart_screen/상허기념도서관 레스티오") },

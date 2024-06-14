@@ -1,6 +1,8 @@
 package com.example.teamproject.ViewModel
 
 import android.media.CamcorderProfile.getAll
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
@@ -21,6 +23,8 @@ class UserViewModelFactory(private val repository: Repository): ViewModelProvide
 class UserViewModel (private val repository : Repository) : ViewModel(){
 
     private var _userList = MutableStateFlow<List<User>>(emptyList())
+
+    var user =User("", "", "", "", "", "", "")
 
     val userList = _userList.asStateFlow()
 
@@ -61,6 +65,7 @@ class UserViewModel (private val repository : Repository) : ViewModel(){
             }
         }
     }
+
     private fun getAll() {
         viewModelScope.launch {
             repository.getAll().collect {

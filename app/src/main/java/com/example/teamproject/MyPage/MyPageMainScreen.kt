@@ -23,13 +23,21 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import com.example.teamproject.Item.User
 import com.example.teamproject.R
 import com.example.teamproject.Screen.TopAppBar
+import com.example.teamproject.ViewModel.LocalNavGraphViewModelStoreOwner
+import com.example.teamproject.ViewModel.UserViewModel
 import com.example.teamproject.navigation.Routes
+import okhttp3.Route
 
 @Composable
-fun MyPageMainScreen(navController: NavHostController) {
+fun MyPageMainScreen(
+    navController: NavHostController,
+    userViewModel: UserViewModel = viewModel(viewModelStoreOwner = LocalNavGraphViewModelStoreOwner.current)
+    ) {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -88,7 +96,11 @@ fun MyPageMainScreen(navController: NavHostController) {
                     .width(350.dp),
                 horizontalArrangement = Arrangement.End
             ) {
-                Text(text = "로그아웃", Modifier.clickable {  }, color = Color.Gray)
+                Text(text = "로그아웃",
+                    Modifier.clickable {
+                        userViewModel.user = User("","","","","","","")
+                        navController.navigate(Routes.Start.route)
+                }, color = Color.Gray)
             }
         }
     }

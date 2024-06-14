@@ -14,14 +14,19 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.example.teamproject.R
 import com.example.teamproject.Screen.TopAppBar
+import com.example.teamproject.ViewModel.LocalNavGraphViewModelStoreOwner
+import com.example.teamproject.ViewModel.UserViewModel
 import com.example.teamproject.navigation.Routes
 
 
 @Composable
-fun MyPageShowScreen(navController: NavHostController) {
+fun MyPageShowScreen(
+    navController: NavHostController,
+    userViewModel: UserViewModel = viewModel(viewModelStoreOwner = LocalNavGraphViewModelStoreOwner.current)) {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -57,11 +62,11 @@ fun MyPageShowScreen(navController: NavHostController) {
                         .clip(CircleShape)
                 )
                 Spacer(modifier = Modifier.height(60.dp))
-                UserInfoRow(label = "아이디", value = "None") /* todo: 개인정보 연결 */
-                UserInfoRow(label = "이름", value = "None")
-                UserInfoRow(label = "학번/학과", value = "None")
-                UserInfoRow(label = "이메일", value = "None")
-                UserInfoRow(label = "휴대폰 번호", value = "None")
+                UserInfoRow(label = "아이디", value = userViewModel.user.id) /* todo: 개인정보 연결 */
+                UserInfoRow(label = "이름", value = userViewModel.user.name)
+                UserInfoRow(label = "학번/학과", value = userViewModel.user.studentId + " / " + userViewModel.user.department)
+                UserInfoRow(label = "이메일", value = userViewModel.user.emailAddress)
+                UserInfoRow(label = "휴대폰 번호", value = userViewModel.user.phoneNum)
             }
         }
     }

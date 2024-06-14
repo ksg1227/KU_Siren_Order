@@ -233,7 +233,7 @@ fun Library_GusiaOrderScreen( //사이드 있는 경우
                 ) {
                     Button(
                         onClick = {
-                            navController.navigate(Routes.LibraryGusia.route)
+                            navController.popBackStack()
 
                             libraryViewModel.decreaseQuantity(category, index, quantity)
 
@@ -430,7 +430,7 @@ fun Library_GusiaNoSideOrderScreen(      //side나 size 없는 경우
                 ) {
                     Button(
                         onClick = {
-                            navController.navigate(Routes.LibraryGusia.route)
+                            navController.popBackStack()
 
                             libraryViewModel.decreaseQuantity(category, index, quantity)
 
@@ -704,7 +704,7 @@ fun StudentUnion_GusiaOrderScreen(   //사이드 메뉴 존재하는 경우
                 ) {
                     Button(
                         onClick = {
-                            navController.navigate(Routes.StudentUnionGusia.route)
+                            navController.popBackStack()
 
                             studentUnionViewModel.decreaseQuantity(category, index, quantity)
 
@@ -900,7 +900,7 @@ fun StudentUnion_GusiaNoSideOrderScreen(    //side나 size 없는 경우
                 ) {
                     Button(
                         onClick = {
-                            navController.navigate(Routes.StudentUnionGusia.route)
+                            navController.popBackStack()
 
                             studentUnionViewModel.decreaseQuantity(category, index, quantity)
 
@@ -1096,7 +1096,7 @@ fun StudentUnion_FirstfloorOrderScreen(   //1층 학식 주문 화면
                 ) {
                     Button(
                         onClick = {
-                            navController.navigate(Routes.StudentUnionFirstfloor.route)
+                            navController.popBackStack()
 
                             studentUnionViewModel.decreaseQuantity(category, index, quantity)
 

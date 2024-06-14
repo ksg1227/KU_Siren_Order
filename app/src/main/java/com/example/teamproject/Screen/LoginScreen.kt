@@ -226,7 +226,9 @@ fun LoginScreen(navController: NavHostController, userViewModel: UserViewModel) 
                             if (!loginPossible) {    //정보가 존재하지 않는 경우
                                 errorMessage = "회원님의 정보가 존재하지 않습니다."
                             } else {
-                                navController.navigate(Routes.CafeteriaRestioSelScreen.route)
+                                navController.navigate(Routes.CafeteriaRestioSelScreen.route){
+                                    popUpTo(Routes.Start.route)
+                                }
                             }
                         }
                     },

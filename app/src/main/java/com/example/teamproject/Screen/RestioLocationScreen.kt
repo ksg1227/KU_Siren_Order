@@ -35,7 +35,7 @@ fun RestioTabPager(pagerState: PagerState, tabs: List<String>, navController: Na
     Column {
         // 상단바
         TopAppBar(
-            onBackIconClick = { navController.navigate(Routes.CafeteriaRestioSelScreen.route) },
+            onBackIconClick = { navController.popBackStack() },
             title = "레스티오",
             titleColor = Color.Black,
             onRightIconClick = { navController.navigate(Routes.MyPageMainScreen.route) }, // 추후 마이페이지로 이동 가능하도록 구현
@@ -86,8 +86,8 @@ fun RestioTabPager(pagerState: PagerState, tabs: List<String>, navController: Na
             ) {
                 // 페이지별 컨텐츠
                 when (page) {
-                    0 -> MapScreen(navController = navController, location)
-                    1 -> ListScreen(navController = navController, location)
+                    1 -> MapScreen(navController = navController, location)
+                    0 -> ListScreen(navController = navController, location)
 
                 }
             }
@@ -138,7 +138,7 @@ fun Restio_Location_init(): List<LocationItem> {
 
 @Composable
 fun RestioLocationScreen(navController: NavHostController) {
-    val tabs = listOf("지도로 보기", "리스트로 보기")
+    val tabs = listOf("리스트로 보기","지도로 보기")
     val pagerState = rememberPagerState {
         tabs.size
     }

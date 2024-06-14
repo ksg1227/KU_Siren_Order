@@ -239,19 +239,19 @@ fun RestioPayScreen(
                             optionList = selectedOptionList
                         )
                         when (place) {
-                            "공학관 레스티오" -> {
+                            "레스티오 공학관" -> {
                                 viewModel.engineeringRestioMenuList.add(cartItem)
                             }
 
-                            "동물생명과학관 레스티오" -> {
+                            "레스티오 동물생명과학관" -> {
                                 viewModel.animalLifeRestioMenuList.add(cartItem)
                             }
 
-                            "상허기념도서관 레스티오" -> {
+                            "레스티오 상허기념도서관" -> {
                                 viewModel.libraryRestioMenuList.add(cartItem)
                             }
 
-                            "산학협동관 레스티오" -> {
+                            "레스티오 산학협동관" -> {
                                 viewModel.industryRestioMenuList.add(cartItem)
                             }
 

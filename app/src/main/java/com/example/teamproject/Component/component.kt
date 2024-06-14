@@ -126,17 +126,17 @@ fun KioskMenuItem(
                     text = menuName,
                     style = MaterialTheme.typography.titleMedium.copy(
                         fontWeight = FontWeight.Bold,
-                        fontSize = 11.sp
+                        fontSize = 13.sp
                     ),
                     modifier = Modifier.padding(horizontal = 8.dp),
-                    maxLines = 2,
+                    maxLines = 1,
                     overflow = TextOverflow.Ellipsis
                 )
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
                     text = menuPrice,
                     style = MaterialTheme.typography.titleSmall.copy(
-                        fontSize = 11.sp
+                        fontSize = 13.sp
                     ),
                     modifier = Modifier.padding(horizontal = 8.dp)
                 )
@@ -146,7 +146,7 @@ fun KioskMenuItem(
                         text = "잔여 수량: $quantity",
                         style = MaterialTheme.typography.titleMedium.copy(
                             fontWeight = FontWeight.Bold,
-                            fontSize = 11.sp
+                            fontSize = 13.sp
                         ),
                         modifier = Modifier.padding(horizontal = 8.dp)
                     )

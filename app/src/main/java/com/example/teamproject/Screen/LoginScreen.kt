@@ -37,6 +37,7 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
@@ -197,11 +198,13 @@ fun LoginScreen(navController: NavHostController, userViewModel: UserViewModel) 
                     Spacer(modifier = Modifier.height(20.dp))
                     Text(
                         text = errorMessage, color = MaterialTheme.colorScheme.error,
-                        fontFamily = FontFamily(Font(R.font.pretendard_semibold))
+                        fontFamily = FontFamily(Font(R.font.pretendard_semibold)),
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier.fillMaxWidth()
                     )
                 }
 
-                Spacer(modifier = Modifier.height(5.dp))
+                Spacer(modifier = Modifier.height(50.dp))
 
                 Button(
                     onClick = {

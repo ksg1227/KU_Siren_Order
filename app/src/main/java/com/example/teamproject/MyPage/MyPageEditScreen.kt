@@ -16,13 +16,20 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import com.example.teamproject.Item.User
 import com.example.teamproject.R
+import com.example.teamproject.ViewModel.LocalNavGraphViewModelStoreOwner
+import com.example.teamproject.ViewModel.UserViewModel
 import com.example.teamproject.navigation.Routes
 
 
 @Composable
-fun MyPageEditScreen(navController: NavHostController) {
+fun MyPageEditScreen(
+    navController: NavHostController,
+    userViewModel: UserViewModel = viewModel(viewModelStoreOwner = LocalNavGraphViewModelStoreOwner.current)
+    ) {
     val currentPassword = remember { mutableStateOf("") }
     val newPassword = remember { mutableStateOf("") }
     val confirmPassword = remember { mutableStateOf("") }
@@ -68,6 +75,7 @@ fun MyPageEditScreen(navController: NavHostController) {
                 onValueChange = { currentPassword.value = it },
                 isPassword = true
             )
+
             UserInfoEditField(
                 label = "새 비밀번호",
                 text = "새 비밀번호를 입력하세요.",
@@ -82,23 +90,23 @@ fun MyPageEditScreen(navController: NavHostController) {
                 onValueChange = { confirmPassword.value = it },
                 isPassword = true
             )
+
             UserInfoEditField(label = "이름",
-                text = "기존 정보",
+                text = userViewModel.user.name,
                 value = name.value,
                 onValueChange = { name.value = it })
             UserInfoEditField(label = "학과",
-                text = "기존 정보",
+                text = userViewModel.user.department,
                 value = department.value,
                 onValueChange = { department.value = it })
             UserInfoEditField(label = "이메일",
-                text = "기존 정보",
+                text = userViewModel.user.emailAddress,
                 value = email.value,
                 onValueChange = { email.value = it })
             UserInfoEditField(label = "전화번호",
-                text = "기존 정보",
+                text = userViewModel.user.phoneNum,
                 value = phoneNumber.value,
                 onValueChange = { phoneNumber.value = it })
-
             Spacer(modifier = Modifier.weight(1f))
             Row(
                 modifier = Modifier
@@ -110,7 +118,12 @@ fun MyPageEditScreen(navController: NavHostController) {
                     Text(text = "취소", color = Color.Gray)
                 }
                 Spacer(modifier = Modifier.width(16.dp))
-                Button(onClick = { /* 저장 버튼 클릭 처리 */ }) {
+                Button(onClick = {
+                    val user = User(userViewModel.user.id, newPassword.value,name.value,phoneNumber.value,email.value, userViewModel.user.studentId, department.value)
+                    userViewModel.UpdateUser(user)
+                    userViewModel.user = user
+                    navController.navigate(Routes.MyPageMainScreen.route)
+                }) {
                     Text(text = "저장")
                 }
             }

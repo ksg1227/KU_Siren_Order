@@ -216,6 +216,7 @@ fun LoginScreen(navController: NavHostController, userViewModel: UserViewModel) 
                             for (user in userList) {
                                 if (user.id == id && user.passwd == password) {
                                     loginPossible = true
+                                    userViewModel.user = user
                                 }
                             }
 

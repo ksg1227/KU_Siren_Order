@@ -32,6 +32,7 @@ fun StartScreen(navController: NavHostController) {
     Column(verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier.fillMaxSize()) {
+
         Image(
             painter = painterResource(id = R.drawable.konkuk),
             contentDescription = "건국대로고",

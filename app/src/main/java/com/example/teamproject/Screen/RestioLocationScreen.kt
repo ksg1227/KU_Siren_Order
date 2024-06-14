@@ -35,7 +35,7 @@ fun RestioTabPager(pagerState: PagerState, tabs: List<String>, navController: Na
     Column {
         // 상단바
         TopAppBar(
-            onBackIconClick = { navController.navigate(Routes.Start.route) },
+            onBackIconClick = { navController.navigate(Routes.CafeteriaRestioSelScreen.route) },
             title = "레스티오",
             titleColor = Color.Black,
             onRightIconClick = { navController.navigate(Routes.MyPageMainScreen.route) }, // 추후 마이페이지로 이동 가능하도록 구현

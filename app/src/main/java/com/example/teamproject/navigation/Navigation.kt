@@ -179,8 +179,6 @@ fun NavGraph(
                         cartViewModel = cartViewModel,
                         onCheckout = {
                             // 결제 로직
-                            libraryViewModel.decreaseQuantity(category, index, quantity)
-
                             navController.navigate(Routes.Payment.route)
                         },
                         navController = navController
@@ -194,7 +192,6 @@ fun NavGraph(
                         cartViewModel = cartViewModel,
                         onCheckout = {
                             // 결제 로직
-//                            libraryViewModel.decreaseQuantity(category, index, quantity)
 
                             navController.navigate(Routes.Payment.route)
                         },
@@ -223,7 +220,6 @@ fun NavGraph(
                         cartViewModel = cartViewModel,
                         onCheckout = {
                             // 결제 로직
-//                            studentUnionViewModel.decreaseQuantity(category, index, quantity)
 
                             navController.navigate(Routes.Payment.route)
                         },
@@ -239,7 +235,6 @@ fun NavGraph(
                             cartViewModel = cartViewModel,
                             onCheckout = {
                                 // 결제 로직
-//                                studentUnionViewModel.decreaseQuantity(category, index, quantity)
 
                                 navController.navigate(Routes.Payment.route)
                             },
@@ -254,7 +249,6 @@ fun NavGraph(
                             cartViewModel = cartViewModel,
                             onCheckout = {
                                 // 결제 로직
-//                                studentUnionViewModel.decreaseQuantity(category, index, quantity)
 
                                 navController.navigate(Routes.Payment.route)
                             },

@@ -39,7 +39,7 @@ fun RestaurantTabPager(
     Column {
         // 상단바
         TopAppBar(
-            onBackIconClick = { navController.navigate(Routes.Start.route) },
+            onBackIconClick = { navController.navigate(Routes.CafeteriaRestioSelScreen.route) },
             title = "학식",
             titleColor = colorResource(R.color.gold_cf982e),
             onRightIconClick = { navController.navigate(Routes.MyPageMainScreen.route) }, // 추후 마이페이지로 이동 가능하도록 구현

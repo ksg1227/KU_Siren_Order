@@ -62,34 +62,34 @@ class EngineeringRestioMenuViewModel : ViewModel() {
 
     // 레스치노/스무디/과일주스
     val productsZ = mutableStateListOf(
-        MenuItem(R.drawable.konkuk, "딸기", "3,400원", 999, "레스치노|스무디|과일주스", 0),
-        MenuItem(R.drawable.konkuk, "블루베리", "3,400원", 999, "레스치노|스무디|과일주스", 1),
-        MenuItem(R.drawable.konkuk, "망고", "3,400원", 999, "레스치노|스무디|과일주스", 2),
-        MenuItem(R.drawable.konkuk, "플레인요거트", "3,600원", 999, "레스치노|스무디|과일주스", 3),
-        MenuItem(R.drawable.konkuk, "딸기요거트", "3,600원", 999, "레스치노|스무디|과일주스", 4),
-        MenuItem(R.drawable.konkuk, "블루베리요거트", "3,600원", 999, "레스치노|스무디|과일주스", 5),
-        MenuItem(R.drawable.konkuk, "레몬요거트", "3,600원", 999, "레스치노|스무디|과일주스", 6)
+        MenuItem(R.drawable.img_smoothie_strawberry, "딸기", "3,400원", 999, "레스치노|스무디|과일주스", 0),
+        MenuItem(R.drawable.img_smoothie_bluberry_yogurt, "블루베리", "3,400원", 999, "레스치노|스무디|과일주스", 1),
+        MenuItem(R.drawable.img_smoothie_mango, "망고", "3,400원", 999, "레스치노|스무디|과일주스", 2),
+        MenuItem(R.drawable.img_smoothie_plainyogurt, "플레인요거트", "3,600원", 999, "레스치노|스무디|과일주스", 3),
+        MenuItem(R.drawable.img_smoothie_strawberry_yogurt, "딸기요거트", "3,600원", 999, "레스치노|스무디|과일주스", 4),
+        MenuItem(R.drawable.img_smoothie_blueberry_yogurt, "블루베리요거트", "3,600원", 999, "레스치노|스무디|과일주스", 5),
+        MenuItem(R.drawable.img_smoothie_lemon_yogurt, "레몬요거트", "3,600원", 999, "레스치노|스무디|과일주스", 6)
     )
 
     // 샌드위치/핫도그
     val productsSandHot = mutableStateListOf(
-        MenuItem(R.drawable.konkuk, "레스티오치아바타", "3,100원", 999, "샌드위치|핫도그", 0),
-        MenuItem(R.drawable.konkuk, "카야샌드위치", "2,200원", 999, "샌드위치|핫도그", 1),
-        MenuItem(R.drawable.konkuk, "햄치즈샌드위치", "2,600원", 999, "샌드위치|핫도그", 2),
-        MenuItem(R.drawable.konkuk, "오리지날핫도그", "3,200원", 999, "샌드위치|핫도그", 3),
-        MenuItem(R.drawable.konkuk, "칠리핫도그", "3,200원", 999, "샌드위치|핫도그", 4)
+        MenuItem(R.drawable.img_sandwitch_chiabata, "레스티오치아바타", "3,100원", 999, "샌드위치|핫도그", 0),
+        MenuItem(R.drawable.img_sandwitch_kaya, "카야샌드위치", "2,200원", 999, "샌드위치|핫도그", 1),
+        MenuItem(R.drawable.img_sandwitch_hamchees, "햄치즈샌드위치", "2,600원", 999, "샌드위치|핫도그", 2),
+        MenuItem(R.drawable.img_hotdog_original, "오리지날핫도그", "3,200원", 999, "샌드위치|핫도그", 3),
+        MenuItem(R.drawable.img_hotdog_chili, "칠리핫도그", "3,200원", 999, "샌드위치|핫도그", 4)
     )
 
 
     // 베이커리
     val bakery = mutableStateListOf(
-        MenuItem(R.drawable.konkuk, "브라우니쿠키", "3,200원", 999, "베이커리", 0),
-        MenuItem(R.drawable.konkuk, "체커쿠키", "3,200원", 999, "베이커리", 1),
-        MenuItem(R.drawable.konkuk, "초코칩쿠키", "3,200원", 999, "베이커리", 2),
-        MenuItem(R.drawable.konkuk, "초코칩머핀", "2,200원", 999, "베이커리", 3),
-        MenuItem(R.drawable.konkuk, "치즈머핀", "2,200원", 999, "베이커리", 4),
-        MenuItem(R.drawable.konkuk, "블루베리머핀", "2,200원", 999, "베이커리", 5),
-        MenuItem(R.drawable.konkuk, "플레인와플", "2,200원", 999, "베이커리", 6)
+        MenuItem(R.drawable.img_cookie_brownie, "브라우니쿠키", "3,200원", 999, "베이커리", 0),
+        MenuItem(R.drawable.img_cookie_checker, "체커쿠키", "3,200원", 999, "베이커리", 1),
+        MenuItem(R.drawable.img_cookie_choco, "초코칩쿠키", "3,200원", 999, "베이커리", 2),
+        MenuItem(R.drawable.img_muffine_choco, "초코칩머핀", "2,200원", 999, "베이커리", 3),
+        MenuItem(R.drawable.img_muffine_cheese, "치즈머핀", "2,200원", 999, "베이커리", 4),
+        MenuItem(R.drawable.img_muffine_bluberry, "블루베리머핀", "2,200원", 999, "베이커리", 5),
+        MenuItem(R.drawable.img_waffle_plain, "플레인와플", "2,200원", 999, "베이커리", 6)
     )
 
     val productsMap = mutableStateMapOf(
@@ -101,5 +101,4 @@ class EngineeringRestioMenuViewModel : ViewModel() {
         "베이커리" to bakery,
         "샌드위치|핫도그" to productsSandHot
     )
-
 }

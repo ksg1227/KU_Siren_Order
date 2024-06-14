@@ -79,7 +79,7 @@ fun AnimalLifeRestioScreen(title: String, navController: NavHostController, view
                 .fillMaxSize()
         ) {
             TopAppBar(
-                onBackIconClick = { navController.navigate(Routes.RestioStart.route) },
+                onBackIconClick = { navController.popBackStack() },
                 title = title,
                 titleColor = Color.Black,
                 onRightIconClick = { navController.navigate("cart_screen/동물생명과학관 레스티오") },

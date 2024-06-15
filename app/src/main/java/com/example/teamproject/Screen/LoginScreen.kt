@@ -41,6 +41,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import com.example.teamproject.Component.BtnRectangle
 import com.example.teamproject.R
 import com.example.teamproject.ViewModel.UserViewModel
 import com.example.teamproject.navigation.Routes
@@ -80,8 +81,9 @@ fun LoginScreen(navController: NavHostController, userViewModel: UserViewModel) 
             )
             Column(
                 modifier = Modifier
-                    .fillMaxSize()
-                    .padding(horizontal = 16.dp)
+                    .weight(1f)
+                    .padding(horizontal = 16.dp),
+                verticalArrangement = Arrangement.Center
             ) {
 //                Spacer(modifier = Modifier.padding(bottom = 150.dp))
 
@@ -95,7 +97,6 @@ fun LoginScreen(navController: NavHostController, userViewModel: UserViewModel) 
                         painter = painterResource(id = R.drawable.konkuk),
                         contentDescription = "건국대로고",
                         modifier = Modifier
-                            .padding(bottom = 60.dp)
                             .size(100.dp)
                     )
                 }
@@ -206,43 +207,34 @@ fun LoginScreen(navController: NavHostController, userViewModel: UserViewModel) 
 
                 Spacer(modifier = Modifier.height(50.dp))
 
-                Button(
-                    onClick = {
-                        if (id.isEmpty() || password.isEmpty()) {
-                            errorMessage = "아이디와 패스워드를 모두 입력해주세요."
-                        } else {
-                            errorMessage = ""
+                BtnRectangle(
+                    text = "로그인",
+                    textColorId = R.color.white,
+                    bgColorId = R.color.green_65a25b
+                ) {
+                    if (id.isEmpty() || password.isEmpty()) {
+                        errorMessage = "아이디와 패스워드를 모두 입력해주세요."
+                    } else {
+                        errorMessage = ""
 
-                            var loginPossible = false
+                        var loginPossible = false
 
 //                    userViewModel.getUsers(id, password);
-                            for (user in userList) {
-                                if (user.id == id && user.passwd == password) {
-                                    loginPossible = true
-                                    userViewModel.user = user
-                                }
-                            }
-
-                            if (!loginPossible) {    //정보가 존재하지 않는 경우
-                                errorMessage = "회원님의 정보가 존재하지 않습니다."
-                            } else {
-                                navController.navigate(Routes.CafeteriaRestioSelScreen.route){
-                                    popUpTo(Routes.Start.route)
-                                }
+                        for (user in userList) {
+                            if (user.id == id && user.passwd == password) {
+                                loginPossible = true
+                                userViewModel.user = user
                             }
                         }
-                    },
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = Color(0xFF65A25B), // 배경색
-                        contentColor = Color.White // 텍스트 색상
-                    ),
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    Text(
-                        "로그인",
-                        fontSize = 16.sp,
-                        fontFamily = FontFamily(Font(R.font.pretendard_semibold))
-                    )
+
+                        if (!loginPossible) {    //정보가 존재하지 않는 경우
+                            errorMessage = "회원님의 정보가 존재하지 않습니다."
+                        } else {
+                            navController.navigate(Routes.CafeteriaRestioSelScreen.route) {
+                                popUpTo(Routes.Start.route)
+                            }
+                        }
+                    }
                 }
             }
         }

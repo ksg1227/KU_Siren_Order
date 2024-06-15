@@ -20,6 +20,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import com.example.teamproject.Component.DrawDepartmentDropdown
 import com.example.teamproject.Item.User
 import com.example.teamproject.R
 import com.example.teamproject.ViewModel.UserViewModel
@@ -381,7 +382,7 @@ fun SignUpScreen(navController: NavHostController, userViewModel: UserViewModel)
                     label = {
                         Text(
                             "학번을 입력하세요.",
-                            fontSize = 13.sp,
+                            fontSize =13 .sp,
                             fontFamily = FontFamily(Font(R.font.pretendard_medium)),
                             color = Color(0xFFB3B3B3)
                         )
@@ -410,27 +411,30 @@ fun SignUpScreen(navController: NavHostController, userViewModel: UserViewModel)
                     fontSize = 13.sp,
                     fontFamily = FontFamily(Font(R.font.pretendard_semibold))
                 )
-                OutlinedTextField(
-                    value = department,
-                    onValueChange = {
-                        department = it
-                        showEmptyFieldsError = false
-                    },
-                    label = {
-                        Text(
-                            "학과를 입력하세요.",
-                            fontSize = 13.sp,
-                            fontFamily = FontFamily(Font(R.font.pretendard_medium)),
-                            color = Color(0xFFB3B3B3)
-                        )
-                    },
-                    modifier = Modifier.fillMaxWidth(),
-                    singleLine = true,
-                    colors = TextFieldDefaults.colors(
-                        focusedContainerColor = Color.Transparent,
-                        unfocusedContainerColor = Color.Transparent
-                    )
-                )
+                DrawDepartmentDropdown(department) { selectedDepartment ->
+                    department = selectedDepartment
+                }
+//                OutlinedTextField(
+//                    value = department,
+//                    onValueChange = {
+//                        department = it
+//                        showEmptyFieldsError = false
+//                    },
+//                    label = {
+//                        Text(
+//                            "학과를 입력하세요.",
+//                            fontSize = 13.sp,
+//                            fontFamily = FontFamily(Font(R.font.pretendard_medium)),
+//                            color = Color(0xFFB3B3B3)
+//                        )
+//                    },
+//                    modifier = Modifier.fillMaxWidth(),
+//                    singleLine = true,
+//                    colors = TextFieldDefaults.colors(
+//                        focusedContainerColor = Color.Transparent,
+//                        unfocusedContainerColor = Color.Transparent
+//                    )
+//                )
 
                 Spacer(modifier = Modifier.height(20.dp))
 

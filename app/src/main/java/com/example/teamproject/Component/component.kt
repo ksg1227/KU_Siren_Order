@@ -1,5 +1,6 @@
 package com.example.teamproject.Component
 
+import androidx.annotation.ColorRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -15,6 +16,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Divider
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
@@ -30,6 +32,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -99,9 +102,15 @@ fun KioskMenuItem(
                 }
             }
     ) {
+
+        val colorRes = if(place == null) R.color.gold_cf982e else R.color.green_65a25b
+
         Box(modifier = Modifier.graphicsLayer(alpha = alpha)) {
             Column(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(Color.White)
+                ,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Box(
@@ -121,7 +130,11 @@ fun KioskMenuItem(
                             .clip(RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp))
                     )
                 }
-                Spacer(modifier = Modifier.height(8.dp))
+                Divider(modifier = Modifier
+                    .padding(top = 3.dp)
+                    .height(2.dp),
+                    color = colorResource(id = colorRes))
+                Spacer(modifier = Modifier.height(6.dp))
                 Text(
                     text = menuName,
                     style = MaterialTheme.typography.titleMedium.copy(

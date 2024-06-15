@@ -76,7 +76,7 @@ fun EngineeringRestioScreen(title: String,navController: NavHostController, view
                 .fillMaxSize()
         ) {
             TopAppBar(
-                onBackIconClick = { navController.navigate(Routes.RestioStart.route) },
+                onBackIconClick = { navController.popBackStack() },
                 title = title,
                 titleColor = Color.Black,
                 onRightIconClick = { navController.navigate("cart_screen/공학관 레스티오") },

@@ -7,8 +7,10 @@ import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 import com.example.teamproject.Item.MenuItem
 import com.example.teamproject.R
 import com.example.teamproject.Restaurant.Library_GusiaScreen
@@ -105,8 +107,16 @@ fun NavGraph(
                 Library_GusiaScreen(navController)
             }
 
-            composable(Routes.Payment.route) {
-                PaymentScreen(navController, fragmentManager)
+            composable("routes_payment_route/{paymentStore}/{paymentPrice}",
+                arguments = listOf(
+                    navArgument("paymentStore") { type = NavType.StringType }, // paymentStore는 문자열 타입
+                    navArgument("paymentPrice") { type = NavType.FloatType }  // paymentPrice는 Float 타입
+                )
+            ) {
+                val paymentStore = it.arguments?.getString("paymentStore")!!
+                val paymentPrice = it.arguments?.getFloat("paymentPrice")!!
+
+                PaymentScreen(navController, fragmentManager, paymentStore, paymentPrice.toDouble())
             }
 
             composable(Routes.RestioStart.route) {
@@ -179,7 +189,7 @@ fun NavGraph(
                         cartViewModel = cartViewModel,
                         onCheckout = {
                             // 결제 로직
-                            navController.navigate(Routes.Payment.route)
+                            navController.navigate("routes_payment_route/상허기념도서관 지하 학식/$menuPrice")
                         },
                         navController = navController
                     )
@@ -192,8 +202,7 @@ fun NavGraph(
                         cartViewModel = cartViewModel,
                         onCheckout = {
                             // 결제 로직
-
-                            navController.navigate(Routes.Payment.route)
+                            navController.navigate("routes_payment_route/상허기념도서관 지하 학식/$menuPrice")
                         },
                         navController = navController
                     )
@@ -220,8 +229,7 @@ fun NavGraph(
                         cartViewModel = cartViewModel,
                         onCheckout = {
                             // 결제 로직
-
-                            navController.navigate(Routes.Payment.route)
+                            navController.navigate("routes_payment_route/학생회관 1층 학식/$menuPrice")
                         },
                         navController = navController
                     )
@@ -235,8 +243,7 @@ fun NavGraph(
                             cartViewModel = cartViewModel,
                             onCheckout = {
                                 // 결제 로직
-
-                                navController.navigate(Routes.Payment.route)
+                                navController.navigate("routes_payment_route/학생회관 지하 학식/$menuPrice")
                             },
                             navController = navController
                         )
@@ -249,8 +256,7 @@ fun NavGraph(
                             cartViewModel = cartViewModel,
                             onCheckout = {
                                 // 결제 로직
-
-                                navController.navigate(Routes.Payment.route)
+                                navController.navigate("routes_payment_route/학생회관 지하 학식/$menuPrice")
                             },
                             navController = navController
                         )

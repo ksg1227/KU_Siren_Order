@@ -1,7 +1,6 @@
 package com.example.teamproject.Screen
 
 import android.annotation.SuppressLint
-import android.location.Location
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
@@ -41,7 +40,7 @@ fun MapScreen(navController: NavHostController, location: List<LocationItem>) {
         mutableStateOf(false)
     }
     val customAlertDialogState: MutableState<CustomAlertDialogState> =
-        mutableStateOf<CustomAlertDialogState>(
+        mutableStateOf(
             CustomAlertDialogState()
         )
 
@@ -85,11 +84,11 @@ fun MapScreen(navController: NavHostController, location: List<LocationItem>) {
             CustomAlertDialog(
                 title = customAlertDialogState.value.title,
                 onClickToFloor = {
-                    showDialog = false;
+                    showDialog = false
                     navController.navigate(Routes.LibraryGusia.route)
                 },
                 onClickToBottom = {
-                    showDialog = false;
+                    showDialog = false
                     navController.navigate(Routes.LibraryGusia.route)
                 },
                 onClickCancel = { showDialog = false }
@@ -137,32 +136,12 @@ fun DrawMarker(
         markerLocation.add(Marking(it.latitiude, it.longtitude, it.route))
     }
 
-    markerLocation.forEach { it ->
+    markerLocation.forEach {
         SetMarker(it.latitude, it.longitude, navController, it.route, showCustomAlertDialog)
     }
 
 }
 
 
-// 두 위치 간의 거리를 계산
-fun calculateDistance(location1: LatLng, location2: LatLng): Float {
-    val results = FloatArray(1)
-    Location.distanceBetween(
-        location1.latitude, location1.longitude,
-        location2.latitude, location2.longitude,
-        results
-    )
-    return results[0]
-}
-
-
 data class Marking(val latitude: Double, val longitude: Double, val route: String)
 
-//private const val MAX_DISTANCE_THRESHOLD = 150f // 사용자 반경
-
-/*LatLng(37.5442615, 127.0760717), // 경영관 ->레스티오
-    LatLng(37.5419226, 127.0737408), // 상허기념도서관 -> 레스티오 , 구시아푸드
-    LatLng(37.5403664, 127.0743614), // 동물생명과학관 -> 레스티오
-    LatLng(37.5396663, 127.0732309), // 산학협동관-> 레스티오
-    LatLng(37.5418772, 127.0782087), // 학생회관 - >구시아 푸드 , 1층 학생식당
-    LatLng(37.541635, 127.0787904),  // 공학관 -> 레스티오*/

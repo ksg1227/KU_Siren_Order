@@ -5,7 +5,7 @@ data class User(
     val passwd:String,
     val name:String,
     val phoneNum:String,
-    val emailAddress:String,
+    var emailAddress:String,
     val studentId:String,
     val department:String)
 {

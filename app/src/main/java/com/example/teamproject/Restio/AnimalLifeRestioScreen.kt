@@ -56,12 +56,13 @@ import kotlinx.coroutines.launch
 fun AnimalLifeRestioScreen(title: String, navController: NavHostController, viewModel: AnimalLifeRestioMenuViewModel = viewModel()) {
     val categories = listOf(
         "커피 HOT",
-        "커피 ICE",
-        "티라떼|아이스티",
-        "에이드|티백",
-        "레스치노|스무디|과일주스",
-        "베이커리",
-        "샌드위치|핫도그"
+        "커피 ICE" ,
+        "라떼류",
+        "에이드|스무디",
+        "티",
+        "주스|병음료",
+        "오늘의 우유",
+        "샌드위치"
     )
 
     val pagerState = rememberPagerState()

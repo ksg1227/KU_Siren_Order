@@ -19,9 +19,11 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.TabRowDefaults
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ScrollableTabRow
 import androidx.compose.material3.Tab
+import androidx.compose.material3.TabRowDefaults.tabIndicatorOffset
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -32,6 +34,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -57,8 +60,9 @@ fun IndustryRestioScreen(title: String, navController: NavHostController, viewMo
         "티라떼|아이스티",
         "에이드|티백",
         "레스치노|스무디|과일주스",
-        "베이커리",
-        "샌드위치|핫도그"
+        "쿠키|머핀|와플",
+        "샌드위치|핫도그",
+        "베이글|크림치즈"
     )
 
     val pagerState = rememberPagerState()
@@ -89,7 +93,17 @@ fun IndustryRestioScreen(title: String, navController: NavHostController, viewMo
                 // 상단 탭
                 ScrollableTabRow(
                     selectedTabIndex = pagerState.currentPage,
-                    edgePadding = 0.dp
+                    containerColor = Color.White,
+                    contentColor = Color.Black,
+                    edgePadding = 0.dp,
+                    indicator = { tabPositions ->
+                        TabRowDefaults.Indicator(
+                            Modifier
+                                .tabIndicatorOffset(tabPositions[pagerState.currentPage])
+                                .height(4.dp),
+                            color = colorResource(id = R.color.green_066b3f)
+                        )
+                    }
                 ) {
                     categories.forEachIndexed { index, category ->
                         Tab(

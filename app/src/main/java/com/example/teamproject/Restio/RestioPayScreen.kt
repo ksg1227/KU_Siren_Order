@@ -91,8 +91,10 @@ fun RestioPayScreen(
         "에이드/티백" -> options4
         "레스치노/스무디/과일주스" -> options5
         "베이커리" -> options6
+        "쿠키|머핀|와플" -> options6
         "샌드위치/핫도그" -> options7
-        else -> options1
+        "베이글|크림치즈" -> options7
+        else -> options7
     }
 
     var optionCounts by remember { mutableStateOf(List(selectedOptions.size) { 0 }) }
@@ -265,7 +267,7 @@ fun RestioPayScreen(
                         Text(text = "담기")
                     }
                     Spacer(modifier = Modifier.width(8.dp))
-                    Button(onClick = { navController.navigate("routes_payment_route/$place/$totalPrice") }, modifier = Modifier.weight(1f)) {
+                    Button(onClick = { navController.navigate(Routes.Payment.route) }, modifier = Modifier.weight(1f)) {
                         Text(text = "결제하기")
                     }
                 }

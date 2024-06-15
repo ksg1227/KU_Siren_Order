@@ -36,7 +36,6 @@ fun BtnRectangle(
                 .clip(RoundedCornerShape(10.dp))
                 .clickable(onClick = onClick)
                 .background(colorResource(id = bgColorId))
-
         } else {
             Modifier
                 .width(width)

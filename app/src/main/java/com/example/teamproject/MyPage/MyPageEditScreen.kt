@@ -56,7 +56,8 @@ fun MyPageEditScreen(
     }
 
     fun isPasswordValid(password: String): Boolean {
-        val passwordRegex = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@\$!%*#?&])[A-Za-z\\d@\$!%*#?&]{8,}\$".toRegex()
+        val passwordRegex =
+            "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@\$!%*#?&])[A-Za-z\\d@\$!%*#?&]{8,}\$".toRegex()
         return passwordRegex.matches(password)
     }
 
@@ -181,16 +182,14 @@ fun MyPageEditScreen(
                 onValueChange = { phoneNumber.value = it }
             )
 
-            Text(
-                text = "학과 *",
-                fontSize = 13.sp,
-                fontFamily = FontFamily(Font(R.font.pretendard_semibold))
-            )
-            DrawDepartmentDropdown(
-                selectedDepartment = department.value,
-                onDepartmentSelected = { selectedDepartment ->
-                    department.value = selectedDepartment
-                }
+
+
+            UserInfoEditField(
+                label = "학과",
+                text = "",
+                value = department.value,
+                onValueChange = {selectedDepartment ->
+                        department.value = selectedDepartment}
             )
 
             Spacer(modifier = Modifier.weight(1f))
@@ -206,11 +205,12 @@ fun MyPageEditScreen(
                 }
                 Spacer(modifier = Modifier.width(16.dp))
                 Button(onClick = {
-                    val updatedPassword = if (currentPassword.value.isEmpty() || newPassword.value.isEmpty() || confirmPassword.value.isEmpty()) {
-                        initialPassword
-                    } else {
-                        newPassword.value
-                    }
+                    val updatedPassword =
+                        if (currentPassword.value.isEmpty() || newPassword.value.isEmpty() || confirmPassword.value.isEmpty()) {
+                            initialPassword
+                        } else {
+                            newPassword.value
+                        }
 
                     if (!currentPasswordError && !passwordMatchError && !newPasswordError) {
                         val user = User(
@@ -253,24 +253,43 @@ fun UserInfoEditField(
             fontSize = 13.sp,
             fontFamily = FontFamily(Font(R.font.pretendard_semibold))
         )
-        OutlinedTextField(
-            value = value,
-            onValueChange = onValueChange,
-            label = {
-                Text(
-                    text = text,
-                    fontSize = 13.sp,
-                    fontFamily = FontFamily(Font(R.font.pretendard_medium)),
-                    color = Color(0xFFB3B3B3)
-                )
-            },
-            modifier = Modifier.fillMaxWidth(),
-            singleLine = true,
-            visualTransformation = if (isPassword) PasswordVisualTransformation() else VisualTransformation.None,
-            colors = TextFieldDefaults.colors(
-                focusedContainerColor = Color.Transparent,
-                unfocusedContainerColor = Color.Transparent
+        if(label == "학과") {
+            DrawDepartmentDropdown(
+                selectedDepartment = value,
+                onDepartmentSelected = onValueChange
             )
-        )
+        } else {
+            OutlinedTextField(
+                value = value,
+                onValueChange = onValueChange,
+                label = {
+                    Text(
+                        text = text,
+                        fontSize = 13.sp,
+                        fontFamily = FontFamily(Font(R.font.pretendard_medium)),
+                        color = Color(0xFFB3B3B3)
+                    )
+                },
+                modifier = Modifier.fillMaxWidth(),
+                singleLine = true,
+                visualTransformation = if (isPassword) PasswordVisualTransformation() else VisualTransformation.None,
+                colors = TextFieldDefaults.colors(
+                    focusedContainerColor = Color.Transparent,
+                    unfocusedContainerColor = Color.Transparent
+                )
+            )
+        }
     }
 }
+
+//Text(
+//text = "학과",
+//fontSize = 13.sp,
+//fontFamily = FontFamily(Font(R.font.pretendard_semibold))
+//)
+//DrawDepartmentDropdown(
+//selectedDepartment = department.value,
+//onDepartmentSelected = { selectedDepartment ->
+//    department.value = selectedDepartment
+//}
+//)

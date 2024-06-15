@@ -20,6 +20,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import com.example.teamproject.Component.BtnRectangle
 import com.example.teamproject.Component.DrawDepartmentDropdown
 import com.example.teamproject.Item.User
 import com.example.teamproject.R
@@ -382,7 +383,7 @@ fun SignUpScreen(navController: NavHostController, userViewModel: UserViewModel)
                     label = {
                         Text(
                             "학번을 입력하세요.",
-                            fontSize =13 .sp,
+                            fontSize = 13.sp,
                             fontFamily = FontFamily(Font(R.font.pretendard_medium)),
                             color = Color(0xFFB3B3B3)
                         )
@@ -438,55 +439,6 @@ fun SignUpScreen(navController: NavHostController, userViewModel: UserViewModel)
 
                 Spacer(modifier = Modifier.height(20.dp))
 
-                Button(
-                    onClick = {
-                        if (id.isEmpty() || password.isEmpty() || confirmPassword.isEmpty() ||
-                            name.isEmpty() || phoneNumber.isEmpty() || emailUser.isEmpty() ||
-                            emailDomain.isEmpty() || studentId.isEmpty() || department.isEmpty()
-                        ) {
-                            errorText = "모든 필수 입력란을 작성해 주세요."
-                            showEmptyFieldsError = true
-                            return@Button
-                        }
-                        if (!isIdChecked) {
-                            errorText = "아이디 중복 확인을 해주세요."
-                            idShowError = true
-                            showEmptyFieldsError = true
-                            return@Button
-                        }
-                        if (passwordRegexShowError || passwordMatchShowError || idShowError ||
-                            phoneNumberShowError || studentIdShowError
-                        ) {
-                            errorText = "입력한 값들을 다시 확인해 주세요."
-                            showEmptyFieldsError = true
-                            return@Button
-                        }
-
-                        val user = User(
-                            id,
-                            password,
-                            name,
-                            phoneNumber,
-                            "$emailUser@$emailDomain",
-                            studentId,
-                            department
-                        )
-                        userViewModel.InsertUser(user)
-                        navController.navigate(Routes.Start.route)
-                    },
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = Color(0xFF65A25B), // 배경색
-                        contentColor = Color.White // 텍스트 색상
-                    ),
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    Text(
-                        text = "회원가입",
-                        fontSize = 16.sp,
-                        fontFamily = FontFamily(Font(R.font.pretendard_medium))
-                    )
-                }
-
                 if (showEmptyFieldsError) {
                     Text(
                         text = errorText,
@@ -499,13 +451,57 @@ fun SignUpScreen(navController: NavHostController, userViewModel: UserViewModel)
                         textAlign = TextAlign.Center
                     )
                 }
+
+                Spacer(modifier = Modifier.height(20.dp))
+
+                BtnRectangle(
+                    text = "회원가입",
+                    textColorId = R.color.white,
+                    bgColorId = R.color.green_65a25b
+                ) {
+                    if (id.isEmpty() || password.isEmpty() || confirmPassword.isEmpty() ||
+                        name.isEmpty() || phoneNumber.isEmpty() || emailUser.isEmpty() ||
+                        emailDomain.isEmpty() || studentId.isEmpty() || department.isEmpty()
+                    ) {
+                        errorText = "모든 필수 입력란을 작성해 주세요."
+                        showEmptyFieldsError = true
+                        return@BtnRectangle
+                    }
+                    if (!isIdChecked) {
+                        errorText = "아이디 중복 확인을 해주세요."
+                        idShowError = true
+                        showEmptyFieldsError = true
+                        return@BtnRectangle
+                    }
+                    if (passwordRegexShowError || passwordMatchShowError || idShowError ||
+                        phoneNumberShowError || studentIdShowError
+                    ) {
+                        errorText = "입력한 값들을 다시 확인해 주세요."
+                        showEmptyFieldsError = true
+                        return@BtnRectangle
+                    }
+
+                    val user = User(
+                        id,
+                        password,
+                        name,
+                        phoneNumber,
+                        "$emailUser@$emailDomain",
+                        studentId,
+                        department
+                    )
+                    userViewModel.InsertUser(user)
+                    navController.navigate(Routes.Start.route)
+                }
+                Spacer(modifier = Modifier.height(20.dp))
             }
         }
     }
 }
 
 fun isPasswordValid(password: String): Boolean {
-    val passwordRegex = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@\$!%*#?&])[A-Za-z\\d@\$!%*#?&]{8,}\$".toRegex()
+    val passwordRegex =
+        "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@\$!%*#?&])[A-Za-z\\d@\$!%*#?&]{8,}\$".toRegex()
 
     return passwordRegex.matches(password)
 }

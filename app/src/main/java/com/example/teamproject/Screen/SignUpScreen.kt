@@ -457,7 +457,8 @@ fun SignUpScreen(navController: NavHostController, userViewModel: UserViewModel)
                 BtnRectangle(
                     text = "회원가입",
                     textColorId = R.color.white,
-                    bgColorId = R.color.green_65a25b
+                    bgColorId = R.color.green_65a25b,
+                    width = null
                 ) {
                     if (id.isEmpty() || password.isEmpty() || confirmPassword.isEmpty() ||
                         name.isEmpty() || phoneNumber.isEmpty() || emailUser.isEmpty() ||

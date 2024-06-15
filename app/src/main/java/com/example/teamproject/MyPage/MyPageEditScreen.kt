@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import com.example.teamproject.Component.BtnRectangle
 import com.example.teamproject.Item.User
 import com.example.teamproject.R
 import com.example.teamproject.ViewModel.LocalNavGraphViewModelStoreOwner
@@ -29,7 +30,7 @@ import com.example.teamproject.navigation.Routes
 fun MyPageEditScreen(
     navController: NavHostController,
     userViewModel: UserViewModel = viewModel(viewModelStoreOwner = LocalNavGraphViewModelStoreOwner.current)
-    ) {
+) {
     val currentPassword = remember { mutableStateOf("") }
     val newPassword = remember { mutableStateOf("") }
     val confirmPassword = remember { mutableStateOf("") }
@@ -48,7 +49,7 @@ fun MyPageEditScreen(
             onBackIconClick = { navController.popBackStack() },
             title = "개인 정보 수정",
             titleColor = Color.Black,
-            onRightIconClick = {  },
+            onRightIconClick = { },
             rightIconImgId = null
         )
 
@@ -114,17 +115,33 @@ fun MyPageEditScreen(
                     .padding(vertical = 16.dp),
                 horizontalArrangement = Arrangement.End
             ) {
-                TextButton(onClick = { /* 취소 버튼 클릭 처리 */ }) {
-                    Text(text = "취소", color = Color.Gray)
+                BtnRectangle(
+                    text = "취소",
+                    textColorId = R.color.black,
+                    bgColorId = R.color.gray_e6e6e6,
+                    width = 70.dp
+                ) {
+                    /* 취소 버튼 클릭 처리 */
                 }
                 Spacer(modifier = Modifier.width(16.dp))
-                Button(onClick = {
-                    val user = User(userViewModel.user.id, newPassword.value,name.value,phoneNumber.value,email.value, userViewModel.user.studentId, department.value)
+                BtnRectangle(
+                    text = "저장",
+                    textColorId = R.color.white,
+                    bgColorId = R.color.green_65a25b,
+                    width = 70.dp
+                ) {
+                    val user = User(
+                        userViewModel.user.id,
+                        newPassword.value,
+                        name.value,
+                        phoneNumber.value,
+                        email.value,
+                        userViewModel.user.studentId,
+                        department.value
+                    )
                     userViewModel.UpdateUser(user)
                     userViewModel.user = user
                     navController.navigate(Routes.MyPageMainScreen.route)
-                }) {
-                    Text(text = "저장")
                 }
             }
         }

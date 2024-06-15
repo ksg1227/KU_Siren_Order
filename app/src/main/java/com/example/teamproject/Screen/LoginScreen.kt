@@ -210,7 +210,8 @@ fun LoginScreen(navController: NavHostController, userViewModel: UserViewModel) 
                 BtnRectangle(
                     text = "로그인",
                     textColorId = R.color.white,
-                    bgColorId = R.color.green_65a25b
+                    bgColorId = R.color.green_65a25b,
+                    width = null
                 ) {
                     if (id.isEmpty() || password.isEmpty()) {
                         errorMessage = "아이디와 패스워드를 모두 입력해주세요."

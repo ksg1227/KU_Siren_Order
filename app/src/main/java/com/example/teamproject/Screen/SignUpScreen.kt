@@ -438,6 +438,21 @@ fun SignUpScreen(navController: NavHostController, userViewModel: UserViewModel)
 
                 Spacer(modifier = Modifier.height(20.dp))
 
+                if (showEmptyFieldsError) {
+                    Text(
+                        text = errorText,
+                        fontWeight = FontWeight.Bold,
+                        color = MaterialTheme.colorScheme.error,
+                        fontFamily = FontFamily(Font(R.font.pretendard_semibold)),
+                        modifier = Modifier
+                            .padding(start = 16.dp, top = 8.dp)
+                            .fillMaxWidth(),
+                        textAlign = TextAlign.Center
+                    )
+                }
+
+                Spacer(modifier = Modifier.height(20.dp))
+
                 Button(
                     onClick = {
                         if (id.isEmpty() || password.isEmpty() || confirmPassword.isEmpty() ||
@@ -484,19 +499,6 @@ fun SignUpScreen(navController: NavHostController, userViewModel: UserViewModel)
                         text = "회원가입",
                         fontSize = 16.sp,
                         fontFamily = FontFamily(Font(R.font.pretendard_medium))
-                    )
-                }
-
-                if (showEmptyFieldsError) {
-                    Text(
-                        text = errorText,
-                        fontWeight = FontWeight.Bold,
-                        color = MaterialTheme.colorScheme.error,
-                        fontFamily = FontFamily(Font(R.font.pretendard_semibold)),
-                        modifier = Modifier
-                            .padding(start = 16.dp, top = 8.dp)
-                            .fillMaxWidth(),
-                        textAlign = TextAlign.Center
                     )
                 }
             }

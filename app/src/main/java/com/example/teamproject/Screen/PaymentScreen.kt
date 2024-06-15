@@ -50,7 +50,8 @@ import kr.co.bootpay.android.models.Payload
 fun PaymentScreen(
     navController: NavHostController,
     fragmentManager: FragmentManager,
-    // 추후 '결제 지점', '결제 금액'도 인자로 넣어서 이전 화면에서 받아와야 함
+    payStoreName: String, // 결제 지점
+    payPrice: Double, // 결제 금액
 ) {
     val context = LocalContext.current
 
@@ -58,8 +59,8 @@ fun PaymentScreen(
         PaymentTest(
             fragmentManager = fragmentManager,
             context = context,
-            payStoreName = "결제 지점명",
-            payPrice = 100.0
+            payStoreName = payStoreName,
+            payPrice = payPrice
         )
     }
     Column(

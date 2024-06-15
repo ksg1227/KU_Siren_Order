@@ -165,7 +165,7 @@ fun CartScreen(
             if(totalPrice==0){
                 Toast.makeText(context, "장바구니에 메뉴를 먼저 담아주세요!", Toast.LENGTH_SHORT).show()
             }else{
-                navController.navigate(Routes.Payment.route) // 결제화면으로 이동
+                navController.navigate("routes_payment_route/$placeName/$totalPrice")
             }
 
         }, totalPrice = totalPrice) // '주문하기' btn

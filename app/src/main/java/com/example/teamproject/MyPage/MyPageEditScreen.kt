@@ -196,7 +196,9 @@ fun MyPageEditScreen(
                     .padding(vertical = 16.dp),
                 horizontalArrangement = Arrangement.End
             ) {
-                TextButton(onClick = { /* 취소 버튼 클릭 처리 */ }) {
+                TextButton(onClick = {
+                    navController.popBackStack()
+                }) {
                     Text(text = "취소", color = Color.Gray)
                 }
                 Spacer(modifier = Modifier.width(16.dp))

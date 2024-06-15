@@ -81,7 +81,8 @@ fun DrawDepartmentDropdown(
             Text(
                 text = if (selectedDepartment.isEmpty()) "전공학과 선택" else selectedDepartment,
                 fontSize = 13.sp,
-                fontFamily = FontFamily(Font(R.font.pretendard_medium))
+                fontFamily = FontFamily(Font(R.font.pretendard_medium)),
+                color = if(selectedDepartment.isEmpty()) Color(0xFFB3B3B3) else Color.Black
             )
             Spacer(modifier = Modifier.weight(1f))
             Icon(
@@ -101,7 +102,8 @@ fun DrawDepartmentDropdown(
                         expanded = false
                     }
                 ) {
-                    Text(text = department)
+                    Text(text = department,
+                        color = Color.Black)
                 }
             }
         }

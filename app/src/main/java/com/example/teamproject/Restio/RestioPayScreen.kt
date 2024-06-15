@@ -267,7 +267,7 @@ fun RestioPayScreen(
                         Text(text = "담기")
                     }
                     Spacer(modifier = Modifier.width(8.dp))
-                    Button(onClick = { navController.navigate(Routes.Payment.route) }, modifier = Modifier.weight(1f)) {
+                    Button(onClick = { navController.navigate("routes_payment_route/$place/$totalPrice") }) {
                         Text(text = "결제하기")
                     }
                 }

@@ -186,6 +186,7 @@ fun MyPageEditScreen(
                 fontSize = 13.sp,
                 fontFamily = FontFamily(Font(R.font.pretendard_semibold))
             )
+
             DrawDepartmentDropdown(
                 selectedDepartment = department.value,
                 onDepartmentSelected = { selectedDepartment ->
@@ -193,7 +194,7 @@ fun MyPageEditScreen(
                 }
             )
 
-            Spacer(modifier = Modifier.weight(1f))
+//            Spacer(modifier = Modifier.weight(1f))
 
             Row(
                 modifier = Modifier

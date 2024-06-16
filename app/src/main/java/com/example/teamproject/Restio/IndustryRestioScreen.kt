@@ -36,6 +36,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -113,7 +115,9 @@ fun IndustryRestioScreen(title: String, navController: NavHostController, viewMo
                                     pagerState.animateScrollToPage(index)
                                 }
                             },
-                            text = { Text(text = category) }
+                            text = { Text(text = category,
+                                fontFamily = FontFamily(Font(R.font.pretendard_semibold))
+                            ) }
                         )
                     }
                 }

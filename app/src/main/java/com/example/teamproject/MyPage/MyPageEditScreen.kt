@@ -203,6 +203,7 @@ fun MyPageEditScreen(
                     bgColorId = R.color.gray_e6e6e6,
                     width = 70.dp
                 ) {
+                    navController.popBackStack()
                     /* 취소 버튼 클릭 처리 */
                 }
                 Spacer(modifier = Modifier.width(16.dp))

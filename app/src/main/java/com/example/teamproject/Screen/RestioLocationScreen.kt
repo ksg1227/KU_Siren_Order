@@ -21,6 +21,8 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.teamproject.Item.LocationItem
@@ -65,7 +67,9 @@ fun RestioTabPager(pagerState: PagerState, tabs: List<String>, navController: Na
         ) {
             tabs.forEachIndexed { index, title ->
                 Tab(
-                    text = { Text(title) },
+                    text = { Text(title,
+                        fontFamily = FontFamily(Font(R.font.pretendard_semibold))
+                    ) },
                     selected = pagerState.currentPage == index,
                     modifier = Modifier
                         .width(200.dp)  // 탭의 가로 크기

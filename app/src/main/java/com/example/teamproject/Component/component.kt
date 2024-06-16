@@ -33,7 +33,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.fontResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -137,30 +140,25 @@ fun KioskMenuItem(
                 Spacer(modifier = Modifier.height(6.dp))
                 Text(
                     text = menuName,
-                    style = MaterialTheme.typography.titleMedium.copy(
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 13.sp
-                    ),
+                    fontSize = 13.sp,
+                    fontFamily = FontFamily(Font(R.font.pretendard_semibold)),
                     modifier = Modifier.padding(horizontal = 8.dp),
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
                 )
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
-                    text = menuPrice,
-                    style = MaterialTheme.typography.titleSmall.copy(
-                        fontSize = 13.sp
-                    ),
+                    text = if(place == null) menuPrice + "원" else menuPrice,
+                    fontSize = 13.sp,
+                    fontFamily = FontFamily(Font(R.font.pretendard_semibold)),
                     modifier = Modifier.padding(horizontal = 8.dp)
                 )
                 if (place == null) {
                     Spacer(modifier = Modifier.height(4.dp))
                     Text(
                         text = "잔여 수량: $quantity",
-                        style = MaterialTheme.typography.titleMedium.copy(
-                            fontWeight = FontWeight.Bold,
-                            fontSize = 13.sp
-                        ),
+                        fontSize = 13.sp,
+                        fontFamily = FontFamily(Font(R.font.pretendard_semibold)),
                         modifier = Modifier.padding(horizontal = 8.dp)
                     )
                 }

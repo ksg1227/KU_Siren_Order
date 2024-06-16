@@ -120,9 +120,15 @@ fun SignUpScreen(navController: NavHostController, userViewModel: UserViewModel)
                                 }
                             }
                             if (possibleId) {
-                                idValidMessage = "유효한 아이디입니다."
-                                idShowError = false
-                                isIdChecked = true  // Mark the ID as validated
+                                if(id.isEmpty()){
+                                    idValidMessage = "아이디를 입력해주세요."
+                                    idShowError = true
+                                    isIdChecked = false
+                                } else{
+                                    idValidMessage = "유효한 아이디입니다."
+                                    idShowError = false
+                                    isIdChecked = true
+                                }
                             } else {
                                 idValidMessage = "이미 존재하는 아이디입니다."
                                 idShowError = true
@@ -138,7 +144,9 @@ fun SignUpScreen(navController: NavHostController, userViewModel: UserViewModel)
                             .height(64.dp)
                             .padding(top = 6.dp)
                     ) {
-                        Text("중복 확인")
+                        Text("중복 확인",
+                            fontFamily = FontFamily(Font(R.font.pretendard_semibold))
+                        )
                     }
                 }
                 if (idValidMessage.isNotEmpty()) {

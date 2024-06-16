@@ -16,6 +16,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import com.example.teamproject.Component.BtnRectangle
 import com.example.teamproject.Component.DrawDepartmentDropdown
 import com.example.teamproject.Item.User
 import com.example.teamproject.R
@@ -196,35 +197,34 @@ fun MyPageEditScreen(
                     .padding(vertical = 16.dp),
                 horizontalArrangement = Arrangement.End
             ) {
-                TextButton(onClick = {
+                BtnRectangle(
+                    text = "취소",
+                    textColorId = R.color.black,
+                    bgColorId = R.color.gray_e6e6e6,
+                    width = 70.dp
+                ) {
                     navController.popBackStack()
-                }) {
-                    Text(text = "취소", color = Color.Gray)
+                    /* 취소 버튼 클릭 처리 */
                 }
                 Spacer(modifier = Modifier.width(16.dp))
-                Button(onClick = {
-                    val updatedPassword = if (currentPassword.value.isEmpty() || newPassword.value.isEmpty() || confirmPassword.value.isEmpty()) {
-                        initialPassword
-                    } else {
-                        newPassword.value
-                    }
-
-                    if (!currentPasswordError && !passwordMatchError && !newPasswordError) {
-                        val user = User(
-                            userViewModel.user.id,
-                            updatedPassword,
-                            name.value,
-                            phoneNumber.value,
-                            email.value,
-                            userViewModel.user.studentId,
-                            department.value
-                        )
-                        userViewModel.UpdateUser(user)
-                        userViewModel.user = user
-                        navController.navigate(Routes.MyPageMainScreen.route)
-                    }
-                }) {
-                    Text(text = "저장")
+                BtnRectangle(
+                    text = "저장",
+                    textColorId = R.color.white,
+                    bgColorId = R.color.green_65a25b,
+                    width = 70.dp
+                ) {
+                    val user = User(
+                        userViewModel.user.id,
+                        newPassword.value,
+                        name.value,
+                        phoneNumber.value,
+                        email.value,
+                        userViewModel.user.studentId,
+                        department.value
+                    )
+                    userViewModel.UpdateUser(user)
+                    userViewModel.user = user
+                    navController.navigate(Routes.MyPageMainScreen.route)
                 }
             }
         }

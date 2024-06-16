@@ -13,6 +13,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -47,20 +49,22 @@ fun ListItem(location: LocationItem, navController: NavController,color: Int) {
                 shape = RoundedCornerShape(10.dp)
             )
             .background(color = colorResource(id = color), shape = RoundedCornerShape(10.dp))
-            .padding(start = 15.dp, bottom = 10.dp, end = 15.dp)
+            .padding(start = 15.dp, bottom = 10.dp, end = 15.dp, top = 10.dp)
 
     )
     {
         Text(
             text = location.locationName,
             fontSize = 16.sp,
+            fontFamily = FontFamily(Font(R.font.pretendard_semibold)),
             color = Color.Black,
             modifier = Modifier.padding(5.dp)
         )
         Text(
             text = location.locationAddress,
             fontSize = 12.sp,
-            color = Color.LightGray,
+            fontFamily = FontFamily(Font(R.font.pretendard_regular)),
+            color = Color(0xFF444444),
             modifier = Modifier.padding(5.dp)
         )
 

@@ -70,7 +70,11 @@ fun CartScreen(
     val resNameColor: Int;
 
     resName = placeName    //매장 이름
-    resNameColor = R.color.green_066b3f
+    resNameColor = if(placeName == "학생회관 지하 학식(구시아푸드)" || placeName == "학생회관 1층 학식" || placeName == "상허기념도서관 지하 학식(구시아푸드)") R.color.gold_cf982e
+    else
+        R.color.green_066b3f
+
+
 
     var totalPrice = cartMenuViewModel.calculateTotalPrice(placeName)
 

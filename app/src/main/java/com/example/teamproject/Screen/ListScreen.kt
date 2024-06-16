@@ -25,16 +25,16 @@ import com.example.teamproject.R
 import com.example.teamproject.navigation.Routes
 
 @Composable
-fun ListScreen(navController: NavController, location: List<LocationItem>,color: Int) {
+fun ListScreen(navController: NavController, location: List<LocationItem>, color: Int) {
     Column(modifier = Modifier.padding(5.dp)) {
         location.forEach {
-            ListItem(location = it, navController = navController,color)
+            ListItem(location = it, navController = navController, color)
         }
     }
 }
 
 @Composable
-fun ListItem(location: LocationItem, navController: NavController,color: Int) {
+fun ListItem(location: LocationItem, navController: NavController, color: Int) {
     Column(
         modifier = Modifier
             .clickable {
@@ -45,7 +45,7 @@ fun ListItem(location: LocationItem, navController: NavController,color: Int) {
             .shadow(5.dp, RoundedCornerShape(10.dp))
             .border(
                 width = 1.dp,
-                color = Color.LightGray,
+                color = colorResource(id = R.color.gray_e6e6e6),
                 shape = RoundedCornerShape(10.dp)
             )
             .background(color = colorResource(id = color), shape = RoundedCornerShape(10.dp))
@@ -67,7 +67,13 @@ fun ListItem(location: LocationItem, navController: NavController,color: Int) {
             color = Color(0xFF444444),
             modifier = Modifier.padding(5.dp)
         )
-
+        Text(
+            text = location.hours,
+            fontSize = 12.sp,
+            fontFamily = FontFamily(Font(R.font.pretendard_regular)),
+            color = Color(0xFF444444),
+            modifier = Modifier.padding(5.dp)
+        )
     }
 }
 
@@ -76,7 +82,7 @@ fun ListItem(location: LocationItem, navController: NavController,color: Int) {
 private fun preview() {
     val navController = rememberNavController()
     val loaction = Restio_Location_init()
-    ListScreen(navController = navController, location = loaction,R.color.green_0A1009)
+    ListScreen(navController = navController, location = loaction, R.color.green_0A1009)
     fun Restio_Location_init(): List<LocationItem> {
         val location: List<LocationItem> = listOf(
             LocationItem(
@@ -84,35 +90,40 @@ private fun preview() {
                 "서울 광진구 능동로 120 1층(화양동)",
                 37.5403664,
                 127.0743614,
-                Routes.LibraryGusia.route
+                Routes.LibraryGusia.route,
+                "월~금 09:00 ~ 18:00"
             ),
             LocationItem(
                 "상허기념도서관",
                 "서울 광진구 능동로 120 3층(화양동)",
                 37.5419226,
                 127.0737408,
-                Routes.LibraryGusia.route
+                Routes.LibraryGusia.route,
+                "월~금 09:00 ~ 18:00"
             ),
             LocationItem(
                 "경영관",
                 "서울 광진구 능동로 120 1층(화양동)",
                 37.5442615,
                 127.0760717,
-                Routes.LibraryGusia.route
+                Routes.LibraryGusia.route,
+                "월~금 08:30 ~ 18:00"
             ),
             LocationItem(
                 "공학관",
                 "서울 광진구 능동로 120 건국대학교 공학관 1층(화양동)",
                 37.541635,
                 127.0787904,
-                Routes.LibraryGusia.route
+                Routes.LibraryGusia.route,
+                "월~금 08:30 ~ 18:00"
             ),
             LocationItem(
                 "산학협동관",
                 "서울 광진구 능동로 120 1층(화양동)",
                 37.5396663,
                 127.0732309,
-                Routes.LibraryGusia.route
+                Routes.LibraryGusia.route,
+                "월~금 08:30 ~ 19:00"
             )
         )
         return location
@@ -130,24 +141,27 @@ private fun di() {
                 "서울 광진구 능동로 120 1층(화양동)",
                 37.5418772,
                 127.0782087,
-                Routes.StudentUnionFirstfloor.route
+                Routes.StudentUnionFirstfloor.route,
+                "월~금 10:30 ~ 19:00"
             ),
             LocationItem(
                 "학생회관 지하 학식 (구시아푸드)",
                 "서울 광진구 능동로 120 지하 1층(화양동)",
                 37.5418772,
                 127.0782087,
-                Routes.StudentUnionGusia.route
+                Routes.StudentUnionGusia.route,
+                "월~금 10:30 ~ 19:00"
             ),
             LocationItem(
                 "상허기념도서관 지하 학식 (구시아푸드)",
                 "서울 광진구 능동로 120 지하 1층(화양동)",
                 37.5419226,
                 127.0737408,
-                Routes.LibraryGusia.route
+                Routes.LibraryGusia.route,
+                "월~금 10:30 ~ 19:00 / 토 10:30 ~ 15:00"
             ),
         )
         return location
     }
-    ListScreen(navController =nav , location = Restaurant_Location_init(),R.color.gold_cf982e)
+    ListScreen(navController = nav, location = Restaurant_Location_init(), R.color.gold_cf982e)
 }

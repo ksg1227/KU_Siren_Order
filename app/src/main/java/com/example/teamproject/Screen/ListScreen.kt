@@ -1,26 +1,30 @@
 package com.example.teamproject.Screen
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.teamproject.Item.LocationItem
+import com.example.teamproject.R
 import com.example.teamproject.navigation.Routes
 
 @Composable
 fun ListScreen(navController: NavController, location: List<LocationItem>) {
-    Column {
+    Column(modifier = Modifier.padding(5.dp)) {
         location.forEach {
             ListItem(location = it, navController = navController)
         }
@@ -35,11 +39,14 @@ fun ListItem(location: LocationItem, navController: NavController) {
                 navController.navigate(location.route)
             }
             .fillMaxWidth()
+            .padding(5.dp)
+            .shadow(5.dp, RoundedCornerShape(10.dp))
             .border(
                 width = 1.dp,
                 color = Color.LightGray,
-                shape = RectangleShape
+                shape = RoundedCornerShape(10.dp)
             )
+            .background(color = colorResource(id = R.color.green_0A1009), shape = RoundedCornerShape(10.dp))
             .padding(start = 15.dp, bottom = 10.dp, end = 15.dp)
 
     )
@@ -106,4 +113,37 @@ private fun preview() {
         )
         return location
     }
+}
+
+@Preview
+@Composable
+private fun di() {
+    val nav = rememberNavController()
+    fun Restaurant_Location_init(): List<LocationItem> {
+        val location: List<LocationItem> = listOf(
+            LocationItem(
+                "학생회관 1층 학식",
+                "서울 광진구 능동로 120 1층(화양동)",
+                37.5418772,
+                127.0782087,
+                Routes.StudentUnionFirstfloor.route
+            ),
+            LocationItem(
+                "학생회관 지하 학식 (구시아푸드)",
+                "서울 광진구 능동로 120 지하 1층(화양동)",
+                37.5418772,
+                127.0782087,
+                Routes.StudentUnionGusia.route
+            ),
+            LocationItem(
+                "상허기념도서관 지하 학식 (구시아푸드)",
+                "서울 광진구 능동로 120 지하 1층(화양동)",
+                37.5419226,
+                127.0737408,
+                Routes.LibraryGusia.route
+            ),
+        )
+        return location
+    }
+    ListScreen(navController =nav , location = Restaurant_Location_init())
 }

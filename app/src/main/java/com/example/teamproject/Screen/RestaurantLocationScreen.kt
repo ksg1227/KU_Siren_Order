@@ -3,12 +3,15 @@ package com.example.teamproject.Screen
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.material.Divider
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
 import androidx.compose.material3.TabRowDefaults
@@ -46,6 +49,12 @@ fun RestaurantTabPager(
             rightIconImgId = R.drawable.profile
         )
 
+        HorizontalDivider(
+            modifier = Modifier
+                .fillMaxWidth(), // 화면 전체 너비
+            color = Color.LightGray, // 테두리 색상
+            thickness = 1.dp // 테두리 두께
+        )
         // 탭 구현
         TabRow(
             selectedTabIndex = pagerState.currentPage,
@@ -55,7 +64,7 @@ fun RestaurantTabPager(
                     color = colorResource(id = R.color.gold_cf982e), // 인디케이터 색상 변경
                 )
             },
-            divider = {},
+            divider = { },
             containerColor = Color.White, // 배경색 설정
             contentColor = Color.Black
         ) {
@@ -65,7 +74,8 @@ fun RestaurantTabPager(
                     selected = pagerState.currentPage == index,
                     modifier = Modifier
                         .width(200.dp)  // 탭의 가로 크기
-                        .height(50.dp), // 탭의 세로 크기
+                        .height(50.dp)
+                        , // 탭의 세로 크기
                     onClick = {
                         coroutineScope.launch {
                             pagerState.animateScrollToPage(index)
@@ -75,6 +85,13 @@ fun RestaurantTabPager(
             }
         }
 
+        HorizontalDivider(
+            modifier = Modifier
+                .fillMaxWidth(), // 화면 전체 너비
+            color = Color.LightGray, // 테두리 색상
+            thickness = 1.dp // 테두리 두께
+        )
+
         // 뷰페이저 구현
         HorizontalPager(
             state = pagerState
@@ -82,11 +99,8 @@ fun RestaurantTabPager(
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(20.dp)
-                    .border(
-                        width = 1.dp,
-                        color = Color.LightGray
-                    )
+                    .padding(5.dp)
+
             ) {
                 // 페이지별 컨텐츠
                 when (page) {

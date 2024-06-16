@@ -36,11 +36,11 @@ class CartMenuViewModel : ViewModel() {
             "학생회관 1층 학식" -> studentUnion_FirstfloorMenuList.sumOf { it.menuItem.price.toInt()}
             "학생회관 지하 학식(구시아푸드)" -> studentUnion_GusiaMenuList.sumOf { it.menuItem.price.toInt()}
             "상허기념도서관 지하 학식(구시아푸드)" -> library_GusiaMenuList.sumOf { it.menuItem.price.toInt()}
-            "공학관 레스티오" -> engineeringRestioMenuList.sumOf { it.menuItem.price.toInt() }
-            "동물생명과학관 레스티오" -> animalLifeRestioMenuList.sumOf { it.menuItem.price.toInt() }
-            "상허기념도서관 레스티오" -> libraryRestioMenuList.sumOf { it.menuItem.price.toInt() }
-            "경영관 레스티오" -> managementRestioMenuList.sumOf { it.menuItem.price.toInt() }
-            "산학협동관 레스티오" -> industryRestioMenuList.sumOf { it.menuItem.price.toInt() }
+            "레스티오 공학관" -> engineeringRestioMenuList.sumOf { it.menuItem.price.toInt() }
+            "레스티오 동물생명과학관" -> animalLifeRestioMenuList.sumOf { it.menuItem.price.toInt() }
+            "레스티오 상허기념도서관" -> libraryRestioMenuList.sumOf { it.menuItem.price.toInt() }
+            "레스티오 경영관" -> managementRestioMenuList.sumOf { it.menuItem.price.toInt() }
+            "레스티오 산학협동관" -> industryRestioMenuList.sumOf { it.menuItem.price.toInt() }
             else -> 0
         }
         return totalPrice

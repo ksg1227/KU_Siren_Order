@@ -134,7 +134,11 @@ fun RestioPayScreen(
                 ) {
                     Image(
                         painter = painterResource(product.imageRes), // 이미지 받아오기
-                        contentDescription = null
+                        contentDescription = null,
+                        modifier = Modifier
+                            .height(200.dp)
+                            .fillMaxWidth()
+                            .clip(RoundedCornerShape(16.dp))
                     )
                 }
 

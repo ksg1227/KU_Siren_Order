@@ -61,6 +61,13 @@ fun MyPageEditScreen(
         return passwordRegex.matches(password)
     }
 
+    val isPasswordSectionValid = !currentPasswordError &&
+            !newPasswordError &&
+            !passwordMatchError &&
+            currentPassword.value.isNotEmpty() &&
+            newPassword.value.isNotEmpty() &&
+            confirmPassword.value.isNotEmpty()
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -186,10 +193,10 @@ fun MyPageEditScreen(
                 label = "학과",
                 text = "",
                 value = department.value,
-                onValueChange = {selectedDepartment ->
-                    department.value = selectedDepartment}
+                onValueChange = { selectedDepartment ->
+                    department.value = selectedDepartment
+                }
             )
-
 
             Row(
                 modifier = Modifier
@@ -211,11 +218,12 @@ fun MyPageEditScreen(
                     text = "저장",
                     textColorId = R.color.white,
                     bgColorId = R.color.green_65a25b,
-                    width = 70.dp
+                    width = 70.dp,
+
                 ) {
                     val user = User(
                         userViewModel.user.id,
-                        newPassword.value,
+                        if (isPasswordSectionValid) newPassword.value else initialPassword,
                         name.value,
                         phoneNumber.value,
                         email.value,
@@ -230,7 +238,6 @@ fun MyPageEditScreen(
         }
     }
 }
-
 
 @Composable
 fun UserInfoEditField(

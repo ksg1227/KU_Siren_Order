@@ -61,7 +61,7 @@ fun Library_GusiaOrderScreen( //사이드 있는 경우
     index: Int,
     libraryViewModel: LibraryMenuViewModel = viewModel(viewModelStoreOwner = LocalNavGraphViewModelStoreOwner.current),
     cartViewModel: CartMenuViewModel = viewModel(viewModelStoreOwner = LocalNavGraphViewModelStoreOwner.current),
-    onCheckout: () -> Unit,
+    onCheckout: (Int) -> Unit,
     navController: NavHostController
 ) {
     var quantity by remember { mutableStateOf(1) }
@@ -218,8 +218,8 @@ fun Library_GusiaOrderScreen( //사이드 있는 경우
                         )
                     }
                     Text(
-                        text = "${totalPrice}원",
-                        fontSize = 25.sp,
+                        text = "총 가격: ${totalPrice}원",
+                        fontSize = 20.sp,
                         fontFamily = FontFamily(Font(R.font.pretendard_semibold))
                     )
                 }
@@ -271,7 +271,7 @@ fun Library_GusiaOrderScreen( //사이드 있는 경우
                     Button(
                         onClick = {
                             libraryViewModel.decreaseQuantity(category, index, quantity)
-                            onCheckout()
+                            onCheckout(totalPrice)
                         },
                         modifier = Modifier.weight(1f),
                         shape = RoundedCornerShape(30),
@@ -301,7 +301,7 @@ fun Library_GusiaNoSideOrderScreen(      //side나 size 없는 경우
     index: Int,
     libraryViewModel: LibraryMenuViewModel = viewModel(viewModelStoreOwner = LocalNavGraphViewModelStoreOwner.current),
     cartViewModel: CartMenuViewModel = viewModel(viewModelStoreOwner = LocalNavGraphViewModelStoreOwner.current),
-    onCheckout: () -> Unit,
+    onCheckout: (Int) -> Unit,
     navController: NavHostController
 ) {
     var quantity by remember { mutableStateOf(0) }
@@ -415,8 +415,8 @@ fun Library_GusiaNoSideOrderScreen(      //side나 size 없는 경우
                         )
                     }
                     Text(
-                        text = "${menuItem.price.toInt() * quantity}원",
-                        fontSize = 25.sp,
+                        text = "총 가격: ${menuItem.price.toInt() * quantity}원",
+                        fontSize = 20.sp,
                         fontFamily = FontFamily(Font(R.font.pretendard_semibold))
                     )
                 }
@@ -469,7 +469,7 @@ fun Library_GusiaNoSideOrderScreen(      //side나 size 없는 경우
                     Button(
                         onClick = {
                             libraryViewModel.decreaseQuantity(category, index, quantity)
-                            onCheckout()
+                            onCheckout(menuItem.price.toInt() * quantity)
                         },
                         modifier = Modifier.weight(1f),
                         shape = RoundedCornerShape(30),
@@ -499,7 +499,7 @@ fun StudentUnion_GusiaOrderScreen(   //사이드 메뉴 존재하는 경우
     index: Int,
     studentUnionViewModel: StudentUnionMenuViewModel = viewModel(viewModelStoreOwner = LocalNavGraphViewModelStoreOwner.current),
     cartViewModel: CartMenuViewModel = viewModel(viewModelStoreOwner = LocalNavGraphViewModelStoreOwner.current),
-    onCheckout: () -> Unit,
+    onCheckout: (Int) -> Unit,
     navController: NavHostController
 ) {
 
@@ -689,8 +689,8 @@ fun StudentUnion_GusiaOrderScreen(   //사이드 메뉴 존재하는 경우
                         )
                     }
                     Text(
-                        text = "${totalPrice}원",
-                        fontSize = 25.sp,
+                        text = "총 가격: ${totalPrice}",
+                        fontSize = 20.sp,
                         fontFamily = FontFamily(Font(R.font.pretendard_semibold))
                     )
                 }
@@ -743,7 +743,7 @@ fun StudentUnion_GusiaOrderScreen(   //사이드 메뉴 존재하는 경우
                     Button(
                         onClick = {
                             studentUnionViewModel.decreaseQuantity(category, index, quantity)
-                            onCheckout()
+                            onCheckout(totalPrice)
                         },
                         modifier = Modifier.weight(1f),
                         shape = RoundedCornerShape(30),
@@ -773,7 +773,7 @@ fun StudentUnion_GusiaNoSideOrderScreen(    //side나 size 없는 경우
     index: Int,
     studentUnionViewModel: StudentUnionMenuViewModel = viewModel(viewModelStoreOwner = LocalNavGraphViewModelStoreOwner.current),
     cartViewModel: CartMenuViewModel = viewModel(viewModelStoreOwner = LocalNavGraphViewModelStoreOwner.current),
-    onCheckout: () -> Unit,
+    onCheckout: (Int) -> Unit,
     navController: NavHostController
 ) {
     var quantity by remember { mutableStateOf(0) }
@@ -885,8 +885,8 @@ fun StudentUnion_GusiaNoSideOrderScreen(    //side나 size 없는 경우
                         )
                     }
                     Text(
-                        text = "${menuItem.price.toInt() * quantity}원",
-                        fontSize = 25.sp,
+                        text = "총 가격: ${menuItem.price.toInt() * quantity}원",
+                        fontSize = 20.sp,
                         fontFamily = FontFamily(Font(R.font.pretendard_semibold))
                     )
                 }
@@ -938,7 +938,7 @@ fun StudentUnion_GusiaNoSideOrderScreen(    //side나 size 없는 경우
                     Button(
                         onClick = {
                             studentUnionViewModel.decreaseQuantity(category, index, quantity)
-                            onCheckout()
+                            onCheckout(menuItem.price.toInt() * quantity)
                         },
                         modifier = Modifier.weight(1f),
                         shape = RoundedCornerShape(30),
@@ -968,7 +968,7 @@ fun StudentUnion_FirstfloorOrderScreen(   //1층 학식 주문 화면
     index: Int,
     studentUnionViewModel: StudentUnionMenuViewModel = viewModel(viewModelStoreOwner = LocalNavGraphViewModelStoreOwner.current),
     cartViewModel: CartMenuViewModel = viewModel(viewModelStoreOwner = LocalNavGraphViewModelStoreOwner.current),
-    onCheckout: () -> Unit,
+    onCheckout: (Int) -> Unit,
     navController: NavHostController
 ) {
     var quantity by remember { mutableStateOf(0) }
@@ -1081,8 +1081,8 @@ fun StudentUnion_FirstfloorOrderScreen(   //1층 학식 주문 화면
                         )
                     }
                     Text(
-                        text = "${menuItem.price.toInt() * quantity}원",
-                        fontSize = 25.sp,
+                        text = "총 가격: ${menuItem.price.toInt() * quantity}원",
+                        fontSize = 20.sp,
                         fontFamily = FontFamily(Font(R.font.pretendard_semibold))
                     )
                 }
@@ -1134,7 +1134,7 @@ fun StudentUnion_FirstfloorOrderScreen(   //1층 학식 주문 화면
                     Button(
                         onClick = {
                             studentUnionViewModel.decreaseQuantity(category, index, quantity)
-                            onCheckout()
+                            onCheckout(menuItem.price.toInt() * quantity)
                         },
                         modifier = Modifier.weight(1f),
                         shape = RoundedCornerShape(30),

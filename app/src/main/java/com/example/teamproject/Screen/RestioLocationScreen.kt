@@ -3,12 +3,14 @@ package com.example.teamproject.Screen
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
 import androidx.compose.material3.TabRowDefaults
@@ -42,6 +44,12 @@ fun RestioTabPager(pagerState: PagerState, tabs: List<String>, navController: Na
             rightIconImgId = R.drawable.profile
         )
 
+        HorizontalDivider(
+            modifier = Modifier
+                .fillMaxWidth(), // 화면 전체 너비
+            color = Color.LightGray, // 테두리 색상
+            thickness = 1.dp // 테두리 두께
+        )
         // 탭 구현
         TabRow(
             selectedTabIndex = pagerState.currentPage,
@@ -71,6 +79,13 @@ fun RestioTabPager(pagerState: PagerState, tabs: List<String>, navController: Na
             }
         }
 
+        HorizontalDivider(
+            modifier = Modifier
+                .fillMaxWidth(), // 화면 전체 너비
+            color = Color.LightGray, // 테두리 색상
+            thickness = 1.dp // 테두리 두께
+        )
+
         // 뷰페이저 구현
         HorizontalPager(
             state = pagerState
@@ -78,16 +93,13 @@ fun RestioTabPager(pagerState: PagerState, tabs: List<String>, navController: Na
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(20.dp)
-                    .border(
-                        width = 1.dp,
-                        color = Color.LightGray
-                    )
+                    .padding(5.dp)
+
             ) {
                 // 페이지별 컨텐츠
                 when (page) {
                     1 -> MapScreen(navController = navController, location)
-                    0 -> ListScreen(navController = navController, location)
+                    0 -> ListScreen(navController = navController, location,R.color.green_0A1009)
 
                 }
             }

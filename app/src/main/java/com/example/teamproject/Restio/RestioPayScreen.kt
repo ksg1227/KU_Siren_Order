@@ -17,13 +17,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
+import com.example.teamproject.Component.BtnRectangle
 import com.example.teamproject.Item.CartMenuItem
 import com.example.teamproject.Item.MenuItem
 import com.example.teamproject.R
@@ -145,7 +149,11 @@ fun RestioPayScreen(
                         .padding(vertical = 16.dp),
                     contentAlignment = Alignment.Center
                 ) {
-                    Text(text = "${product.name}", fontSize = 20.sp, fontWeight = FontWeight.Bold)
+                    Text(
+                        text = "${product.name}",
+                        fontSize = 23.sp,
+                        fontFamily = FontFamily(Font(R.font.pretendard_semibold))
+                    )
                 }
 
                 Spacer(modifier = Modifier.height(16.dp))
@@ -159,8 +167,12 @@ fun RestioPayScreen(
                             .fillMaxWidth()
                             .padding(vertical = 8.dp)
                             .clip(RoundedCornerShape(8.dp))
-                            .background(if (selectedOptionsState[index]) Color.Gray else Color.Transparent) // 색상 적용 추가하기
-                            .border(1.dp, Color.Black, shape = RoundedCornerShape(8.dp))
+                            .background(if (selectedOptionsState[index]) colorResource(id = R.color.gray_d9d9d9) else Color.Transparent) // 색상 적용 추가하기
+                            .border(
+                                1.dp,
+                                colorResource(id = R.color.gray_b3b3b3),
+                                shape = RoundedCornerShape(8.dp)
+                            )
                             .clickable {
                                 selectedOptionsState = selectedOptionsState
                                     .toMutableList()
@@ -181,8 +193,16 @@ fun RestioPayScreen(
                             horizontalArrangement = Arrangement.SpaceBetween,
                             verticalAlignment = Alignment.CenterVertically
                         ) {
-                            Text(text = "$option", fontSize = 16.sp)
-                            Text(text = "(₩$price)", fontSize = 16.sp)
+                            Text(
+                                text = "$option",
+                                fontSize = 16.sp,
+                                fontFamily = FontFamily(Font(R.font.pretendard_medium))
+                            )
+                            Text(
+                                text = "(₩$price)",
+                                fontSize = 16.sp,
+                                fontFamily = FontFamily(Font(R.font.pretendard_medium))
+                            )
                         }
                     }
                 }
@@ -198,24 +218,28 @@ fun RestioPayScreen(
                 ) {
 //                Text(text = "수량", fontSize = 16.sp)
                     Row(verticalAlignment = Alignment.CenterVertically) {
-                        Button(
-                            onClick = { if (quantity > 1) quantity-- },
-                        ) {
-                            Text(text = "-")
-                        }
+                        Image(
+                            painter = painterResource(id = R.drawable.ic_minus), // 이미지 리소스
+                            contentDescription = "Decrease Quantity",
+                            modifier = Modifier
+                                .clickable { if (quantity > 1) quantity-- }
+                                .size(36.dp)
+                        )
                         Spacer(modifier = Modifier.width(8.dp))
                         Text(text = "$quantity", fontSize = 16.sp)
                         Spacer(modifier = Modifier.width(8.dp))
-                        Button(
-                            onClick = { quantity++ },
-                        ) {
-                            Text(text = "+")
-                        }
+                        Image(
+                            painter = painterResource(id = R.drawable.ic_plus), // 이미지 리소스
+                            contentDescription = "Increase Quantity",
+                            modifier = Modifier
+                                .clickable { quantity++ }
+                                .size(36.dp)
+                        )
                     }
                     Text(
                         text = "총 가격: ₩ $totalPrice",
                         fontSize = 16.sp,
-                        fontWeight = FontWeight.Bold
+                        fontFamily = FontFamily(Font(R.font.pretendard_semibold)),
                     )
 
                 }
@@ -224,53 +248,67 @@ fun RestioPayScreen(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.Center
                 ) {
-
-                    Button(onClick = {
-                        val selectedOptionList = mutableListOf<String>()
-                        selectedOptions.forEachIndexed { index, (option, price) ->
-                            if (optionCounts[index] > 0) {
-                                selectedOptionList.add("$option (${price}): ${optionCounts[index]}")
+                    Box(modifier = Modifier.weight(1f)) {
+                        BtnRectangle(
+                            text = "담기",
+                            textColorId = R.color.black,
+                            bgColorId = R.color.gray_e6e6e6,
+                            width = null,
+                        ) {
+                            val selectedOptionList = mutableListOf<String>()
+                            selectedOptions.forEachIndexed { index, (option, price) ->
+                                if (optionCounts[index] > 0) {
+                                    selectedOptionList.add("$option (${price}): ${optionCounts[index]}")
+                                }
                             }
+                            val cartItem = CartMenuItem(
+                                menuItem = product.copy(
+                                    quantity = quantity,
+                                    price = totalPrice.toString()
+                                ),
+                                size = null,
+                                optionList = selectedOptionList
+                            )
+                            when (place) {
+                                "레스티오 공학관" -> {
+                                    viewModel.engineeringRestioMenuList.add(cartItem)
+                                }
+
+                                "레스티오 동물생명과학관" -> {
+                                    viewModel.animalLifeRestioMenuList.add(cartItem)
+                                }
+
+                                "레스티오 상허기념도서관" -> {
+                                    viewModel.libraryRestioMenuList.add(cartItem)
+                                }
+
+                                "레스티오 산학협동관" -> {
+                                    viewModel.industryRestioMenuList.add(cartItem)
+                                }
+
+                                "경영관 레스티오" -> {
+                                    viewModel.managementRestioMenuList.add(cartItem)
+                                }
+                            }
+
+                            onClose()
                         }
-                        val cartItem = CartMenuItem(
-                            menuItem = product.copy(
-                                quantity = quantity,
-                                price = totalPrice.toString()
-                            ),
-                            size = null,
-                            optionList = selectedOptionList
-                        )
-                        when (place) {
-                            "레스티오 공학관" -> {
-                                viewModel.engineeringRestioMenuList.add(cartItem)
-                            }
-
-                            "레스티오 동물생명과학관" -> {
-                                viewModel.animalLifeRestioMenuList.add(cartItem)
-                            }
-
-                            "레스티오 상허기념도서관" -> {
-                                viewModel.libraryRestioMenuList.add(cartItem)
-                            }
-
-                            "레스티오 산학협동관" -> {
-                                viewModel.industryRestioMenuList.add(cartItem)
-                            }
-
-                            "경영관 레스티오" -> {
-                                viewModel.managementRestioMenuList.add(cartItem)
-                            }
-                        }
-
-                        onClose()
-                    }, modifier = Modifier.weight(1f)) {
-                        Text(text = "담기")
                     }
+
                     Spacer(modifier = Modifier.width(8.dp))
-                    Button(onClick = { navController.navigate("routes_payment_route/$place/$totalPrice") }) {
-                        Text(text = "결제하기")
+
+                    Box(modifier = Modifier.weight(1f)) {
+                        BtnRectangle(
+                            text = "결제하기",
+                            textColorId = R.color.white,
+                            bgColorId = R.color.green_65a25b,
+                            width = null
+                        ) {
+                            navController.navigate("routes_payment_route/$place/$totalPrice")
+                        }
                     }
                 }
+                Spacer(modifier = Modifier.height(30.dp))
             }
         }
     }

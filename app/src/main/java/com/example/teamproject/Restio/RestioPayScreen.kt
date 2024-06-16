@@ -45,7 +45,7 @@ fun RestioPayScreen(
     navController: NavHostController
 ) {
 
-    val options1 = listOf(
+    val options1: List<Pair<String, Int>> = listOf(
         "휘핑크림 O" to 0,
         "휘핑크림 X" to 0,
         "샷추가" to 500,
@@ -55,7 +55,7 @@ fun RestioPayScreen(
         "텀블러할인" to -200
     )
 
-    val options2 = listOf(
+    val options2: List<Pair<String, Int>> = listOf(
         "휘핑크림 O" to 0,
         "휘핑크림 X" to 0,
         "샷추가" to 500,
@@ -65,30 +65,24 @@ fun RestioPayScreen(
         "텀블러할인" to -200
     )
 
-    val options3 = listOf(
+    val options3: List<Pair<String, Int>> = listOf(
         "샷추가" to 500,
         "텀블러할인" to -200
     )
 
-    val options4 = listOf(
+    val options4: List<Pair<String, Int>> = listOf(
         "텀블러할인" to -200
     )
 
-    val options5 = listOf(
+    val options5: List<Pair<String, Int>> = listOf(
         "휘핑크림 O" to 0,
         "휘핑크림 X" to 0,
         "텀블러할인" to -200
     )
 
-    val options6 = listOf(
-        "" to 0
-    )
+    val options6: List<Pair<String, Int>>? = null // 옵션이 없는 경우 null 처리
 
-    val options7 = listOf(
-        "" to 0
-    )
-
-    val selectedOptions = when (product.category) {
+    val selectedOptions: List<Pair<String, Int>>? = when (product.category) {
         "커피 HOT" -> options1
         "커피 ICE" -> options2
         "티라떼/아이스티" -> options3
@@ -96,18 +90,19 @@ fun RestioPayScreen(
         "레스치노/스무디/과일주스" -> options5
         "베이커리" -> options6
         "쿠키|머핀|와플" -> options6
-        "샌드위치/핫도그" -> options7
-        "베이글|크림치즈" -> options7
-        else -> options7
+        "샌드위치/핫도그" -> options6
+        "베이글|크림치즈" -> options6
+        else -> options6
     }
 
-    var optionCounts by remember { mutableStateOf(List(selectedOptions.size) { 0 }) }
+    var optionCounts by remember { mutableStateOf(List(selectedOptions?.size ?: 0) { 0 }) }
     var quantity by remember { mutableStateOf(1) }
 
     val productPrice = product.price.replace("원", "").replace(",", "").toInt()
 
-    val totalOptionPrice =
-        selectedOptions.sumOf { it.second * optionCounts[selectedOptions.indexOf(it)] }
+    val totalOptionPrice = selectedOptions?.mapIndexed { index, (_, price) ->
+        price * optionCounts[index]
+    }?.sum() ?: 0
     val totalPrice = (productPrice + totalOptionPrice) * quantity
 
     Box(
@@ -158,51 +153,52 @@ fun RestioPayScreen(
 
                 Spacer(modifier = Modifier.height(16.dp))
 
+                if (selectedOptions != null) {
+                    var selectedOptionsState by remember { mutableStateOf(List(selectedOptions.size) { false }) }
 
-                var selectedOptionsState by remember { mutableStateOf(List(selectedOptions.size) { false }) }
-
-                selectedOptions.forEachIndexed { index, (option, price) ->
-                    Column(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(vertical = 8.dp)
-                            .clip(RoundedCornerShape(8.dp))
-                            .background(if (selectedOptionsState[index]) colorResource(id = R.color.gray_d9d9d9) else Color.Transparent) // 색상 적용 추가하기
-                            .border(
-                                1.dp,
-                                colorResource(id = R.color.gray_b3b3b3),
-                                shape = RoundedCornerShape(8.dp)
-                            )
-                            .clickable {
-                                selectedOptionsState = selectedOptionsState
-                                    .toMutableList()
-                                    .apply {
-                                        set(index, !selectedOptionsState[index])
-                                    }
-                                optionCounts = optionCounts
-                                    .toMutableList()
-                                    .apply {
-                                        set(index, if (selectedOptionsState[index]) 1 else 0)
-                                    }
-                            }
-                            .padding(8.dp),
-                        horizontalAlignment = Alignment.Start
-                    ) {
-                        Row(
-                            modifier = Modifier.fillMaxWidth(),
-                            horizontalArrangement = Arrangement.SpaceBetween,
-                            verticalAlignment = Alignment.CenterVertically
+                    selectedOptions.forEachIndexed { index, (option, price) ->
+                        Column(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(vertical = 8.dp)
+                                .clip(RoundedCornerShape(8.dp))
+                                .background(if (selectedOptionsState[index]) Color.Gray else Color.Transparent) // 색상 적용 추가하기
+                                .border(1.dp, Color.Black, shape = RoundedCornerShape(8.dp))
+                                .clickable {
+                                    selectedOptionsState = selectedOptionsState
+                                        .toMutableList()
+                                        .apply {
+                                            set(index, !selectedOptionsState[index])
+                                        }
+                                    optionCounts = optionCounts
+                                        .toMutableList()
+                                        .apply {
+                                            set(index, if (selectedOptionsState[index]) 1 else 0)
+                                        }
+                                }
+                                .padding(8.dp),
+                            horizontalAlignment = Alignment.Start
                         ) {
-                            Text(
-                                text = "$option",
-                                fontSize = 16.sp,
-                                fontFamily = FontFamily(Font(R.font.pretendard_medium))
-                            )
-                            Text(
-                                text = "(₩$price)",
-                                fontSize = 16.sp,
-                                fontFamily = FontFamily(Font(R.font.pretendard_medium))
-                            )
+                            Row(
+                                modifier = Modifier.fillMaxWidth(),
+                                horizontalArrangement = Arrangement.SpaceBetween,
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                Text(text = "$option",
+                                    fontSize = 16.sp,
+                                    fontFamily = FontFamily(Font(R.font.pretendard_medium))
+                                )
+                                if(price > 0)
+                                    Text(text = "(+$price)",
+                                        fontSize = 16.sp,
+                                        fontFamily = FontFamily(Font(R.font.pretendard_medium))
+                                    )
+                                else
+                                    Text(text = "($price)",
+                                        fontSize = 16.sp,
+                                        fontFamily = FontFamily(Font(R.font.pretendard_medium))
+                                    )
+                            }
                         }
                     }
                 }
@@ -256,9 +252,12 @@ fun RestioPayScreen(
                             width = null,
                         ) {
                             val selectedOptionList = mutableListOf<String>()
-                            selectedOptions.forEachIndexed { index, (option, price) ->
+                            selectedOptions?.forEachIndexed { index, (option, price) ->
                                 if (optionCounts[index] > 0) {
-                                    selectedOptionList.add("$option (${price}): ${optionCounts[index]}")
+                                    if(price > 0)
+                                        selectedOptionList.add("$option (+${price}): ${optionCounts[index]}")
+                                    else
+                                        selectedOptionList.add("$option (${price}): ${optionCounts[index]}")
                                 }
                             }
                             val cartItem = CartMenuItem(
@@ -267,7 +266,7 @@ fun RestioPayScreen(
                                     price = totalPrice.toString()
                                 ),
                                 size = null,
-                                optionList = selectedOptionList
+                                optionList = selectedOptionList.map { it.split(":")[0].trim() }
                             )
                             when (place) {
                                 "레스티오 공학관" -> {
@@ -286,7 +285,7 @@ fun RestioPayScreen(
                                     viewModel.industryRestioMenuList.add(cartItem)
                                 }
 
-                                "경영관 레스티오" -> {
+                                "레스티오 경영관" -> {
                                     viewModel.managementRestioMenuList.add(cartItem)
                                 }
                             }

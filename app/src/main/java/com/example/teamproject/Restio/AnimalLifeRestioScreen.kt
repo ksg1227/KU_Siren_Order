@@ -85,7 +85,7 @@ fun AnimalLifeRestioScreen(title: String, navController: NavHostController, view
                 onBackIconClick = { navController.popBackStack() },
                 title = title,
                 titleColor = Color.Black,
-                onRightIconClick = { navController.navigate("cart_screen/동물생명과학관 레스티오") },
+                onRightIconClick = { navController.navigate("cart_screen/레스티오 동물생명과학관") },
                 rightIconImgId = R.drawable.cart
             )
 

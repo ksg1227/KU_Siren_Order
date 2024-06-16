@@ -85,7 +85,7 @@ fun IndustryRestioScreen(title: String, navController: NavHostController, viewMo
                 onBackIconClick = { navController.popBackStack() },
                 title = title,
                 titleColor = Color.Black,
-                onRightIconClick = { navController.navigate("cart_screen/산학협동관 레스티오") },
+                onRightIconClick = { navController.navigate("cart_screen/레스티오 산학협동관") },
                 rightIconImgId = R.drawable.cart
             )
 

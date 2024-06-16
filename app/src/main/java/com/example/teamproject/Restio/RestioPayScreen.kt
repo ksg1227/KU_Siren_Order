@@ -285,7 +285,7 @@ fun RestioPayScreen(
                                     viewModel.industryRestioMenuList.add(cartItem)
                                 }
 
-                                "경영관 레스티오" -> {
+                                "레스티오 경영관" -> {
                                     viewModel.managementRestioMenuList.add(cartItem)
                                 }
                             }

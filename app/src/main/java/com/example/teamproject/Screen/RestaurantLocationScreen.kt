@@ -127,7 +127,7 @@ fun Restaurant_Location_init(): List<LocationItem> {
             37.5418772,
             127.0782087,
             Routes.StudentUnionFirstfloor.route,
-            "월~금 10:30 ~ 19:00"
+            "월~금 08:10 ~ 09:30 / 10:30 ~ 14:00 / 15:00 ~ 17:30"
         ),
         LocationItem(
             "학생회관 지하 학식 (구시아푸드)",
@@ -135,7 +135,7 @@ fun Restaurant_Location_init(): List<LocationItem> {
             37.5418772,
             127.0782087,
             Routes.StudentUnionGusia.route,
-            "월~금 10:30 ~ 19:00"
+           "월~금 10:30 ~ 19:00"
         ),
         LocationItem(
             "상허기념도서관 지하 학식 (구시아푸드)",

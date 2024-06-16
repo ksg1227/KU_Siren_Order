@@ -85,11 +85,11 @@ fun MapScreen(navController: NavHostController, location: List<LocationItem>) {
                 title = customAlertDialogState.value.title,
                 onClickToFloor = {
                     showDialog = false
-                    navController.navigate(Routes.LibraryGusia.route)
+                    navController.navigate(Routes.StudentUnionFirstfloor.route)
                 },
                 onClickToBottom = {
                     showDialog = false
-                    navController.navigate(Routes.LibraryGusia.route)
+                    navController.navigate(Routes.StudentUnionGusia.route)
                 },
                 onClickCancel = { showDialog = false }
             )

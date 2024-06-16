@@ -237,7 +237,7 @@ fun RestioPayScreen(
                         )
                     }
                     Text(
-                        text = "총 가격: ₩ $totalPrice",
+                        text = "총 가격: $totalPrice",
                         fontSize = 16.sp,
                         fontFamily = FontFamily(Font(R.font.pretendard_semibold)),
                     )

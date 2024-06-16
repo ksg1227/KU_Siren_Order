@@ -187,9 +187,9 @@ fun NavGraph(
                         index = index,
                         libraryViewModel = libraryViewModel,
                         cartViewModel = cartViewModel,
-                        onCheckout = {
+                        onCheckout = { totalPrice ->
                             // 결제 로직
-                            navController.navigate("routes_payment_route/상허기념도서관 지하 학식/$menuPrice")
+                            navController.navigate("routes_payment_route/상허기념도서관 지하 학식/$totalPrice")
                         },
                         navController = navController
                     )
@@ -200,9 +200,9 @@ fun NavGraph(
                         index = index,
                         libraryViewModel = libraryViewModel,
                         cartViewModel = cartViewModel,
-                        onCheckout = {
+                        onCheckout = {totalPrice->
                             // 결제 로직
-                            navController.navigate("routes_payment_route/상허기념도서관 지하 학식/$menuPrice")
+                            navController.navigate("routes_payment_route/상허기념도서관 지하 학식/$totalPrice")
                         },
                         navController = navController
                     )
@@ -227,9 +227,9 @@ fun NavGraph(
                         index = index,
                         studentUnionViewModel = studentUnionViewModel,
                         cartViewModel = cartViewModel,
-                        onCheckout = {
+                        onCheckout = { totalPrice->
                             // 결제 로직
-                            navController.navigate("routes_payment_route/학생회관 1층 학식/$menuPrice")
+                            navController.navigate("routes_payment_route/학생회관 1층 학식/$totalPrice")
                         },
                         navController = navController
                     )
@@ -241,9 +241,9 @@ fun NavGraph(
                             index = index,
                             studentUnionViewModel = studentUnionViewModel,
                             cartViewModel = cartViewModel,
-                            onCheckout = {
+                            onCheckout = {totalPrice->
                                 // 결제 로직
-                                navController.navigate("routes_payment_route/학생회관 지하 학식/$menuPrice")
+                                navController.navigate("routes_payment_route/학생회관 지하 학식/$totalPrice")
                             },
                             navController = navController
                         )
@@ -254,9 +254,9 @@ fun NavGraph(
                             index = index,
                             studentUnionViewModel = studentUnionViewModel,
                             cartViewModel = cartViewModel,
-                            onCheckout = {
+                            onCheckout = {totalPrice->
                                 // 결제 로직
-                                navController.navigate("routes_payment_route/학생회관 지하 학식/$menuPrice")
+                                navController.navigate("routes_payment_route/학생회관 지하 학식/$totalPrice")
                             },
                             navController = navController
                         )

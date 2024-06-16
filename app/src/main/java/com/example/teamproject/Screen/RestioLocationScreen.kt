@@ -67,9 +67,12 @@ fun RestioTabPager(pagerState: PagerState, tabs: List<String>, navController: Na
         ) {
             tabs.forEachIndexed { index, title ->
                 Tab(
-                    text = { Text(title,
-                        fontFamily = FontFamily(Font(R.font.pretendard_semibold))
-                    ) },
+                    text = {
+                        Text(
+                            title,
+                            fontFamily = FontFamily(Font(R.font.pretendard_semibold))
+                        )
+                    },
                     selected = pagerState.currentPage == index,
                     modifier = Modifier
                         .width(200.dp)  // 탭의 가로 크기
@@ -103,7 +106,7 @@ fun RestioTabPager(pagerState: PagerState, tabs: List<String>, navController: Na
                 // 페이지별 컨텐츠
                 when (page) {
                     1 -> MapScreen(navController = navController, location)
-                    0 -> ListScreen(navController = navController, location,R.color.green_0A1009)
+                    0 -> ListScreen(navController = navController, location, R.color.green_0A1009)
 
                 }
             }
@@ -118,35 +121,40 @@ fun Restio_Location_init(): List<LocationItem> {
             "서울 광진구 능동로 120 1층(화양동)",
             37.5403664,
             127.0743614,
-            Routes.AnimalLifeRestioScreen.route
+            Routes.AnimalLifeRestioScreen.route,
+            "월~금 09:00 ~ 18:00"
         ),
         LocationItem(
             "레스티오 상허기념도서관",
             "서울 광진구 능동로 120 3층(화양동)",
             37.5419226,
             127.0737408,
-            Routes.LibraryRestioScreen.route
+            Routes.LibraryRestioScreen.route,
+            "월~금 09:00 ~ 18:00"
         ),
         LocationItem(
             "레스티오 경영관",
             "서울 광진구 능동로 120 1층(화양동)",
             37.5442615,
             127.0760717,
-            Routes.ManagementRestioScreen.route
+            Routes.ManagementRestioScreen.route,
+            "월~금 08:30 ~ 18:00"
         ),
         LocationItem(
             "레스티오 공학관",
             "서울 광진구 능동로 120 건국대학교 공학관 1층(화양동)",
             37.541635,
             127.0787904,
-            Routes.EngineeringRestioScreen.route
+            Routes.EngineeringRestioScreen.route,
+            "월~금 08:30 ~ 18:00"
         ),
         LocationItem(
             "레스티오 산학협동관",
             "서울 광진구 능동로 120 1층(화양동)",
             37.5396663,
             127.0732309,
-            Routes.IndustryRestioScreen.route
+            Routes.IndustryRestioScreen.route,
+            "월~금 08:30 ~ 19:00"
         )
     )
     return location
@@ -154,7 +162,7 @@ fun Restio_Location_init(): List<LocationItem> {
 
 @Composable
 fun RestioLocationScreen(navController: NavHostController) {
-    val tabs = listOf("리스트로 보기","지도로 보기")
+    val tabs = listOf("리스트로 보기", "지도로 보기")
     val pagerState = rememberPagerState {
         tabs.size
     }

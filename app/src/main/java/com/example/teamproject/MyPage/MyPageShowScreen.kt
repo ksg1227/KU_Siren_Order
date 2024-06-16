@@ -55,7 +55,7 @@ fun MyPageShowScreen(
             ) {
                 Spacer(modifier = Modifier.height(60.dp))
                 Image(
-                    painter = painterResource(id = R.drawable.konkuk),
+                    painter = painterResource(id = R.drawable.profile),
                     contentDescription = null,
                     modifier = Modifier
                         .size(120.dp)

@@ -5,5 +5,6 @@ data class LocationItem(
     val locationAddress: String,
     val latitiude: Double,
     val longtitude: Double,
-    val route : String
+    val route: String,
+    val hours: String,
 )

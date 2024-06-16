@@ -72,14 +72,16 @@ fun RestaurantTabPager(
         ) {
             tabs.forEachIndexed { index, title ->
                 Tab(
-                    text = { Text(title,
-                        fontFamily = FontFamily(Font(R.font.pretendard_semibold))
-                    ) },
+                    text = {
+                        Text(
+                            title,
+                            fontFamily = FontFamily(Font(R.font.pretendard_semibold))
+                        )
+                    },
                     selected = pagerState.currentPage == index,
                     modifier = Modifier
                         .width(200.dp)  // 탭의 가로 크기
-                        .height(50.dp)
-                        , // 탭의 세로 크기
+                        .height(50.dp), // 탭의 세로 크기
                     onClick = {
                         coroutineScope.launch {
                             pagerState.animateScrollToPage(index)
@@ -109,7 +111,7 @@ fun RestaurantTabPager(
                 // 페이지별 컨텐츠
                 when (page) {
                     1 -> MapScreen(navController = navController, location)
-                    0 -> ListScreen(navController = navController, location,R.color.gold_fcf5ba)
+                    0 -> ListScreen(navController = navController, location, R.color.gold_fcf5ba)
 
                 }
             }
@@ -124,21 +126,24 @@ fun Restaurant_Location_init(): List<LocationItem> {
             "서울 광진구 능동로 120 1층(화양동)",
             37.5418772,
             127.0782087,
-            Routes.StudentUnionFirstfloor.route
+            Routes.StudentUnionFirstfloor.route,
+            "월~금 10:30 ~ 19:00"
         ),
         LocationItem(
             "학생회관 지하 학식 (구시아푸드)",
             "서울 광진구 능동로 120 지하 1층(화양동)",
             37.5418772,
             127.0782087,
-            Routes.StudentUnionGusia.route
+            Routes.StudentUnionGusia.route,
+            "월~금 10:30 ~ 19:00"
         ),
         LocationItem(
             "상허기념도서관 지하 학식 (구시아푸드)",
             "서울 광진구 능동로 120 지하 1층(화양동)",
             37.5419226,
             127.0737408,
-            Routes.LibraryGusia.route
+            Routes.LibraryGusia.route,
+            "월~금 10:30 ~ 19:00 / 토 10:30 ~ 15:00"
         ),
     )
     return location
@@ -146,7 +151,7 @@ fun Restaurant_Location_init(): List<LocationItem> {
 
 @Composable
 fun RestaurantLocationScreen(navController: NavHostController) {
-    val tabs = listOf("리스트로 보기","지도로 보기")
+    val tabs = listOf("리스트로 보기", "지도로 보기")
     val pagerState = rememberPagerState {
         tabs.size
     }

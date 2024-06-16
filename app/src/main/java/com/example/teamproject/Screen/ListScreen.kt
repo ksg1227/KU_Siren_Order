@@ -23,16 +23,16 @@ import com.example.teamproject.R
 import com.example.teamproject.navigation.Routes
 
 @Composable
-fun ListScreen(navController: NavController, location: List<LocationItem>) {
+fun ListScreen(navController: NavController, location: List<LocationItem>,color: Int) {
     Column(modifier = Modifier.padding(5.dp)) {
         location.forEach {
-            ListItem(location = it, navController = navController)
+            ListItem(location = it, navController = navController,color)
         }
     }
 }
 
 @Composable
-fun ListItem(location: LocationItem, navController: NavController) {
+fun ListItem(location: LocationItem, navController: NavController,color: Int) {
     Column(
         modifier = Modifier
             .clickable {
@@ -46,7 +46,7 @@ fun ListItem(location: LocationItem, navController: NavController) {
                 color = Color.LightGray,
                 shape = RoundedCornerShape(10.dp)
             )
-            .background(color = colorResource(id = R.color.green_0A1009), shape = RoundedCornerShape(10.dp))
+            .background(color = colorResource(id = color), shape = RoundedCornerShape(10.dp))
             .padding(start = 15.dp, bottom = 10.dp, end = 15.dp)
 
     )
@@ -72,7 +72,7 @@ fun ListItem(location: LocationItem, navController: NavController) {
 private fun preview() {
     val navController = rememberNavController()
     val loaction = Restio_Location_init()
-    ListScreen(navController = navController, location = loaction)
+    ListScreen(navController = navController, location = loaction,R.color.green_0A1009)
     fun Restio_Location_init(): List<LocationItem> {
         val location: List<LocationItem> = listOf(
             LocationItem(
@@ -145,5 +145,5 @@ private fun di() {
         )
         return location
     }
-    ListScreen(navController =nav , location = Restaurant_Location_init())
+    ListScreen(navController =nav , location = Restaurant_Location_init(),R.color.gold_cf982e)
 }

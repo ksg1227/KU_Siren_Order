@@ -105,7 +105,7 @@ fun RestaurantTabPager(
                 // 페이지별 컨텐츠
                 when (page) {
                     1 -> MapScreen(navController = navController, location)
-                    0 -> ListScreen(navController = navController, location)
+                    0 -> ListScreen(navController = navController, location,R.color.gold_fcf5ba)
 
                 }
             }
